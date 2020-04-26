@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class CrudService(val customersRepository: CustomersRepository) {
-    fun getAllCustomers(parameters: FindRequestParameters?) : MutableList<Customer> {
+    fun getAllCustomers(parameters: FindRequestParameters?): MutableList<Customer> {
         logger().info("All customers were fetched")
         return findAllEntities(customersRepository, parameters)
     }

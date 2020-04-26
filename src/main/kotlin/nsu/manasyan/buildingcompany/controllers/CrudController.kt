@@ -1,6 +1,5 @@
 package nsu.manasyan.buildingcompany.controllers
 
-import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.model.Customer
 import nsu.manasyan.buildingcompany.services.CrudService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
@@ -20,7 +19,7 @@ class CrudController(val crudService: CrudService) {
     }
 
     @DeleteMapping("/customers")
-    fun deleteCustomer(@RequestParam id: Int){
+    fun deleteCustomer(@RequestParam id: Int) {
         crudService.deleteCustomer(id)
     }
 }
