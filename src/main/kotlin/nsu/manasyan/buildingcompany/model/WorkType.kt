@@ -4,6 +4,5 @@ import javax.persistence.Entity
 import javax.persistence.Table
 
 @Entity
-@Table(name = "Materials")
-class Material(var name: String) : Identifiable()
-
+@Table(name = "WorkTypes")
+class WorkType (var name: String) : Identifiable()

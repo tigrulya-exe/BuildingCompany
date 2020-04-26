@@ -1,14 +1,12 @@
 package nsu.manasyan.buildingcompany.model
 
+import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
 import javax.persistence.*
 
 @Entity
-class Area(
-    manager: TechnicalSpecialist,
-    @Id @GeneratedValue
-    var id: Int? = null
-) {
-    @OneToOne()
+@Table(name = "Areas")
+class Area(manager: TechnicalSpecialist) : Identifiable() {
+    @OneToOne
     @JoinColumn(name = "managerId", referencedColumnName = "id")
     var manager: TechnicalSpecialist = manager
         set(value){

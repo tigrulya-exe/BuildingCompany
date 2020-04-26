@@ -1,5 +1,6 @@
-package nsu.manasyan.buildingcompany.model
+package nsu.manasyan.buildingcompany.model.workers
 
+import nsu.manasyan.buildingcompany.model.Post
 import javax.persistence.*
 
 @Entity
@@ -24,7 +25,8 @@ abstract class Foreman (
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears){
-    override var post: Post? = Post.FOREMAN
+    override var post: Post? =
+        Post.FOREMAN
 }
 
 @Entity
@@ -38,5 +40,6 @@ abstract class Master (
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears){
-    override var post: Post? = Post.MASTER
+    override var post: Post? =
+        Post.MASTER
 }

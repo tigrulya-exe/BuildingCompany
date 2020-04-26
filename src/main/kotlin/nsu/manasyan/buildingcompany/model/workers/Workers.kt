@@ -1,17 +1,7 @@
-package nsu.manasyan.buildingcompany.model
+package nsu.manasyan.buildingcompany.model.workers
 
+import nsu.manasyan.buildingcompany.model.Post
 import javax.persistence.*
-
-@Entity
-@Table(name = "Persons")
-@Inheritance(strategy = InheritanceType.JOINED)
-abstract class Person(var name: String,
-                      var surname: String,
-                      var patronymic: String?,
-                      @Id @GeneratedValue
-                      var id:Int? = null,
-                      @Transient
-                      open var post: Post? = null)
 
 @Entity
 @Table(name = "Workers")
@@ -41,7 +31,8 @@ class Mason(
     var bricksPerHour: Int,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears){
-    override var post: Post? = Post.MASON
+    override var post: Post? =
+        Post.MASON
 }
 
 @Entity
@@ -54,6 +45,7 @@ class Locksmith(
     var higherEducation: Boolean,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears){
-    override var post: Post? = Post.LOCKSMITH
+    override var post: Post? =
+        Post.LOCKSMITH
 }
 
