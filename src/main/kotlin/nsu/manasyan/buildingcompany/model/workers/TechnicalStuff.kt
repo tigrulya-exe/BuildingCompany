@@ -1,12 +1,15 @@
 package nsu.manasyan.buildingcompany.model.workers
 
 import nsu.manasyan.buildingcompany.model.Post
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.Inheritance
+import javax.persistence.InheritanceType
+import javax.persistence.Table
 
 @Entity
 @Table(name = "TechnicalSpecialists")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class TechnicalSpecialist (
+abstract class TechnicalSpecialist(
     name: String,
     surname: String,
     patronymic: String?,
@@ -17,14 +20,14 @@ abstract class TechnicalSpecialist (
 @Entity
 @Table(name = "Foremen")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Foreman (
+abstract class Foreman(
     name: String,
     surname: String,
     patronymic: String?,
     var knowledgeOfEnglish: Boolean,
     educationalInstitution: String,
     experienceYears: Int? = null
-) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears){
+) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
     override var post: Post? =
         Post.FOREMAN
 }
@@ -32,14 +35,14 @@ abstract class Foreman (
 @Entity
 @Table(name = "Masters")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Master (
+abstract class Master(
     name: String,
     surname: String,
     patronymic: String?,
     var category: Int,
     educationalInstitution: String,
     experienceYears: Int? = null
-) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears){
+) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
     override var post: Post? =
         Post.MASTER
 }

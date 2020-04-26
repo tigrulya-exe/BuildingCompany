@@ -9,7 +9,7 @@ class Area(manager: TechnicalSpecialist) : Identifiable() {
     @OneToOne
     @JoinColumn(name = "managerId", referencedColumnName = "id")
     var manager: TechnicalSpecialist = manager
-        set(value){
+        set(value) {
             value.post = Post.AREA_MANAGER
             field = value
         }

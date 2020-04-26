@@ -5,4 +5,4 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "WorkTypes")
-class WorkType (var name: String) : Identifiable()
+class WorkType(var name: String) : Identifiable()

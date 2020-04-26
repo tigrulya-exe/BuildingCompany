@@ -5,8 +5,6 @@ import nsu.manasyan.buildingcompany.repositories.CustomersRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CrudService(
-  val customersRepository: CustomersRepository
-) {
-    fun getAllCustomers(): MutableList<Customer> = customersRepository.findAll();
+class CrudService(val customersRepository: CustomersRepository) {
+    fun getAllCustomers(): MutableList<Customer> = customersRepository.findAll()
 }

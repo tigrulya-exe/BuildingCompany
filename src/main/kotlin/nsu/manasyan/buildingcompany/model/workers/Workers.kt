@@ -6,12 +6,12 @@ import javax.persistence.*
 @Entity
 @Table(name = "Workers")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Worker (
+abstract class Worker(
     name: String,
     surname: String,
     patronymic: String?,
     var experienceYears: Int? = null
-) : Person(name, surname, patronymic){
+) : Person(name, surname, patronymic) {
 
     @ManyToOne
     @JoinTable(
@@ -30,7 +30,7 @@ class Mason(
     patronymic: String?,
     var bricksPerHour: Int,
     experienceYears: Int? = null
-) : Worker(name, surname, patronymic, experienceYears){
+) : Worker(name, surname, patronymic, experienceYears) {
     override var post: Post? =
         Post.MASON
 }
@@ -44,7 +44,7 @@ class Locksmith(
     var category: Int,
     var higherEducation: Boolean,
     experienceYears: Int? = null
-) : Worker(name, surname, patronymic, experienceYears){
+) : Worker(name, surname, patronymic, experienceYears) {
     override var post: Post? =
         Post.LOCKSMITH
 }

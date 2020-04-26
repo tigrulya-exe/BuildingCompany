@@ -7,8 +7,10 @@ import javax.persistence.*
 @Entity
 @Table(name = "Persons")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Person(var name: String,
-                      var surname: String,
-                      var patronymic: String?,
-                      @Transient
-                      open var post: Post? = null) : Identifiable()
+abstract class Person(
+    var name: String,
+    var surname: String,
+    var patronymic: String?,
+    @Transient
+    open var post: Post? = null
+) : Identifiable()

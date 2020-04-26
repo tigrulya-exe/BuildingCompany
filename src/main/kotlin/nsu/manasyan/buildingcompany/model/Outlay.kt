@@ -1,7 +1,6 @@
 package nsu.manasyan.buildingcompany.model
 
 import java.io.Serializable
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -18,7 +17,7 @@ class Outlay(var materialCount: Int) : Identifiable() {
 
 @Entity
 @Table(name = "OutlayExceedances")
-class OutlayExceedance (
+class OutlayExceedance(
     @Id
     @OneToOne
     @JoinColumn(name = "outlayId", referencedColumnName = "id")

@@ -5,11 +5,11 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "ConstructionManagement")
-class ConstructionManagement (manager: TechnicalSpecialist) : Identifiable(){
+class ConstructionManagement(manager: TechnicalSpecialist) : Identifiable() {
     @OneToOne()
     @JoinColumn(name = "managerId", referencedColumnName = "id")
     var manager: TechnicalSpecialist = manager
-        set(value){
+        set(value) {
             value.post = Post.MANAGEMENT_MANAGER
             field = value
         }

@@ -11,5 +11,5 @@ class Brigade(
     var manager: Worker
 ) : Identifiable() {
     @OneToMany(mappedBy = "brigade")
-    lateinit var workers : MutableSet<Worker>
+    lateinit var workers: MutableSet<Worker>
 }
