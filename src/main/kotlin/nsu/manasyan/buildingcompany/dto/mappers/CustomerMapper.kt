@@ -13,7 +13,7 @@ class CustomerMapper(private val mapper: ModelMapper) : Mapper<Customer, Dto<Cus
         val dto = mapper.map(entity, CustomerDto::class.java)
         dto.buildingObjects = entity.buildingObjects
             .stream()
-            .map { b -> b.id }
+            .map { it.id }
             .collect(Collectors.toList())
         return dto
     }
