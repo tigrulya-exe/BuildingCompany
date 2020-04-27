@@ -1,9 +1,12 @@
 package nsu.manasyan.buildingcompany.util
 
+import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.dto.model.Dto
+import nsu.manasyan.buildingcompany.model.Identifiable
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
-import org.springframework.data.jpa.repository.JpaRepository
+import java.util.stream.Collectors
 
 fun getPageable(parameters: FindRequestParameters?, sort: Sort): Pageable {
     return parameters?.page?.let { page ->
@@ -24,10 +27,8 @@ fun getSort(parameters: FindRequestParameters?): Sort {
     } ?: Sort.unsorted()
 }
 
-fun <T> findAllEntities(repository: JpaRepository<T, Int>, parameters: FindRequestParameters?): MutableList<T> {
-    val sort = getSort(parameters)
-    val pageable = getPageable(parameters, sort)
-    with(repository) {
-        return if (pageable.isPaged) findAll(pageable).content else findAll(sort)
-    }
+fun <E : Identifiable> entitiesToDtos(entities: MutableList<E>, mapper: Mapper<E, Dto<E>>): MutableList<Dto<E>> {
+    return entities.stream()
+        .map { e -> mapper.toDto(e) }
+        .collect(Collectors.toList())
 }
