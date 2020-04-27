@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class CustomersService(repository: CustomersRepository, mapper: CustomerMapper) :
-    AbstractService<Customer>(repository, mapper) {
+    AbstractCrudService<Customer>(repository, mapper) {
 }

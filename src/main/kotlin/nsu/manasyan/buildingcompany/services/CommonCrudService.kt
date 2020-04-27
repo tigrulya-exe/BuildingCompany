@@ -3,7 +3,7 @@ package nsu.manasyan.buildingcompany.services
 import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 
-interface CommonService<E> {
+interface CommonCrudService<E> {
     fun getAllEntities(parameters: FindRequestParameters?): MutableList<Dto<E>>
 
     fun addEntity(dto: Dto<E>)

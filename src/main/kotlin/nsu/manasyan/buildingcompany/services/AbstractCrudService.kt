@@ -10,10 +10,10 @@ import nsu.manasyan.buildingcompany.util.getPageable
 import nsu.manasyan.buildingcompany.util.getSort
 import org.springframework.data.jpa.repository.JpaRepository
 
-abstract class AbstractService<E : Identifiable>(
+abstract class AbstractCrudService<E : Identifiable>(
     open val repository: JpaRepository<E, Int>,
     private val modelMapper: Mapper<E, Dto<E>>
-) : CommonService<E> {
+) : CommonCrudService<E> {
     override fun getAllEntities(parameters: FindRequestParameters?): MutableList<Dto<E>> {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
