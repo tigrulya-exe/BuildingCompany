@@ -1,9 +1,7 @@
 package nsu.manasyan.buildingcompany.dto.model
 
+import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.model.Customer
 
-
-class CustomerDto(
-    var name: String? = null,
-    var buildingObjects: MutableSet<Int>? = null
-) : Dto<Customer>()
+@NoArgConstructor
+data class CustomerDto(var name: String, var buildingObjects: MutableSet<Int>?) : Dto<Customer>()

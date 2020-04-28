@@ -49,3 +49,7 @@ allOpen {
     annotation("javax.persistence.Embeddable")
     annotation("javax.persistence.MappedSuperclass")
 }
+
+noArg{
+    annotation("nsu.manasyan.buildingcompany.configuration.NoArgConstructor")
+}

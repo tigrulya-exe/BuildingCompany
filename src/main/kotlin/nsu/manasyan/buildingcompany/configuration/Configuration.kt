@@ -6,9 +6,10 @@ import org.modelmapper.convention.MatchingStrategies
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+annotation class NoArgConstructor
 
 @Configuration
-class MyConfiguration {
+class GlobalConfiguration {
     @Bean
     fun modelMapper(): ModelMapper {
         val mapper = ModelMapper()
