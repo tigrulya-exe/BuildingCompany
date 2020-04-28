@@ -1,7 +1,6 @@
 package nsu.manasyan.buildingcompany.dto.mappers
 
 import nsu.manasyan.buildingcompany.dto.model.AreaDto
-import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.dto.model.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.util.identifiablesToIds

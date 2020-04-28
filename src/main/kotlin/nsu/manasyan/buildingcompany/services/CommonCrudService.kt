@@ -1,4 +1,5 @@
 package nsu.manasyan.buildingcompany.services
+
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 
 interface CommonCrudService<E> {

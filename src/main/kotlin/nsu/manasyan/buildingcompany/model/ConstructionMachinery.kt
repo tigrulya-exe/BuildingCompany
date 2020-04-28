@@ -11,5 +11,5 @@ class ConstructionMachinery(var type: String, var licencePlateNumber: String) : 
         joinColumns = [JoinColumn(name = "MachineId")],
         inverseJoinColumns = [JoinColumn(name = "ObjectId")]
     )
-    lateinit var buildingObject: BuildingObject
+    var buildingObject: BuildingObject? = null
 }

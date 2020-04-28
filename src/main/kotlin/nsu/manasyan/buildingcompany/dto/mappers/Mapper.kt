@@ -8,7 +8,7 @@ interface Mapper<E, D : Dto<E>> {
 
     fun toEntity(dto: D): E
 
-    fun toDtos(entities: MutableList<E>) : MutableList<D> {
+    fun toDtos(entities: MutableList<E>): MutableList<D> {
         return entities.stream()
             .map { toDto(it) }
             .collect(Collectors.toList())

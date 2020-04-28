@@ -5,5 +5,5 @@ import nsu.manasyan.buildingcompany.repositories.BuildingObjectRepository
 import org.springframework.stereotype.Service
 
 @Service
-class BuildingObjectService(objectRepository: BuildingObjectRepository)
-    : AbstractCrudService<BuildingObject>(objectRepository)
+class BuildingObjectService(objectRepository: BuildingObjectRepository) :
+    AbstractCrudService<BuildingObject>(objectRepository)

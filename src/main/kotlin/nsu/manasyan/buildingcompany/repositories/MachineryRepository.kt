@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MachineryRepository : JpaRepository<ConstructionMachinery, Int>, JpaSpecificationExecutor<ConstructionMachinery>
+interface MachineryRepository : JpaRepository<ConstructionMachinery, Int>,
+    JpaSpecificationExecutor<ConstructionMachinery>

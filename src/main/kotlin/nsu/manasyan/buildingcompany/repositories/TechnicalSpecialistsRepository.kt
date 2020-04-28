@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TechnicalSpecialistsRepository : JpaRepository<TechnicalSpecialist, Int>, JpaSpecificationExecutor<TechnicalSpecialist>
+interface TechnicalSpecialistsRepository : JpaRepository<TechnicalSpecialist, Int>,
+    JpaSpecificationExecutor<TechnicalSpecialist>
 
 @Repository
 interface ForemenRepository : JpaRepository<Foreman, Int>
