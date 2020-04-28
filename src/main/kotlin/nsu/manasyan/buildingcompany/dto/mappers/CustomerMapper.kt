@@ -8,14 +8,14 @@ import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
-class CustomerMapper(private val mapper: ModelMapper) : Mapper<Customer, Dto<Customer>> {
+class CustomerMapper(private val mapper: ModelMapper) : Mapper<Customer, CustomerDto> {
     override fun toDto(entity: Customer): CustomerDto {
         val dto = mapper.map(entity, CustomerDto::class.java)
         dto.buildingObjects = identifiablesToIds(entity.buildingObjects)
         return dto
     }
 
-    override fun toEntity(dto: Dto<Customer>): Customer {
+    override fun toEntity(dto: CustomerDto): Customer {
         return mapper.map(dto, Customer::class.java)
     }
 }

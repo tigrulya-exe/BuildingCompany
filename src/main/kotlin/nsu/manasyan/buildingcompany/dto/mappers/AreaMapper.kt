@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
-class AreaMapper(private val mapper: ModelMapper) : Mapper<Area, Dto<Area>> {
+class AreaMapper(private val mapper: ModelMapper) : Mapper<Area, AreaDto> {
     override fun toDto(entity: Area): AreaDto {
         val dto = mapper.map(entity, AreaDto::class.java)
         dto.managements = identifiablesToIds(entity.managements)
@@ -17,7 +17,7 @@ class AreaMapper(private val mapper: ModelMapper) : Mapper<Area, Dto<Area>> {
         return dto
     }
 
-    override fun toEntity(dto: Dto<Area>): Area {
+    override fun toEntity(dto: AreaDto): Area {
         return mapper.map(dto, Area::class.java)
     }
 }

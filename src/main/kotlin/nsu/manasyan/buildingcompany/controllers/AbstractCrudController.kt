@@ -1,5 +1,6 @@
 package nsu.manasyan.buildingcompany.controllers
 
+import nsu.manasyan.buildingcompany.dto.mappers.Mapper
 import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.model.Identifiable
@@ -9,18 +10,19 @@ import org.springframework.web.bind.annotation.*
 
 abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     val service: CommonCrudService<E>,
+    val mapper: Mapper<E, D>,
     private val entityName: String
 ) : CommonCrudController<E, D> {
 
     @GetMapping
-    override fun getAllEntities(params: FindRequestParameters?): MutableList<Dto<E>> {
+    override fun getAllEntities(params: FindRequestParameters?): MutableList<D> {
         logger().info("All ${entityName}s were fetched")
-        return service.getAllEntities(params)
+        return mapper.toDtos(service.getAllEntities(params))
     }
 
     @PostMapping
     override fun addEntity(@RequestBody dto: D) {
-        service.addEntity(dto)
+        service.addEntity(mapper.toEntity(dto))
         logger().info("$entityName was added")
     }
 
@@ -31,14 +33,14 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     }
 
     @GetMapping("/{id}")
-    override fun getEntity(@PathVariable id: Int): Dto<E> {
+    override fun getEntity(@PathVariable id: Int): D {
         logger().info("$entityName #'$id' was queried")
-        return service.getEntity(id)
+        return mapper.toDto(service.getEntity(id))
     }
 
     @PutMapping
     override fun updateEntity(@RequestBody dto: D) {
-        service.updateEntity(dto)
+        service.updateEntity(mapper.toEntity(dto))
         logger().info("$entityName '${dto.id}' was updated")
     }
 }

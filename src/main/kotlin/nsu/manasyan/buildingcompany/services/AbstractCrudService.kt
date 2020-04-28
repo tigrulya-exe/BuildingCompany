@@ -1,31 +1,23 @@
 package nsu.manasyan.buildingcompany.services
 
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
-import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.exceptions.NoDataFoundException
 import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
-import nsu.manasyan.buildingcompany.util.entitiesToDtos
 import nsu.manasyan.buildingcompany.util.getPageable
 import nsu.manasyan.buildingcompany.util.getSort
 import org.springframework.data.jpa.repository.JpaRepository
 
-abstract class AbstractCrudService<E : Identifiable>(
-    open val repository: JpaRepository<E, Int>,
-    private val modelMapper: Mapper<E, Dto<E>>
-) : CommonCrudService<E> {
-    override fun getAllEntities(parameters: FindRequestParameters?): MutableList<Dto<E>> {
+abstract class AbstractCrudService<E : Identifiable>(open val repository: JpaRepository<E, Int>) :
+    CommonCrudService<E> {
+    override fun getAllEntities(parameters: FindRequestParameters?): MutableList<E> {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
-        val entities = with(repository) {
+        return with(repository) {
             if (pageable.isPaged) findAll(pageable).content else findAll(sort)
         }
-
-        return entitiesToDtos(entities, modelMapper)
     }
 
-    override fun addEntity(dto: Dto<E>) {
-        val entity = modelMapper.toEntity(dto)
+    override fun addEntity(entity: E) {
         repository.save(entity)
     }
 
@@ -37,16 +29,13 @@ abstract class AbstractCrudService<E : Identifiable>(
         throw NoDataFoundException("Wrong id to delete")
     }
 
-    override fun getEntity(id: Int): Dto<E> {
-        val entity = repository.findById(id).orElseThrow {
+    override fun getEntity(id: Int): E {
+        return repository.findById(id).orElseThrow {
             throw NoDataFoundException("Wrong id to get")
         }
-
-        return modelMapper.toDto(entity)
     }
 
-    override fun updateEntity(dto: Dto<E>) {
-        val entity = modelMapper.toEntity(dto)
+    override fun updateEntity(entity: E) {
         val id = entity.id ?: throw IllegalArgumentException("Id required")
         if (repository.existsById(id)) {
             repository.save(entity)
