@@ -23,4 +23,10 @@ class BaseExceptionHandler {
         logger().error("HttpMessageConversionException: '${exc.localizedMessage}'")
         return ResponseEntity(ErrorModel("Wrong data"), HttpStatus.BAD_REQUEST)
     }
+
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleConversionError(exc: IllegalArgumentException) : ResponseEntity<ErrorModel>{
+        logger().error("IllegalArgumentException: '${exc.localizedMessage}'")
+        return ResponseEntity(ErrorModel(exc.localizedMessage), HttpStatus.BAD_REQUEST)
+    }
 }

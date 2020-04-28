@@ -8,7 +8,7 @@ import javax.persistence.*
 class Brigade(
     @OneToOne()
     @JoinColumn(name = "managerId", referencedColumnName = "id")
-    var manager: Worker
+    var manager: Worker?
 ) : Identifiable() {
     @OneToMany(mappedBy = "brigade")
     lateinit var workers: MutableSet<Worker>
