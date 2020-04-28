@@ -22,6 +22,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
 
     @PostMapping
     override fun addEntity(@RequestBody dto: D) {
+        val e = mapper.toEntity(dto)
         service.addEntity(mapper.toEntity(dto))
         logger().info("$entityName was added")
     }

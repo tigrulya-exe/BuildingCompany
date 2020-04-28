@@ -6,6 +6,7 @@ import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.getPageable
 import nsu.manasyan.buildingcompany.util.getSort
 import org.springframework.data.jpa.repository.JpaRepository
+import javax.transaction.Transactional
 
 abstract class AbstractCrudService<E : Identifiable>(open val repository: JpaRepository<E, Int>) :
     CommonCrudService<E> {
@@ -17,6 +18,7 @@ abstract class AbstractCrudService<E : Identifiable>(open val repository: JpaRep
         }
     }
 
+    @Transactional
     override fun addEntity(entity: E) {
         repository.save(entity)
     }
