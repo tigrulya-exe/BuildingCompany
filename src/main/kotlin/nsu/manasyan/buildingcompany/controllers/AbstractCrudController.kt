@@ -19,7 +19,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     }
 
     @PostMapping
-    override fun addEntity(dto: D) {
+    override fun addEntity(@RequestBody dto: D) {
         service.addEntity(dto)
         logger().info("$entityName was added")
     }
@@ -37,7 +37,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     }
 
     @PutMapping
-    override fun updateEntity(dto: D) {
+    override fun updateEntity(@RequestBody dto: D) {
         service.updateEntity(dto)
         logger().info("$entityName '${dto.id}' was updated")
     }

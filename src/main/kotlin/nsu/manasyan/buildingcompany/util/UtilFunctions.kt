@@ -32,3 +32,9 @@ fun <E : Identifiable> entitiesToDtos(entities: MutableList<E>, mapper: Mapper<E
         .map { e -> mapper.toDto(e) }
         .collect(Collectors.toList())
 }
+
+fun <E : Identifiable> identifiablesToIds(entities: MutableSet<E>): MutableSet<Int> {
+    return entities.stream()
+        .map { it.id }
+        .collect(Collectors.toSet())
+}

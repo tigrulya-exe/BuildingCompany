@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class NativeQueryController(private val queryService: NativeQueryService) {
 
     @GetMapping("/query")
-    fun getQueryResults(@RequestParam query: String) : MutableList<*>{
+    fun getQueryResults(@RequestParam query: String): MutableList<*> {
         return queryService.getQueryResults(query)
     }
 }

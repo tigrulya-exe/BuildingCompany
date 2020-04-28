@@ -14,5 +14,14 @@ spring:
     properties:
       hibernate:
         format_sql: true
+#  http:
+#    converters:
+#      preferred-json-mapper: gson
 
+  main:
+    allow-bean-definition-overriding: true
+
+#logging:
+#  level:
+#    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 application-path: /api/v1

@@ -9,7 +9,7 @@ class NativeQueryService(private val entityManager: EntityManager) {
     fun getQueryResults(query: String): MutableList<*> {
         try {
             return entityManager.createNativeQuery(query).resultList
-        } catch (exc : Exception){
+        } catch (exc: Exception) {
             throw NoDataFoundException("No data")
         }
     }

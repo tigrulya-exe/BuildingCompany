@@ -9,7 +9,7 @@ import javax.persistence.Table
 @Entity
 @Table(name = "TechnicalSpecialists")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class TechnicalSpecialist(
+class TechnicalSpecialist(
     name: String,
     surname: String,
     patronymic: String?,
@@ -20,7 +20,7 @@ abstract class TechnicalSpecialist(
 @Entity
 @Table(name = "Foremen")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Foreman(
+class Foreman(
     name: String,
     surname: String,
     patronymic: String?,
@@ -35,7 +35,7 @@ abstract class Foreman(
 @Entity
 @Table(name = "Masters")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Master(
+class Master(
     name: String,
     surname: String,
     patronymic: String?,
