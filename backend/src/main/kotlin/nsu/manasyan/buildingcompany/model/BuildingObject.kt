@@ -13,5 +13,5 @@ class BuildingObject(var name: String) : Identifiable() {
     lateinit var customer: Customer
 
     @OneToMany(mappedBy = "buildingObject")
-    lateinit var machinery: MutableSet<ConstructionMachinery>
+    lateinit var machinery: MutableSet<Machinery>
 }

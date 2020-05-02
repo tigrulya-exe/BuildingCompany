@@ -2,7 +2,7 @@ package nsu.manasyan.buildingcompany.dto.mappers
 
 import nsu.manasyan.buildingcompany.dto.model.BuildingObjectDto
 import nsu.manasyan.buildingcompany.model.BuildingObject
-import nsu.manasyan.buildingcompany.model.ConstructionMachinery
+import nsu.manasyan.buildingcompany.model.Machinery
 import nsu.manasyan.buildingcompany.repositories.MachineryRepository
 import nsu.manasyan.buildingcompany.services.CustomersService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
@@ -31,9 +31,9 @@ class BuildingObjectMapper(
         return entity
     }
 
-    private fun getMachinerySpecification(machineIds: MutableSet<Int>?): Specification<ConstructionMachinery> {
+    private fun getMachinerySpecification(machineIds: MutableSet<Int>?): Specification<Machinery> {
         return Specification { root, query, cb ->
-            root.get<ConstructionMachinery>("id").`in`(machineIds)
+            root.get<Machinery>("id").`in`(machineIds)
         }
     }
 }

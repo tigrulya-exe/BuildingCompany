@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Machinery")
-class ConstructionMachinery(var type: String, var licencePlateNumber: String) : Identifiable() {
+class Machinery(var type: String, var licencePlateNumber: String) : Identifiable() {
     @ManyToOne
     @JoinTable(
         name = "BuildingObjectMachinery",
