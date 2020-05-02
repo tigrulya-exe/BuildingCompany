@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly(project(":frontend"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.modelmapper:modelmapper:2.3.6")
