@@ -1,7 +1,5 @@
 package nsu.manasyan.buildingcompany.util
 
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
-import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.model.Identifiable
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -25,12 +23,6 @@ fun getSort(parameters: FindRequestParameters?): Sort {
             else -> Sort.by(it).ascending()
         }
     } ?: Sort.unsorted()
-}
-
-fun <E : Identifiable> entitiesToDtos(entities: MutableList<E>, mapper: Mapper<E, Dto<E>>): MutableList<Dto<E>> {
-    return entities.stream()
-        .map { e -> mapper.toDto(e) }
-        .collect(Collectors.toList())
 }
 
 fun <E : Identifiable> identifiablesToIds(entities: MutableSet<E>): MutableSet<Int> {

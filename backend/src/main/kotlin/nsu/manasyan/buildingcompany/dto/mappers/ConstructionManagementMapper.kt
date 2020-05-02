@@ -8,9 +8,9 @@ import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
 import org.modelmapper.ModelMapper
 import org.springframework.data.jpa.domain.Specification
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class ConstructionManagementMapper(
     private val mapper: ModelMapper,
     private val technicalSpecialistsService: TechnicalSpecialistsService,

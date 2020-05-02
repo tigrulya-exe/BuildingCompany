@@ -18,9 +18,9 @@ class Outlay(var materialCount: Int) : Identifiable() {
 @Entity
 @Table(name = "OutlayExceedances")
 class OutlayExceedance(
-    @Id
+    @MapsId("id")
     @OneToOne
-    @JoinColumn(name = "outlayId", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     var outlayRow: Outlay,
     var exceedanceCount: Int
-) : Serializable
+) : Serializable, Identifiable()

@@ -4,9 +4,11 @@ import nsu.manasyan.buildingcompany.dto.mappers.MachineryMapper
 import nsu.manasyan.buildingcompany.dto.model.MachineryDto
 import nsu.manasyan.buildingcompany.model.Machinery
 import nsu.manasyan.buildingcompany.services.MachineryService
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("\${application-path}/machinery")
 class MachineryController(
     machineryService: MachineryService,
     mapper: MachineryMapper

@@ -24,9 +24,9 @@ class WorkSchedule(var startDate: Date, var endDate: Date) : Identifiable() {
 @Entity
 @Table(name = "ScheduleDelays")
 class ScheduleDelay(
-    @Id
+    @MapsId("id")
     @OneToOne
-    @JoinColumn(name = "scheduleId", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     var scheduleRow: WorkSchedule,
     var delay: Date
-) : Serializable
+) : Serializable, Identifiable()
