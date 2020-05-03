@@ -1,9 +1,10 @@
 package nsu.manasyan.buildingcompany.services
 
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
+import org.springframework.data.domain.Page
 
 interface CommonCrudService<E> {
-    fun getAllEntities(parameters: FindRequestParameters?): MutableList<E>
+    fun getAllEntities(parameters: FindRequestParameters?): Page<E>
 
     fun addEntity(entity: E)
 

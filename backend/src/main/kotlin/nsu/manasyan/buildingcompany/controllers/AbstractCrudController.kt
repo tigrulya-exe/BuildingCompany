@@ -2,6 +2,7 @@ package nsu.manasyan.buildingcompany.controllers
 
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
 import nsu.manasyan.buildingcompany.dto.model.Dto
+import nsu.manasyan.buildingcompany.dto.model.PageDto
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.services.CommonCrudService
@@ -15,9 +16,10 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
 ) : CommonCrudController<E, D> {
 
     @GetMapping
-    override fun getAllEntities(params: FindRequestParameters?): MutableList<D> {
+    override fun getAllEntities(params: FindRequestParameters?): PageDto<*> {
         logger().info("All ${entityName}s were fetched")
-        return mapper.toDtos(service.getAllEntities(params))
+//        return mapper.toDtos(service.getAllEntities(params))
+        return mapper.toPageDto(service.getAllEntities(params))
     }
 
     @PostMapping

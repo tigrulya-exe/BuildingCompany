@@ -3,12 +3,11 @@ package nsu.manasyan.buildingcompany.dto.mappers
 import nsu.manasyan.buildingcompany.dto.model.MachineryDto
 import nsu.manasyan.buildingcompany.model.Machinery
 import nsu.manasyan.buildingcompany.services.BuildingObjectService
-import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
-class MachineryMapper(private val mapper: ModelMapper, private val buildingObjectService: BuildingObjectService) :
-    Mapper<Machinery, MachineryDto> {
+class MachineryMapper(private val buildingObjectService: BuildingObjectService) :
+    Mapper<Machinery, MachineryDto>() {
     override fun toDto(entity: Machinery): MachineryDto {
         val dto = mapper.map(entity, MachineryDto::class.java)
         dto.buildingObjectId = entity.buildingObject?.id

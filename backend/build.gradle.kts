@@ -22,6 +22,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.modelmapper:modelmapper:2.3.6")
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
 //    implementation("com.google.code.gson:gson:2.8.6")
 //    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")

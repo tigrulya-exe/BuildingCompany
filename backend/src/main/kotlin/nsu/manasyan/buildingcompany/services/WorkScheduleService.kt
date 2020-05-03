@@ -5,4 +5,5 @@ import nsu.manasyan.buildingcompany.repositories.WorkScheduleRepository
 import org.springframework.stereotype.Service
 
 @Service
-class WorkScheduleService(scheduleRepository: WorkScheduleRepository) : AbstractCrudService<WorkSchedule>(scheduleRepository)
+class WorkScheduleService(scheduleRepository: WorkScheduleRepository) :
+    AbstractCrudService<WorkSchedule>(scheduleRepository)

@@ -5,16 +5,14 @@ import nsu.manasyan.buildingcompany.model.WorkSchedule
 import nsu.manasyan.buildingcompany.services.BrigadeService
 import nsu.manasyan.buildingcompany.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.services.WorkTypeService
-import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
 class WorkScheduleMapper(
-    private val mapper: ModelMapper,
     private val brigadeService: BrigadeService,
     private val buildingObjectService: BuildingObjectService,
     private val workTypeService: WorkTypeService
-    ) : Mapper<WorkSchedule, WorkScheduleDto> {
+) : Mapper<WorkSchedule, WorkScheduleDto>() {
     override fun toDto(entity: WorkSchedule): WorkScheduleDto {
         val dto = mapper.map(entity, WorkScheduleDto::class.java)
         dto.brigadeId = entity.brigade.id!!

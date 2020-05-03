@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository
 interface OutlayRepository : JpaRepository<Outlay, Int>
 
 @Repository
-interface OutlayExceedanceRepository: JpaRepository<OutlayExceedance, Int>
+interface OutlayExceedanceRepository : JpaRepository<OutlayExceedance, Int>

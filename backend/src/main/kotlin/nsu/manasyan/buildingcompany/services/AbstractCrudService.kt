@@ -5,15 +5,18 @@ import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.getPageable
 import nsu.manasyan.buildingcompany.util.getSort
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.jpa.repository.JpaRepository
 import javax.transaction.Transactional
 
-abstract class AbstractCrudService<E : Identifiable>(open val repository: JpaRepository<E, Int>) : CommonCrudService<E> {
-    override fun getAllEntities(parameters: FindRequestParameters?): MutableList<E> {
+abstract class AbstractCrudService<E : Identifiable>(open val repository: JpaRepository<E, Int>) :
+    CommonCrudService<E> {
+    override fun getAllEntities(parameters: FindRequestParameters?): Page<E> {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
         return with(repository) {
-            if (pageable.isPaged) findAll(pageable).content else findAll(sort)
+            if (pageable.isPaged) findAll(pageable) else findAll(PageRequest.of(0, 20, sort))
         }
     }
 

@@ -1,11 +1,12 @@
 package nsu.manasyan.buildingcompany.controllers
 
 import nsu.manasyan.buildingcompany.dto.model.Dto
+import nsu.manasyan.buildingcompany.dto.model.PageDto
 import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 
 interface CommonCrudController<E : Identifiable, D : Dto<E>> {
-    fun getAllEntities(params: FindRequestParameters?): MutableList<D>
+    fun getAllEntities(params: FindRequestParameters?): PageDto<*>
 
     fun addEntity(dto: D)
 

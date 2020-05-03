@@ -1,17 +1,16 @@
 <template>
-    <ul id="example-1">
-        <li v-for="customer in customers" :key="customer.id">
-            <p>Id: {{ id }}</p>
-            <p>Name: {{ name }}</p>
-        </li>
-    </ul>
+    <div>
+        CRUD TABLE VIEW
+    </div>
+    <crud-navigation-bar/>
+    <router-view name="entity"></router-view>>
 </template>
 
 <script>
     import {AXIOS} from './http-common'
-
+    import CrudNavigationBar from "@/components/CrudNavigationBar";
     export default {
-        name: 'GetCustomers',
+        name: 'CrudTable',
         data() {
             return {
                 customers: [{
@@ -21,19 +20,23 @@
             }
         },
         methods: {
-            loadGreeting() {
+            getCustomers() {
                 AXIOS.get('/customers')
                     .then(response => {
-                        this.$data.id = response.data.id;
-                        this.$data.name = response.data.name;
+                        alert(response.data);
+                        this.$data.customers = response.data
                     })
                     .catch(error => {
                         console.log('ERROR: ' + error.response.data);
                     })
             }
         },
+        components:{
+            CrudNavigationBar
+        },
         mounted() {
-            this.loadGreeting();
+            this.getCustomers();
         }
     }
 </script>
+

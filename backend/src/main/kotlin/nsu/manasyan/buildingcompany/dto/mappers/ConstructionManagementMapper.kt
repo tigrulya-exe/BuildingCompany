@@ -6,16 +6,14 @@ import nsu.manasyan.buildingcompany.model.ConstructionManagement
 import nsu.manasyan.buildingcompany.repositories.AreaRepository
 import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
-import org.modelmapper.ModelMapper
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Component
 
 @Component
 class ConstructionManagementMapper(
-    private val mapper: ModelMapper,
     private val technicalSpecialistsService: TechnicalSpecialistsService,
     private val areaRepository: AreaRepository
-) : Mapper<ConstructionManagement, ConstructionManagementDto> {
+) : Mapper<ConstructionManagement, ConstructionManagementDto>() {
     override fun toDto(entity: ConstructionManagement): ConstructionManagementDto {
         val dto = mapper.map(entity, ConstructionManagementDto::class.java)
         dto.managerId = entity.manager?.id

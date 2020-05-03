@@ -5,5 +5,5 @@ import nsu.manasyan.buildingcompany.repositories.ConstructionManagementsReposito
 import org.springframework.stereotype.Service
 
 @Service
-class ConstructionManagementService(managementsRepository: ConstructionManagementsRepository)
-    : AbstractCrudService<ConstructionManagement>(managementsRepository)
+class ConstructionManagementService(managementsRepository: ConstructionManagementsRepository) :
+    AbstractCrudService<ConstructionManagement>(managementsRepository)
