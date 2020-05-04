@@ -3,7 +3,7 @@ plugins {
     id("java")
 }
 
-group = "com.kotlin-spring-vue"
+group = "com.kotlin-spring-react"
 version = "0.0.1-SNAPSHOT"
 
 java {

@@ -7,3 +7,4 @@ frontend/.gradle/
 build
 .gradle/
 .idea/
+/frontend/node_modules/
