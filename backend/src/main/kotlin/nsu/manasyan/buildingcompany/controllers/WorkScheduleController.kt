@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("\${application-path}/work-schedules")
+@RequestMapping("\${application.path}/work-schedules")
 class WorkScheduleController(
     service: WorkScheduleService,
     mapper: WorkScheduleMapper

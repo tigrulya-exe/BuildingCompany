@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("\${application-path}/outlays")
+@RequestMapping("\${application.path}/outlays")
 class OutlayController(
     service: OutlayService,
     mapper: OutlayMapper

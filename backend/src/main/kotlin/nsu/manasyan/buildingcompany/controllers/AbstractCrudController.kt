@@ -10,7 +10,7 @@ import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.*
 
 abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
-    val service: CommonCrudService<E>,
+    open val service: CommonCrudService<E>,
     val mapper: Mapper<E, D>,
     private val entityName: String
 ) : CommonCrudController<E, D> {

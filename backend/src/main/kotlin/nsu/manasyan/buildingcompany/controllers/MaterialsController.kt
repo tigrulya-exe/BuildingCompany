@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("\${application-path}/materials")
+@RequestMapping("\${application.path}/materials")
 class MaterialsController(
     service: MaterialsService,
     mapper: MaterialMapper

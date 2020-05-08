@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping("\${application-path}/customers")
+@RequestMapping("\${application.path}/customers")
 class CustomersController(customersService: CustomersService, mapper: CustomerMapper) :
     AbstractCrudController<Customer, CustomerDto>(customersService, mapper, "Customer")
