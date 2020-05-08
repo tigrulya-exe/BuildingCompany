@@ -4,10 +4,10 @@ import nsu.manasyan.buildingcompany.dto.mappers.TechnicalSpecialistMapper
 import nsu.manasyan.buildingcompany.dto.model.PageDto
 import nsu.manasyan.buildingcompany.dto.model.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
+import nsu.manasyan.buildingcompany.repositories.TechnicalSpecialistFilter
 import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.filters.Filter
-import nsu.manasyan.buildingcompany.util.filters.TechnicalSpecialistFilter
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

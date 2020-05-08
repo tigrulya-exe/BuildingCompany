@@ -8,7 +8,6 @@ import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.services.CommonCrudService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.filters.Filter
-import nsu.manasyan.buildingcompany.util.filters.TechnicalSpecialistFilter
 import org.springframework.web.bind.annotation.*
 
 abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
