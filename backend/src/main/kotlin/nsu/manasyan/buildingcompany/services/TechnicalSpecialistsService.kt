@@ -5,7 +5,6 @@ import nsu.manasyan.buildingcompany.repositories.ForemenRepository
 import nsu.manasyan.buildingcompany.repositories.MastersRepository
 import nsu.manasyan.buildingcompany.repositories.TechnicalSpecialistsRepository
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
-import nsu.manasyan.buildingcompany.util.TechnicalSpecialistFilter
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.getPageable
 import org.springframework.data.domain.Page

@@ -2,12 +2,11 @@ package nsu.manasyan.buildingcompany.services
 
 import nsu.manasyan.buildingcompany.exceptions.NoDataFoundException
 import nsu.manasyan.buildingcompany.model.Identifiable
-import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
+import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
-import nsu.manasyan.buildingcompany.util.TechnicalSpecialistFilter
+import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.getPageable
 import nsu.manasyan.buildingcompany.util.getSort
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -17,7 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import javax.transaction.Transactional
 
 abstract class AbstractCrudService<E : Identifiable>(
-    open val repository: JpaRepository<E, Int>) :
+    open val repository: JpaFilterRepository<E, Int>) :
     CommonCrudService<E> {
 
     @Value("\${application.default-page-size}")
@@ -56,7 +55,12 @@ abstract class AbstractCrudService<E : Identifiable>(
         throw NoDataFoundException("Wrong id")
     }
 
-    protected fun getPageable(parameters: FindRequestParameters?) : Pageable {
+    override fun getAllEntitiesByFilter(filter: Filter<E>?, parameters: FindRequestParameters?): Page<E> {
+        val pageable = getPageable(parameters)
+        return repository.findAllByFilter(filter, pageable)
+    }
+
+    private fun getPageable(parameters: FindRequestParameters?) : Pageable {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
         val intPageSize = defaultPageSize.toInt()
