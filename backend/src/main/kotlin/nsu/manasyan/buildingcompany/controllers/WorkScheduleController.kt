@@ -21,7 +21,7 @@ class WorkScheduleController(
 ) : AbstractCrudController<WorkSchedule, WorkScheduleDto>(service, mapper, "WorkSchedule"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: WorkScheduleFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: WorkScheduleFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

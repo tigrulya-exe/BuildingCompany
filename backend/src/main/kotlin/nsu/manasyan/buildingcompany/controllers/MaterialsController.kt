@@ -21,7 +21,7 @@ class MaterialsController(
 ) : AbstractCrudController<Material, MaterialDto>(service, mapper, "Material"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: MaterialFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: MaterialFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

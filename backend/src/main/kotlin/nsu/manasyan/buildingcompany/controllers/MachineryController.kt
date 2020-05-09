@@ -21,7 +21,7 @@ class MachineryController(
 ) : AbstractCrudController<Machinery, MachineryDto>(machineryService, mapper, "Machinery"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: MachineryFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: MachineryFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

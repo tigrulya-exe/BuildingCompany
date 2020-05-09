@@ -20,7 +20,7 @@ class CustomersController(customersService: CustomersService, mapper: CustomerMa
     AbstractCrudController<Customer, CustomerDto>(customersService, mapper, "Customer"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: CustomerFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: CustomerFilter, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

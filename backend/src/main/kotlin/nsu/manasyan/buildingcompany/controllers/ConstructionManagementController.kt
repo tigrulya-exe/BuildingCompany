@@ -22,7 +22,7 @@ class ConstructionManagementController(
         ConstructionManagementDto>(service, mapper, "ConstructionManagement"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: ConstructionManagementFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: ConstructionManagementFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

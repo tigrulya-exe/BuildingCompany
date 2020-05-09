@@ -21,7 +21,7 @@ class BuildingObjectController(
 ) : AbstractCrudController<BuildingObject, BuildingObjectDto>(service, mapper, "BuildingObject"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: BuildingObjectFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: BuildingObjectFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

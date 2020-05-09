@@ -17,7 +17,7 @@ class BuildingObjectMapper(
     override fun toDto(entity: BuildingObject): BuildingObjectDto {
         val dto = mapper.map(entity, BuildingObjectDto::class.java)
         dto.customerId = entity.customer.id!!
-        dto.machinery = identifiablesToIds(entity.machinery)
+        dto.machineryIds = identifiablesToIds(entity.machinery)
         return dto
     }
 

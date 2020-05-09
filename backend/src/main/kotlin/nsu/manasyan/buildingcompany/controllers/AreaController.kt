@@ -18,7 +18,7 @@ class AreaController(service: AreaService, mapper: AreaMapper) :
     AbstractCrudController<Area, AreaDto>(service, mapper, "Area"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: AreaFilter?, params: FindRequestParameters?) : PageDto<*>{
+    fun getAllEntitiesByFilter(filter: AreaFilter?, params: FindRequestParameters?) : PageDto<*>{
         return super.findAllByFilter(filter, params)
     }
 }

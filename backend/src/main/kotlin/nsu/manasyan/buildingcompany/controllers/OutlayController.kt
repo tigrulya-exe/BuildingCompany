@@ -21,7 +21,7 @@ class OutlayController(
 ) : AbstractCrudController<Outlay, OutlayDto>(service, mapper, "Outlay"){
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: OutlayFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: OutlayFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

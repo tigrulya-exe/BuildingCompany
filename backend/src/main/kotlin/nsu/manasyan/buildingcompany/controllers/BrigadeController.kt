@@ -19,7 +19,7 @@ class BrigadeController(service: BrigadeService, mapper: BrigadeMapper) :
     AbstractCrudController<Brigade, BrigadeDto>(service, mapper, "Brigade") {
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@RequestParam filter: BrigadeFilter?, params: FindRequestParameters?) : PageDto<*> {
+    fun getAllEntitiesByFilter(filter: BrigadeFilter?, params: FindRequestParameters?) : PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }
