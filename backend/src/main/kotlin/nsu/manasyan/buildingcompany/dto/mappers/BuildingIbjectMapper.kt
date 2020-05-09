@@ -16,14 +16,14 @@ class BuildingObjectMapper(
 ) : Mapper<BuildingObject, BuildingObjectDto>() {
     override fun toDto(entity: BuildingObject): BuildingObjectDto {
         val dto = mapper.map(entity, BuildingObjectDto::class.java)
-        dto.customerId = entity.customer.id!!
+        dto.customerId = entity.customer?.id
         dto.machineryIds = identifiablesToIds(entity.machinery)
         return dto
     }
 
     override fun toEntity(dto: BuildingObjectDto): BuildingObject {
         val entity = mapper.map(dto, BuildingObject::class.java)
-        entity.customer = customersService.getEntity(dto.customerId)
+        entity.customer = dto.customerId?.let { customersService.getEntity(it) }
 //        val specification = getMachinerySpecification(dto.machinery)
 //        entity.machinery = machineryRepository.findAll(specification).toMutableSet()
         return entity

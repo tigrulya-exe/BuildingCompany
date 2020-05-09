@@ -9,7 +9,7 @@ import javax.persistence.OneToMany
 class BuildingObject(var name: String) : Identifiable() {
     @ManyToOne
     @JoinColumn(name = "customerId", referencedColumnName = "id")
-    lateinit var customer: Customer
+    var customer: Customer? = null
 
     @ManyToOne
     @JoinColumn(name = "areaId", referencedColumnName = "id")

@@ -10,6 +10,6 @@ class FilterStringDelegate {
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
-        backingString = value?.toLowerCase()
+        backingString = value?.let { "%${it.toLowerCase()}%" }
     }
 }
