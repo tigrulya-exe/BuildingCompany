@@ -30,5 +30,3 @@ fun <E : Identifiable> identifiablesToIds(entities: MutableSet<E>): MutableSet<I
         .map { it.id }
         .collect(Collectors.toSet())
 }
-
-//fun toUpperCase
