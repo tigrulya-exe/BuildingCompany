@@ -6,14 +6,13 @@ import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface WorkersRepository : JpaFilterRepository<Worker, Int>{
-    @Query("""
+interface WorkersRepository : JpaFilterRepository<Worker, Int> {
+    @Query(
+        """
         select w   
         from Worker w
         where (:#{#filter.name} is null or lower(w.name) like :#{#filter.name})
@@ -21,7 +20,8 @@ interface WorkersRepository : JpaFilterRepository<Worker, Int>{
         and (:#{#filter.patronymic} is null or lower(w.patronymic) like :#{#filter.patronymic}) 
         and (:#{#filter.experienceYears} is null or w.experienceYears = :#{#filter.experienceYears})   
         and (:#{#filter.brigadeId} is null or w.brigade.id = :#{#filter.brigadeId})
-    """)
+    """
+    )
     override fun findAllByFilter(filter: Filter<Worker>?, pageable: Pageable): Page<Worker>
 }
 
@@ -30,7 +30,7 @@ interface WorkersRepository : JpaFilterRepository<Worker, Int>{
 data class WorkerFilter(
     var brigadeId: Int?,
     var experienceYears: Int?
-) : Filter<Worker>{
+) : Filter<Worker> {
     var name: String? by FilterStringDelegate()
     var surname: String? by FilterStringDelegate()
     var patronymic: String? by FilterStringDelegate()

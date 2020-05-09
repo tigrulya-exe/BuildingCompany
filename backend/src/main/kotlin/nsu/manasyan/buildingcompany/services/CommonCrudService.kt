@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page
 interface CommonCrudService<E> {
     fun getAllEntities(parameters: FindRequestParameters?): Page<E>
 
-    fun getAllEntitiesByFilter(filter: Filter<E>?, parameters: FindRequestParameters?) : Page<E>
+    fun getAllEntitiesByFilter(filter: Filter<E>?, parameters: FindRequestParameters?): Page<E>
 
     fun addEntity(entity: E)
 

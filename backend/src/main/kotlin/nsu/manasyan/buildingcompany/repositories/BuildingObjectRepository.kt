@@ -9,16 +9,20 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 
-interface BuildingObjectRepository : JpaFilterRepository<BuildingObject, Int>{
-    @Query("""
+interface BuildingObjectRepository : JpaFilterRepository<BuildingObject, Int> {
+    @Query(
+        """
         select b   
         from BuildingObject b
         where (:#{#filter.areaId} is null or b.area.id = :#{#filter.areaId})
         and (:#{#filter.customerId} is null or b.customer.id = :#{#filter.customerId})
         and (:#{#filter.name} is null or lower(b.name) like :#{#filter.name})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<BuildingObject>?,
-                                 pageable: Pageable): Page<BuildingObject>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<BuildingObject>?,
+        pageable: Pageable
+    ): Page<BuildingObject>
 }
 
 @NoArgConstructor

@@ -16,9 +16,12 @@ class TechnicalSpecialistsService(
     private val technicksRepository: TechnicalSpecialistsRepository,
     private val foremenRepository: ForemenRepository,
     private val mastersRepository: MastersRepository
-) : AbstractCrudService<TechnicalSpecialist>(technicksRepository){
+) : AbstractCrudService<TechnicalSpecialist>(technicksRepository) {
 
-    fun findAllByFilter(filter: Filter<TechnicalSpecialist>?, params: FindRequestParameters?): Page<TechnicalSpecialist>{
+    fun findAllByFilter(
+        filter: Filter<TechnicalSpecialist>?,
+        params: FindRequestParameters?
+    ): Page<TechnicalSpecialist> {
         val pageable = getPageable(params, Sort.unsorted())
         return technicksRepository.findAllByFilter(filter, pageable)
     }

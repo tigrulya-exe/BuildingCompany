@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.repository.NoRepositoryBean
 
 @NoRepositoryBean
-interface JpaFilterRepository<E, Id> : JpaRepository<E, Id>, JpaSpecificationExecutor<E>{
-    fun findAllByFilter(filter: Filter<E>?, pageable: Pageable) : Page<E>
+interface JpaFilterRepository<E, Id> : JpaRepository<E, Id>, JpaSpecificationExecutor<E> {
+    fun findAllByFilter(filter: Filter<E>?, pageable: Pageable): Page<E>
 }

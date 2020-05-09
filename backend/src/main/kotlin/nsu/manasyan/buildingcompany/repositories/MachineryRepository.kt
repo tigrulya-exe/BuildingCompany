@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
-    @Query("""
+    @Query(
+        """
         select m   
         from Machinery m
         where (:#{#filter.licencePlateNumber} is null or lower(m.licencePlateNumber) like :#{#filter.licencePlateNumber})
@@ -20,9 +21,12 @@ interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
         and (:#{#filter.areaId} is null or m.buildingObject.area.id = :#{#filter.areaId})
         and (:#{#filter.managementId} is null or m.buildingObject.area.management.id = :#{#filter.managementId})
         and (:#{#filter.type} is null or lower(m.type) like :#{#filter.type})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<Machinery>?,
-                                 pageable: Pageable): Page<Machinery>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<Machinery>?,
+        pageable: Pageable
+    ): Page<Machinery>
 }
 
 @NoArgConstructor
@@ -30,7 +34,7 @@ data class MachineryFilter(
     var areaId: Int?,
     var managementId: Int?,
     var buildingObjectId: Int?
-) : Filter<Machinery>{
+) : Filter<Machinery> {
     var type: String? by FilterStringDelegate()
 
     var licencePlateNumber: String? by FilterStringDelegate()

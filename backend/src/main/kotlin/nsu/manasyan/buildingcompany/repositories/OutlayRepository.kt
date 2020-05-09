@@ -13,9 +13,10 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface OutlayRepository : JpaFilterRepository<Outlay, Int>{
+interface OutlayRepository : JpaFilterRepository<Outlay, Int> {
     // TODO: тут наверн надо coalesce
-    @Query("""
+    @Query(
+        """
         select o   
         from Outlay o join WorkSchedule s
         where (:#{#filter.materialId} is null or o.material.id = :#{#filter.materialId})
@@ -26,9 +27,12 @@ interface OutlayRepository : JpaFilterRepository<Outlay, Int>{
         and (:#{#filter.materialCountMax} is null or o.materialCount <= :#{#filter.materialCountMax})
         and (:#{#filter.startDateMin} is null or s.startDate >= :#{#filter.startDateMin})
         and (:#{#filter.startDateMax} is null or s.startDate <= :#{#filter.startDateMax})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<Outlay>?,
-                                 pageable: Pageable): Page<Outlay>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<Outlay>?,
+        pageable: Pageable
+    ): Page<Outlay>
 
 }
 

@@ -9,16 +9,15 @@ import nsu.manasyan.buildingcompany.services.AreaService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("\${application.path}/areas")
 class AreaController(service: AreaService, mapper: AreaMapper) :
-    AbstractCrudController<Area, AreaDto>(service, mapper, "Area"){
+    AbstractCrudController<Area, AreaDto>(service, mapper, "Area") {
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(filter: AreaFilter?, params: FindRequestParameters?) : PageDto<*>{
+    fun getAllEntitiesByFilter(filter: AreaFilter?, params: FindRequestParameters?): PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 }

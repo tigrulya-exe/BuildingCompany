@@ -14,9 +14,10 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpecialist, Int>{
+interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpecialist, Int> {
 
-    @Query("""
+    @Query(
+        """
         select ts   
         from TechnicalSpecialist ts
         where (:#{#filter.areaId} = ts.area.id or :#{#filter.managementId} = ts.area.management.id)
@@ -25,11 +26,12 @@ interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpeciali
         and (:#{#filter.patronymic} is null or lower(ts.patronymic) like :#{#filter.patronymic}) 
         and (:#{#filter.educationalInstitution} is null or lower(ts.educationalInstitution) like :#{#filter.educationalInstitution})  
         and (:#{#filter.experienceYears} is null or ts.experienceYears = :#{#filter.experienceYears})   
-    """)
+    """
+    )
     override fun findAllByFilter(
         @Param("filter") filter: Filter<TechnicalSpecialist>?,
         pageable: Pageable
-    ) : Page<TechnicalSpecialist>
+    ): Page<TechnicalSpecialist>
 }
 
 @Repository
@@ -43,7 +45,7 @@ data class TechnicalSpecialistFilter(
     var areaId: Int?,
     var managementId: Int?,
     var experienceYears: Int?
-) : Filter<TechnicalSpecialist>{
+) : Filter<TechnicalSpecialist> {
     var name: String? by FilterStringDelegate()
     var surname: String? by FilterStringDelegate()
     var patronymic: String? by FilterStringDelegate()

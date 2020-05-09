@@ -10,16 +10,20 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CustomersRepository : JpaFilterRepository<Customer, Int>{
-    @Query("""
+interface CustomersRepository : JpaFilterRepository<Customer, Int> {
+    @Query(
+        """
         select c   
         from Customer c
         where (:#{#filter.name} is null or lower(c.name) like :#{#filter.name})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<Customer>?,
-                                 pageable: Pageable): Page<Customer>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<Customer>?,
+        pageable: Pageable
+    ): Page<Customer>
 }
 
-class CustomerFilter : Filter<Customer>{
+class CustomerFilter : Filter<Customer> {
     var name: String? by FilterStringDelegate()
 }

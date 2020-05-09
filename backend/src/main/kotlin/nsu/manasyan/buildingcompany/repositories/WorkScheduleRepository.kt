@@ -1,7 +1,6 @@
 package nsu.manasyan.buildingcompany.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.model.Outlay
 import nsu.manasyan.buildingcompany.model.ScheduleDelay
 import nsu.manasyan.buildingcompany.model.WorkSchedule
 import nsu.manasyan.buildingcompany.util.filters.Filter
@@ -14,8 +13,9 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int>{
-    @Query("""
+interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
+    @Query(
+        """
         select s   
         from WorkSchedule s
         where (:#{#filter.brigadeId} is null or s.brigade.id = :#{#filter.brigadeId})
@@ -23,9 +23,12 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int>{
         and (:#{#filter.workTypeId} is null or s.workType.id = :#{#filter.workTypeId})
         and (:#{#filter.startDateMin} is null or s.startDate >= :#{#filter.startDateMin})
         and (:#{#filter.startDateMax} is null or s.startDate <= :#{#filter.startDateMax})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<WorkSchedule>?,
-                                 pageable: Pageable): Page<WorkSchedule>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<WorkSchedule>?,
+        pageable: Pageable
+    ): Page<WorkSchedule>
 }
 
 @Repository

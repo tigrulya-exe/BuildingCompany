@@ -10,16 +10,20 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface WorkTypeRepository : JpaFilterRepository<WorkType, Int>{
-    @Query("""
+interface WorkTypeRepository : JpaFilterRepository<WorkType, Int> {
+    @Query(
+        """
         select w   
         from WorkType w
         where (:#{#filter.name} is null or lower(w.name) like :#{#filter.name})
-    """)
-    override fun findAllByFilter(@Param("filter") filter: Filter<WorkType>?,
-                                 pageable: Pageable): Page<WorkType>
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<WorkType>?,
+        pageable: Pageable
+    ): Page<WorkType>
 }
 
-class WorkTypeFilter : Filter<WorkType>{
+class WorkTypeFilter : Filter<WorkType> {
     var name: String? by FilterStringDelegate()
 }

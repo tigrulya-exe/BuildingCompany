@@ -13,7 +13,7 @@ class TechnicalSpecialist(
     patronymic: String?,
     var educationalInstitution: String,
     var experienceYears: Int? = null
-) : Person(name, surname, patronymic){
+) : Person(name, surname, patronymic) {
 
     @ManyToOne
     @JoinColumn(name = "areaId", referencedColumnName = "Id")

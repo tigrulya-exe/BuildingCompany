@@ -47,7 +47,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
         logger().info("$entityName '${dto.id}' was updated")
     }
 
-    fun <F : Filter<E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?) : PageDto<*>{
+    fun <F : Filter<E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
         val page = service.getAllEntitiesByFilter(filter, requestParams)
         return mapper.toPageDto(page)
     }

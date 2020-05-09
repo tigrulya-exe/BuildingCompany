@@ -1,11 +1,9 @@
 package nsu.manasyan.buildingcompany.dto.mappers
 
 import nsu.manasyan.buildingcompany.dto.model.AreaDto
-import nsu.manasyan.buildingcompany.dto.model.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.services.ConstructionManagementService
 import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
-import nsu.manasyan.buildingcompany.util.identifiablesToIds
 import org.springframework.stereotype.Component
 
 @Component
@@ -16,7 +14,7 @@ class AreaMapper(
     override fun toDto(entity: Area): AreaDto {
         val dto = mapper.map(entity, AreaDto::class.java)
         dto.managementId = entity.management?.id
-        dto.managerId =entity.manager?.id
+        dto.managerId = entity.manager?.id
         return dto
     }
 

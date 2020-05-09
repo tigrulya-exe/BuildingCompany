@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
-import org.springframework.data.domain.Sort
-import org.springframework.data.jpa.repository.JpaRepository
 import javax.transaction.Transactional
 
 abstract class AbstractCrudService<E : Identifiable>(
-    open val repository: JpaFilterRepository<E, Int>) :
+    open val repository: JpaFilterRepository<E, Int>
+) :
     CommonCrudService<E> {
 
     @Value("\${application.default-page-size}")
@@ -60,10 +59,10 @@ abstract class AbstractCrudService<E : Identifiable>(
         return repository.findAllByFilter(filter, pageable)
     }
 
-    private fun getPageable(parameters: FindRequestParameters?) : Pageable {
+    private fun getPageable(parameters: FindRequestParameters?): Pageable {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
         val intPageSize = defaultPageSize.toInt()
-        return if(pageable.isPaged) pageable else PageRequest.of(0, intPageSize, sort)
+        return if (pageable.isPaged) pageable else PageRequest.of(0, intPageSize, sort)
     }
 }
