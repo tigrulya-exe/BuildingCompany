@@ -1,11 +1,29 @@
 import React from 'react';
-// import CustomersTable from './components/CustomersTable'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomerTable from './components/CustomerTable';
+import QueryForm from './components/QueryForm';
+import NavBar from './components/NavBar';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
-    <CustomerTable/>
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path="/customers">
+          <CustomerTable />
+        </Route>
+        <Route path="/query">
+          <QueryForm />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

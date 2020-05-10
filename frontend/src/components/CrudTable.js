@@ -2,15 +2,11 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { AXIOS } from './http-common'
 
-export default class CustomerTable extends React.Component {
+export default class CrudTable extends React.Component {
     constructor(props) {
         super(props)
-        this.refreshCustomers()
+        this.refreshEntities()
         this.state = {
-            columns: [
-                { title: 'Id', field: 'id', type: 'numeric', editable: 'never' },
-                { title: 'Name', field: 'name' },
-            ],
             data: [],
             infoMessage: '',
             showMessage: false
@@ -26,7 +22,7 @@ export default class CustomerTable extends React.Component {
         setInterval(() => this.setState({showMessage: false}), 6000)
     }
 
-    refreshCustomers = () => {
+    refreshEntities = () => {
         AXIOS.get('/customers')
             .then(response => {
                 this.setState({ data: response.data.content })
@@ -34,32 +30,31 @@ export default class CustomerTable extends React.Component {
             .catch((reason) => this.showMessage(`Error refreshing customers: ${reason}`))
     }
 
-    addCustomer = newData =>
+    addEntity = newData =>
         new Promise(resolve => {
-            AXIOS.post('/customers', newData)
+            AXIOS.post(`/${this.props.entityName}s`, newData)
                 .then(() => this.showMessage('Customer was added'))
-                // тут ексепшон кидает мол объект ето не дитя реакта...
                 .catch((reason) => this.showMessage(`Error adding customer: ${reason}`))
-                .finally(() => this.refreshCustomers())
+                .finally(() => this.refreshEntities())
             resolve()
         })
 
-    updateCustomer = (newData, oldData) =>
+    updateEntity = (newData, oldData) =>
         new Promise((resolve, reject) => {
-            AXIOS.put('/customers', newData)
+            AXIOS.put(`/${this.props.entityName}s`, newData)
                 .then(() => this.showMessage('Customer was updated'))
                 .catch((reason) => this.showMessage(`Error updating customer: ${reason}`))
-                .finally(() => this.refreshCustomers())
+                .finally(() => this.refreshEntities())
 
             resolve()
         })
 
-    deleteCustomer = oldData =>
+    deleteEntity = oldData =>
         new Promise((resolve, reject) => {
-            AXIOS.delete(`/customers/${oldData.id}`)
+            AXIOS.delete(`/${this.props.entityName}s/${oldData.id}`)
                 .then(() => this.showMessage('Customer was deleted'))
                 .catch((reason) => this.showMessage(`Error deleting customer: ${reason}`))
-                .finally(() => this.refreshCustomers());
+                .finally(() => this.refreshEntities());
 
             resolve()
         })
@@ -69,14 +64,14 @@ export default class CustomerTable extends React.Component {
         return (
             <>
             <MaterialTable
-                title="Customers"
-                columns={this.state.columns}
+                title={this.props.tableName}
+                columns={this.props.columns}
                 data={this.state.data}
                 editable={{
-                    editable: name => name !== 'Id',
-                    onRowAdd: this.addCustomer,
-                    onRowUpdate: this.updateCustomer,
-                    onRowDelete: this.deleteCustomer,
+                    editable: this.props.editableRows,
+                    onRowAdd: this.addEntity,
+                    onRowUpdate: this.updateEntity,
+                    onRowDelete: this.deleteEntity,
                 }}
             />
             <div>{this.state.showMessage ? this.state.infoMessage : null}</div>
