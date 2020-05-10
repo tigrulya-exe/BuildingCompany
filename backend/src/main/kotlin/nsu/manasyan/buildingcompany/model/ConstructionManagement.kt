@@ -14,11 +14,6 @@ class ConstructionManagement(manager: TechnicalSpecialist?) : Identifiable() {
             field = value
         }
 
-    @ManyToMany
-    @JoinTable(
-        name = "ConstructionManagementArea",
-        joinColumns = [JoinColumn(name = "ConstructionManagementId")],
-        inverseJoinColumns = [JoinColumn(name = "AreaId")]
-    )
+    @OneToMany
     lateinit var areas: MutableSet<Area>
 }

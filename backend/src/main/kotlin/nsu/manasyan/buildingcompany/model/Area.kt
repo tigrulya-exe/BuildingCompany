@@ -8,12 +8,13 @@ import javax.persistence.*
 class Area(manager: TechnicalSpecialist) : Identifiable() {
     @OneToOne
     @JoinColumn(name = "managerId", referencedColumnName = "id")
-    var manager: TechnicalSpecialist = manager
+    var manager: TechnicalSpecialist? = manager
         set(value) {
-            value.post = Post.AREA_MANAGER
+            value?.post = Post.AREA_MANAGER
             field = value
         }
 
-    @ManyToMany(mappedBy = "areas")
-    var managements: MutableSet<ConstructionManagement> = mutableSetOf()
+    @ManyToOne
+    @JoinColumn(name = "managementId", referencedColumnName = "id")
+    var management: ConstructionManagement? = null
 }

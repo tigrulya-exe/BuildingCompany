@@ -1,8 +1,29 @@
 package nsu.manasyan.buildingcompany.repositories
 
 import nsu.manasyan.buildingcompany.model.Customer
-import org.springframework.data.jpa.repository.JpaRepository
+import nsu.manasyan.buildingcompany.util.filters.Filter
+import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CustomersRepository : JpaRepository<Customer, Int>
+interface CustomersRepository : JpaFilterRepository<Customer, Int> {
+    @Query(
+        """
+        select c   
+        from Customer c
+        where (:#{#filter.name} is null or lower(c.name) like :#{#filter.name})
+    """
+    )
+    override fun findAllByFilter(
+        @Param("filter") filter: Filter<Customer>?,
+        pageable: Pageable
+    ): Page<Customer>
+}
+
+class CustomerFilter : Filter<Customer> {
+    var name: String? by FilterStringDelegate()
+}

@@ -7,10 +7,11 @@ import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.services.CommonCrudService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
+import nsu.manasyan.buildingcompany.util.filters.Filter
 import org.springframework.web.bind.annotation.*
 
 abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
-    val service: CommonCrudService<E>,
+    open val service: CommonCrudService<E>,
     val mapper: Mapper<E, D>,
     private val entityName: String
 ) : CommonCrudController<E, D> {
@@ -18,7 +19,6 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     @GetMapping
     override fun getAllEntities(params: FindRequestParameters?): PageDto<*> {
         logger().info("All ${entityName}s were fetched")
-//        return mapper.toDtos(service.getAllEntities(params))
         return mapper.toPageDto(service.getAllEntities(params))
     }
 
@@ -45,5 +45,10 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
     override fun updateEntity(@RequestBody dto: D) {
         service.updateEntity(mapper.toEntity(dto))
         logger().info("$entityName '${dto.id}' was updated")
+    }
+
+    fun <F : Filter<E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
+        val page = service.getAllEntitiesByFilter(filter, requestParams)
+        return mapper.toPageDto(page)
     }
 }

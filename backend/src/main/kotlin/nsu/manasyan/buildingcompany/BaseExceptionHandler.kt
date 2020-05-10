@@ -4,6 +4,7 @@ import nsu.manasyan.buildingcompany.exceptions.NoDataFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageConversionException
+import org.springframework.web.bind.MissingServletRequestParameterException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
@@ -26,6 +27,12 @@ class BaseExceptionHandler {
     @ExceptionHandler(IllegalArgumentException::class)
     fun handleConversionError(exc: IllegalArgumentException): ResponseEntity<ErrorModel> {
         logger().error("IllegalArgumentException: '${exc.localizedMessage}'")
+        return ResponseEntity(ErrorModel(exc.localizedMessage), HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException::class)
+    fun handleRequestParameterError(exc: MissingServletRequestParameterException): ResponseEntity<ErrorModel> {
+        logger().error("MissingServletRequestParameterException: '${exc.localizedMessage}'")
         return ResponseEntity(ErrorModel(exc.localizedMessage), HttpStatus.BAD_REQUEST)
     }
 }

@@ -4,4 +4,4 @@ import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.model.Area
 
 @NoArgConstructor
-data class AreaDto(var managements: MutableSet<Int>?, var manager: TechnicalSpecialistDto?) : Dto<Area>()
+data class AreaDto(var managementId: Int?, var managerId: Int?) : Dto<Area>()

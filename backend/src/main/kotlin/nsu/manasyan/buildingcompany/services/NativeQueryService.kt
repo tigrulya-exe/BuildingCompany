@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.services
 
 import nsu.manasyan.buildingcompany.exceptions.NoDataFoundException
+import nsu.manasyan.buildingcompany.logger
 import org.springframework.stereotype.Service
 import javax.persistence.EntityManager
 
@@ -8,9 +9,12 @@ import javax.persistence.EntityManager
 class NativeQueryService(private val entityManager: EntityManager) {
     fun getQueryResults(query: String): MutableList<*> {
         try {
+            logger().info("New sql query: '$query'")
             return entityManager.createNativeQuery(query).resultList
         } catch (exc: Exception) {
-            throw NoDataFoundException("No data")
+            logger().error("SQL query exception: ${exc.localizedMessage}")
+            return arrayListOf<Any>();
+//            throw NoDataFoundException("No data")
         }
     }
 }

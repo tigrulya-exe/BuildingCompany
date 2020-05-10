@@ -24,4 +24,6 @@ spring:
 #logging:
 #  level:
 #    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-application-path: /api/v1
+application:
+  path: /api/v1
+  default-page-size: 20

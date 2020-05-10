@@ -6,6 +6,7 @@ import nsu.manasyan.buildingcompany.model.BuildingObject
 @NoArgConstructor
 class BuildingObjectDto(
     var name: String,
-    var customerId: Int,
-    var machinery: MutableSet<Int>?
+    var customerId: Int?,
+    var machineryIds: MutableSet<Int>?,
+    var areaId: Int
 ) : Dto<BuildingObject>()

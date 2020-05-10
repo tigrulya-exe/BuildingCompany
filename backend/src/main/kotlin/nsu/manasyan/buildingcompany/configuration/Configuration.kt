@@ -45,6 +45,7 @@ class GlobalConfiguration {
             return object : WebMvcConfigurerAdapter() {
                 override fun addCorsMappings(registry: CorsRegistry) {
                     registry.addMapping("/**")
+                        .allowedMethods("*")
                 }
             }
         }

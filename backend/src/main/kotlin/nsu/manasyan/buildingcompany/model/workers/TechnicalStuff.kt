@@ -1,10 +1,8 @@
 package nsu.manasyan.buildingcompany.model.workers
 
+import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.model.Post
-import javax.persistence.Entity
-import javax.persistence.Inheritance
-import javax.persistence.InheritanceType
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "TechnicalSpecialists")
@@ -15,7 +13,12 @@ class TechnicalSpecialist(
     patronymic: String?,
     var educationalInstitution: String,
     var experienceYears: Int? = null
-) : Person(name, surname, patronymic)
+) : Person(name, surname, patronymic) {
+
+    @ManyToOne
+    @JoinColumn(name = "areaId", referencedColumnName = "Id")
+    var area: Area? = null
+}
 
 @Entity
 @Table(name = "Foremen")

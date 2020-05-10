@@ -11,6 +11,7 @@ data class TechnicalSpecialistDto(
     var patronymic: String?,
     var educationalInstitution: String,
     var experienceYears: Int?,
+    var areaId: Int?,
     var post: Post?,
     var knowledgeOfEnglish: Boolean?,
     var category: Int?

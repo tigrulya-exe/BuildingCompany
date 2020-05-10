@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class MachineryService(private val machineryRepository: MachineryRepository) :
-    AbstractCrudService<Machinery>(machineryRepository)
+    AbstractCrudService<Machinery>(machineryRepository) {
+}

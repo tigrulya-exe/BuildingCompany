@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("\${application-path}")
+@RequestMapping("\${application.path}")
 class NativeQueryController(private val queryService: NativeQueryService) {
 
     @GetMapping("/query")
