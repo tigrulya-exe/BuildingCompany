@@ -23,18 +23,18 @@ export default class CrudTable extends React.Component {
     }
 
     refreshEntities = () => {
-        AXIOS.get('/customers')
+        AXIOS.get(`/${this.props.entityName}s`)
             .then(response => {
                 this.setState({ data: response.data.content })
             })
-            .catch((reason) => this.showMessage(`Error refreshing customers: ${reason}`))
+            .catch((reason) => this.showMessage(`Error refreshing ${this.props.entityName}s: ${reason}`))
     }
 
     addEntity = newData =>
         new Promise(resolve => {
             AXIOS.post(`/${this.props.entityName}s`, newData)
-                .then(() => this.showMessage('Customer was added'))
-                .catch((reason) => this.showMessage(`Error adding customer: ${reason}`))
+                .then(() => this.showMessage(`${this.props.entityName} was added`))
+                .catch((reason) => this.showMessage(`Error adding ${this.props.entityName}: ${reason}`))
                 .finally(() => this.refreshEntities())
             resolve()
         })
@@ -42,8 +42,8 @@ export default class CrudTable extends React.Component {
     updateEntity = (newData, oldData) =>
         new Promise((resolve, reject) => {
             AXIOS.put(`/${this.props.entityName}s`, newData)
-                .then(() => this.showMessage('Customer was updated'))
-                .catch((reason) => this.showMessage(`Error updating customer: ${reason}`))
+                .then(() => this.showMessage(`${this.props.entityName} was updated`))
+                .catch((reason) => this.showMessage(`Error updating ${this.props.entityName}: ${reason}`))
                 .finally(() => this.refreshEntities())
 
             resolve()
@@ -52,8 +52,8 @@ export default class CrudTable extends React.Component {
     deleteEntity = oldData =>
         new Promise((resolve, reject) => {
             AXIOS.delete(`/${this.props.entityName}s/${oldData.id}`)
-                .then(() => this.showMessage('Customer was deleted'))
-                .catch((reason) => this.showMessage(`Error deleting customer: ${reason}`))
+                .then(() => this.showMessage(`${this.props.entityName} was deleted`))
+                .catch((reason) => this.showMessage(`Error deleting ${this.props.entityName}: ${reason}`))
                 .finally(() => this.refreshEntities());
 
             resolve()
@@ -68,7 +68,6 @@ export default class CrudTable extends React.Component {
                 columns={this.props.columns}
                 data={this.state.data}
                 editable={{
-                    editable: this.props.editableRows,
                     onRowAdd: this.addEntity,
                     onRowUpdate: this.updateEntity,
                     onRowDelete: this.deleteEntity,
