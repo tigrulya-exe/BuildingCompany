@@ -17,8 +17,14 @@ abstract class Mapper<E, D : Dto<E>> {
     abstract fun toEntity(dto: D): E
 
     fun toPageDto(entityPage: Page<E>): PageDto<*> {
-        val dtoPage = PageImpl(toDtos(entityPage.content))
-        return mapper.map(dtoPage, PageDto::class.java)
+        val dtoPage = PageImpl(toDtos(entityPage.content), entityPage.pageable, entityPage.totalElements)
+        val pageDto = mapper.map(dtoPage, PageDto::class.java)
+        try {
+            pageDto.pageNumber = dtoPage.pageable.pageNumber
+        } catch (exc: UnsupportedOperationException) {
+            pageDto.pageNumber = 0
+        }
+        return pageDto;
     }
 
     private fun toDtos(entities: MutableList<E>): MutableList<D> {

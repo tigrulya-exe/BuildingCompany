@@ -1,31 +1,36 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomerTable from './CustomerTable';
-import BuildingObjectsTable from './BuildingObjectsTable'
 import QueryForm from './QueryForm';
-import MachineryTable from './MachineryTable';
+import CustomerTable from './crudTables/CustomerTable';
+import BuildingObjectsTable from './crudTables/BuildingObjectsTable'
+import AreasTable from './crudTables/AreasTable';
+import MachineryTable from './crudTables/MachineryTable';
+import BrigadesTable from './crudTables/BrigadesTable';
 
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import {Route, Switch,} from "react-router-dom";
 
-export default class RouteSwitch extends React.Component{
-    render(){
-        return (   
+export default class RouteSwitch extends React.Component {
+    render() {
+        return (
             <Switch>
-              <Route path="/customers">
-                <CustomerTable />
-              </Route>
-              <Route path="/building-objects">
-                <BuildingObjectsTable />
-              </Route>
-              <Route path="/query">
-                <QueryForm />
-              </Route>
-              <Route path="/machinery">
-                <MachineryTable />
-              </Route>
+                <Route path="/customers">
+                    <CustomerTable/>
+                </Route>
+                <Route path="/building-objects">
+                    <BuildingObjectsTable/>
+                </Route>
+                <Route path="/query">
+                    <QueryForm/>
+                </Route>
+                <Route path="/machinery">
+                    <MachineryTable/>
+                </Route>
+                <Route path="/areas">
+                    <AreasTable/>
+                </Route>
+                <Route path="/brigades">
+                    <BrigadesTable/>
+                </Route>
             </Switch>
         );
     }

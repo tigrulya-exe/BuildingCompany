@@ -12,7 +12,7 @@ class BrigadeMapper(
 ) : Mapper<Brigade, BrigadeDto>() {
     override fun toDto(entity: Brigade): BrigadeDto {
         val dto = mapper.map(entity, BrigadeDto::class.java)
-        dto.managerId = entity.id
+        dto.managerId = entity.manager?.id
         dto.workerIds = identifiablesToIds(entity.workers)
         return dto
     }
