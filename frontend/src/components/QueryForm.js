@@ -1,10 +1,10 @@
 import React from 'react';
-import {Form, Button} from 'react-bootstrap';
-import { AXIOS } from './http-common'
+import {Button, Form} from 'react-bootstrap';
+import {AXIOS} from './http-common'
 
 
 export default class QueryForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             query: '',
@@ -16,10 +16,10 @@ export default class QueryForm extends React.Component {
         this.setState({query: event.target.value});
     }
 
-    setResult(plainResults){
-        
+    setResult(plainResults) {
+
         this.setState({
-            result: plainResults.map(r => r.join('\t\t|\t\t')).join('\n')            
+            result: plainResults.map(r => r.join('\t\t|\t\t')).join('\n')
         })
     }
 
@@ -35,8 +35,8 @@ export default class QueryForm extends React.Component {
             <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>SQL query</Form.Label>
-                    <Form.Control as="textarea" rows="8" value={this.state.query} onChange= {this.onChange}/>
-                </Form.Group>   
+                    <Form.Control as="textarea" rows="8" value={this.state.query} onChange={this.onChange}/>
+                </Form.Group>
                 <Button variant="primary" type="submit">
                     Execute
                 </Button>

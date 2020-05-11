@@ -6,5 +6,5 @@ import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 class PageDto<D>(
     var content: List<D>,
     var totalElements: Int,
-    var totalPages: Int
+    var pageNumber: Int
 )

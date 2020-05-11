@@ -1,5 +1,5 @@
 plugins {
-    id("org.siouan.frontend") version "1.2.1"
+    id("org.siouan.frontend") version "2.0.0"
     id("java")
 }
 
@@ -20,6 +20,7 @@ buildscript {
 }
 
 frontend {
+    nodeDistributionProvided.set(true)
     nodeVersion.set("10.16.0")
     cleanScript.set("run clean")
     installScript.set("install")
@@ -28,6 +29,6 @@ frontend {
 
 tasks.named("jar", Jar::class) {
     dependsOn("assembleFrontend")
-    from("$buildDir/dist")
+    from("$buildDir")
     into("static")
 }
