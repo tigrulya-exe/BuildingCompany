@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("\${application.path}/construction-management")
+@RequestMapping("\${application.path}/construction-managements")
 class ConstructionManagementController(
     service: ConstructionManagementService,
     mapper: ConstructionManagementMapper
