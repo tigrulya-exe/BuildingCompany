@@ -18,6 +18,11 @@ export default class NavBar extends React.Component {
                             <NavDropdown.Item><Link to="/machinery">Machinery</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/areas">Areas</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/brigades">Brigades</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/construction-managements">ConstructionManagements</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/materials">Materials</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/outlays">Outlays</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/technical-specialists">TechnicalSpecialists</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/work-schedules">TechnicalSpecialists</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import {AXIOS} from '../http-common'
+import {MTableFilterRow} from 'material-table'
 
 export default class CrudTable extends React.Component {
     constructor(props) {
@@ -79,12 +80,16 @@ export default class CrudTable extends React.Component {
                     }
                     options={{
                         actionsColumnIndex: -1,
+                        filtering: true,
                         search: false
                     }}
                     editable={{
                         onRowAdd: this.addEntity,
                         onRowUpdate: this.updateEntity,
                         onRowDelete: this.deleteEntity,
+                    }}
+                    components={{
+                        FilterRow: this.props.filterForm || MTableFilterRow
                     }}
                 />
                 <div>{this.state.showMessage ? this.state.infoMessage : null}</div>
