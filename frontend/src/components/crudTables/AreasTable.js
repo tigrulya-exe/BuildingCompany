@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import AreasFilter from '../filters/AreasFilter'
 
 export default class AreasTable extends React.Component {
     columns = [
@@ -14,6 +15,7 @@ export default class AreasTable extends React.Component {
                 columns={this.columns}
                 entityName='area'
                 tableName='Areas'
+                filterForm={<AreasFilter/>}
             />
         )
     }

@@ -15,7 +15,7 @@ export default class CrudTable extends React.Component {
 
     onFilterSubmit = (state) => {
         this.setState({ formState: state })
-        this.state.tableRef.current.onQueryChange()
+            this.state.tableRef.current.onQueryChange()
     }
 
     showMessage(text) {
@@ -102,7 +102,7 @@ export default class CrudTable extends React.Component {
                                 .then(response => this.resolveResults(resolve, response))
                                 .catch((reason) => {
                                     this.showMessage(`Error refreshing ${this.props.entityName}s: ${reason}`)
-                                    reject()
+                                    resolve({data:[]})
                                 })
                         })
                     }

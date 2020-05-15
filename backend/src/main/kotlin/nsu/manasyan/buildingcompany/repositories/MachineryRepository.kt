@@ -15,11 +15,11 @@ interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
     @Query(
         """
         select m   
-        from Machinery m
+        from Machinery m left join Area a on a = m.buildingObject.area
         where (:#{#filter.licencePlateNumber} is null or lower(m.licencePlateNumber) like :#{#filter.licencePlateNumber})
+        and (:#{#filter.areaId} is null or a.id = :#{#filter.areaId})
+        and (:#{#filter.managementId} is null or a.management.id = :#{#filter.managementId})
         and (:#{#filter.buildingObjectId} is null or m.buildingObject.id = :#{#filter.buildingObjectId})
-        and (:#{#filter.areaId} is null or m.buildingObject.area.id = :#{#filter.areaId})
-        and (:#{#filter.managementId} is null or m.buildingObject.area.management.id = :#{#filter.managementId})
         and (:#{#filter.type} is null or lower(m.type) like :#{#filter.type})
     """
     )
