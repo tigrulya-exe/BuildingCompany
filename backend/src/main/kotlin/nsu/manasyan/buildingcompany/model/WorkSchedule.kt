@@ -9,16 +9,8 @@ import javax.persistence.*
 @Table(name = "WorkSchedule")
 class WorkSchedule(var startDate: Date, var endDate: Date) : Identifiable() {
     @ManyToOne
-    @JoinColumn(name = "objectId", referencedColumnName = "id")
-    lateinit var buildingObject: BuildingObject
-
-    @ManyToOne
-    @JoinColumn(name = "workTypeId", referencedColumnName = "id")
-    lateinit var workType: WorkType
-
-    @ManyToOne
-    @JoinColumn(name = "brigadeId", referencedColumnName = "id")
-    lateinit var brigade: Brigade
+    @JoinColumn(name = "brigadeObjectWorkId", referencedColumnName = "id")
+    lateinit var brigadeWork: BrigadeObjectWork
 }
 
 @Entity

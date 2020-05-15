@@ -17,10 +17,10 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
     @Query(
         """
         select s   
-        from WorkSchedule s
-        where (:#{#filter.brigadeId} is null or s.brigade.id = :#{#filter.brigadeId})
-        and (:#{#filter.objectId} is null or s.buildingObject.id = :#{#filter.objectId})
-        and (:#{#filter.workTypeId} is null or s.workType.id = :#{#filter.workTypeId})
+        from WorkSchedule s join BrigadeObjectWork  b
+        where (:#{#filter.brigadeId} is null or b.brigade.id = :#{#filter.brigadeId})
+        and (:#{#filter.objectId} is null or b.buildingObject.id = :#{#filter.objectId})
+        and (:#{#filter.workTypeId} is null or b.workType.id = :#{#filter.workTypeId})
         and (:#{#filter.startDateMin} is null or s.startDate >= :#{#filter.startDateMin})
         and (:#{#filter.startDateMax} is null or s.startDate <= :#{#filter.startDateMax})
     """
