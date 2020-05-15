@@ -13,8 +13,7 @@ export default class CrudTable extends React.Component {
         }
     }
 
-    print = (state) => {
-       
+    onFilterSubmit = (state) => {
         this.setState({ formState: state })
         this.state.tableRef.current.onQueryChange()
     }
@@ -111,7 +110,7 @@ export default class CrudTable extends React.Component {
                         actionsColumnIndex: -1,
                         filtering: true,
                         search: false,
-                        pageSize: 10,
+                        pageSize: 8,
                         pageSizeOptions: []
                     }}
                     editable={{
@@ -121,7 +120,7 @@ export default class CrudTable extends React.Component {
                     }}
                     components={{
                         FilterRow: (props) => React.cloneElement(this.props.filterForm, {
-                            onSubmit: this.print, outerState: this.state.formState
+                            onSubmit: this.onFilterSubmit, outerState: this.state.formState
                         })
                     }}
                 />

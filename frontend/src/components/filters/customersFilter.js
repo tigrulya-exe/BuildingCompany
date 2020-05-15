@@ -1,22 +1,19 @@
 import React from 'react';
-import {Button, Form, Col} from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
+import CollapseContainer from "../CollapseContainer"
 
 
 export default class CustomersFilter extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            id: (this.props.outerState && this.props.outerState.id) || '',
-            name: (this.props.outerState && this.props.outerState.name) ||  ''
+        this.state = this.props.outerState || {
+            id: '',
+            name: '',
         }
     }
 
-    onIdChange = (event) => {
-        this.setState({id: event.target.value});
-    }
-
-    onNameChange = (event) => {
-        this.setState({name: event.target.value});
+    onFormChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value });
     }
 
     onSubmit = (event) => {
@@ -25,7 +22,7 @@ export default class CustomersFilter extends React.Component {
     }
 
     onReset = (event) => {
-        this.setState({id: '', name: ''})
+        this.setState({ id: '', name: '' })
         this.props.onSubmit(null)
         event.preventDefault()
     }
@@ -33,22 +30,21 @@ export default class CustomersFilter extends React.Component {
     render() {
         return (
             <tr><td>
-            <Form onSubmit={this.onSubmit}>
-                <Form.Row>
-                    {/* <Col>
-                        <Form.Control placeholder="Id" value={this.state.id} onChange={this.onIdChange}/>
-                    </Col> */}
-                    <Col>
-                        <Form.Control placeholder="Name" value={this.state.name} onChange={this.onNameChange}/>
-                    </Col>
-                    <Col>
-                        <Button variant="primary" type="submit">Filter</Button>
-                    </Col>
-                    <Col>
-                        <Button variant="primary" onClick={this.onReset}>Reset</Button>
-                    </Col>
-                </Form.Row>
-            </Form>
+                <CollapseContainer>
+                    <Form onSubmit={this.onSubmit} onChange={this.onFormChange}>
+                        <Form.Row>
+                            <Form.Group as={Col} controlId="name">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control value={this.state.name} />
+                            </Form.Group>
+
+                        </Form.Row>
+                        <Form.Row>
+                            <Button variant="primary" type="submit">Filter</Button>
+                            <Button variant="danger" onClick={this.onReset}>Reset</Button>
+                        </Form.Row>
+                    </Form>
+                </CollapseContainer>
             </td></tr>
         )
     }

@@ -1,5 +1,7 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import MachineryFilter from '../filters/MachineryFilter'
+
 
 export default class MachineryTable extends React.Component {
     columns = [
@@ -14,6 +16,7 @@ export default class MachineryTable extends React.Component {
                 columns={this.columns}
                 entityName='machinery'
                 tableName='Machinery'
+                filterForm={<MachineryFilter/>}
             />
         )
     }

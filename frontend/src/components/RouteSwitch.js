@@ -11,7 +11,6 @@ import MaterialsTable from './crudTables/MaterialsTable';
 import OutlaysTable from './crudTables/OutlaysTable';
 import TechnicalSpecialistsTable from './crudTables/TechnicalSpecialistsTable';
 import WorkScheduleTable from './crudTables/WorkScheduleTable';
-import NewFramework from './crudTables/NewFramework';
 
 
 
@@ -53,9 +52,6 @@ export default class RouteSwitch extends React.Component {
                 </Route>
                 <Route path="/work-schedules">
                     <WorkScheduleTable/>
-                </Route>
-                <Route path="/">
-                    <NewFramework/>
                 </Route>
             </Switch>
         );

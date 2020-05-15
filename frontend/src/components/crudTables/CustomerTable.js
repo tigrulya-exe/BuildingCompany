@@ -1,6 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
-import CustomersFilter from '../filters/customersFilter'
+import CustomersFilter from '../filters/CustomersFilter'
 
 export default class CustomerTable extends React.Component {
     columns = [
@@ -10,7 +10,6 @@ export default class CustomerTable extends React.Component {
 
     render() {
         return (
-            
             <CrudTable
                 columns={this.columns}
                 entityName='customer'
