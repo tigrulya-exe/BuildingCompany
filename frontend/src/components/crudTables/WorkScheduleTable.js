@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import WorkScheduleFilter from '../filters/WorkScheduleFilter'
 
 export default class WorkScheduleTable extends React.Component {
     columns = [
@@ -17,6 +18,7 @@ export default class WorkScheduleTable extends React.Component {
                 columns={this.columns}
                 entityName='work-schedule'
                 tableName='WorkSchedule'
+                filterForm={<WorkScheduleFilter/>}
             />
         )
     }

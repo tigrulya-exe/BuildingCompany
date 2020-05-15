@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import OutlaysFilter from '../filters/OutlaysFilter'
 
 export default class OutlaysTable extends React.Component {
     columns = [
@@ -17,6 +18,7 @@ export default class OutlaysTable extends React.Component {
                 columns={this.columns}
                 entityName='outlay'
                 tableName='Outlays'
+                filterForm={<OutlaysFilter/>}
             />
         )
     }

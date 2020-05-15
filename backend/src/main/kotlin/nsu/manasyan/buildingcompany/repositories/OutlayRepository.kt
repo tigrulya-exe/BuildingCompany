@@ -18,10 +18,10 @@ interface OutlayRepository : JpaFilterRepository<Outlay, Int> {
     @Query(
         """
         select o   
-        from Outlay o join BrigadeObjectWork b
+        from Outlay o join BrigadeObjectWork b on o.brigadeWork = b
         where (:#{#filter.materialId} is null or o.material.id = :#{#filter.materialId})
         and (:#{#filter.brigadeId} is null or b.brigade.id = :#{#filter.brigadeId})
-        and (:#{#filter.objectId} is null or b.buildingObject.id = :#{#filter.objectId})
+        and (:#{#filter.buildingObjectId} is null or b.buildingObject.id = :#{#filter.buildingObjectId})
         and (:#{#filter.workTypeId} is null or b.workType.id = :#{#filter.workTypeId})
         and (:#{#filter.materialCountMin} is null or o.materialCount >= :#{#filter.materialCountMin})
         and (:#{#filter.materialCountMax} is null or o.materialCount <= :#{#filter.materialCountMax})
@@ -39,7 +39,7 @@ interface OutlayExceedanceRepository : JpaRepository<OutlayExceedance, Int>
 
 @NoArgConstructor
 data class OutlayFilter(
-    var objectId: Int?,
+    var buildingObjectId: Int?,
     var workTypeId: Int?,
     var materialCountMin: Int?,
     var materialCountMax: Int?,

@@ -102,7 +102,11 @@ export default class CrudTable extends React.Component {
                                 .then(response => this.resolveResults(resolve, response))
                                 .catch((reason) => {
                                     this.showMessage(`Error refreshing ${this.props.entityName}s: ${reason}`)
-                                    resolve({data:[]})
+                                    resolve({
+                                        data: [],
+                                        page: 0,
+                                        totalCount: 0
+                                    })
                                 })
                         })
                     }
