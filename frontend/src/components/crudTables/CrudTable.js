@@ -1,25 +1,32 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import {AXIOS} from '../http-common'
-import {MTableFilterRow} from 'material-table'
+import { AXIOS } from '../http-common'
 
 export default class CrudTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // data: [],
             infoMessage: '',
-            showMessage: false
+            showMessage: false,
+            tableRef: React.createRef(),
+            formState: null,
         }
     }
 
+    print = (state) => {
+       
+        this.setState({ formState: state })
+        this.state.tableRef.current.onQueryChange()
+    }
+
     showMessage(text) {
+        console.log(text)
         this.setState({
             infoMessage: text,
             showMessage: true
         })
-
-        setInterval(() => this.setState({showMessage: false}), 6000)
+        console.log("Interval: " + text)
+        setTimeout(() => this.setState({ showMessage: false }), 6000)
     }
 
     addEntity = newData =>
@@ -46,32 +53,54 @@ export default class CrudTable extends React.Component {
                 .catch((reason) => this.showMessage(`Error deleting ${this.props.entityName}: ${reason}`))
 
             resolve()
-        })
+        });
 
+    resolveResults = (resolve, response) => {
+        resolve({
+            data: response.data.content,
+            page: response.data.pageNumber,
+            totalCount: response.data.totalElements,
+        })
+    }
+
+    getAllEntities = (query) => {
+        console.log("page " + query.page)
+        console.log("pageSize " + query.pageSize)
+
+        return AXIOS.get(
+            `/${this.props.entityName}s`,
+            {
+                params: this.getQueryParams(query)
+            });
+    }
+
+    getQueryParams = (query) => ({
+        page: query.page,
+        pageSize: query.pageSize,
+        orderBy: query.orderBy && query.orderBy.field,
+        order: query.orderDirection && (query.orderDirection === 'asc' ? 'ASCENDING' : 'DESCENDING')
+    })
+
+    getFilteredEntities = (query) => {
+        const params = Object.assign(this.getQueryParams(query), this.state.formState)
+        return AXIOS.get(
+            `/${this.props.entityName}s/filter`,
+            { params });
+    }
 
     render() {
         return (
             <>
                 <MaterialTable
+                    tableRef={this.state.tableRef}
                     title={this.props.tableName}
                     columns={this.props.columns}
                     data={query =>
                         new Promise((resolve, reject) => {
-                            AXIOS.get(
-                                `/${this.props.entityName}s`,
-                                {
-                                    params: {
-                                        page: query.page,
-                                        size: query.pageSize
-                                    }
-                                })
-                                .then(response => {
-                                    resolve({
-                                        data: response.data.content,
-                                        page: response.data.pageNumber,
-                                        totalCount: response.data.totalElements,
-                                    })
-                                })
+                            const requestPromise = this.state.formState
+                                ? this.getFilteredEntities(query) : this.getAllEntities(query)
+                            requestPromise
+                                .then(response => this.resolveResults(resolve, response))
                                 .catch((reason) => {
                                     this.showMessage(`Error refreshing ${this.props.entityName}s: ${reason}`)
                                     reject()
@@ -81,7 +110,9 @@ export default class CrudTable extends React.Component {
                     options={{
                         actionsColumnIndex: -1,
                         filtering: true,
-                        search: false
+                        search: false,
+                        pageSize: 10,
+                        pageSizeOptions: []
                     }}
                     editable={{
                         onRowAdd: this.addEntity,
@@ -89,7 +120,9 @@ export default class CrudTable extends React.Component {
                         onRowDelete: this.deleteEntity,
                     }}
                     components={{
-                        FilterRow: this.props.filterForm || MTableFilterRow
+                        FilterRow: (props) => React.cloneElement(this.props.filterForm, {
+                            onSubmit: this.print, outerState: this.state.formState
+                        })
                     }}
                 />
                 <div>{this.state.showMessage ? this.state.infoMessage : null}</div>

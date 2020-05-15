@@ -1,14 +1,13 @@
 import React from 'react';
 import {Button, Form, Col} from 'react-bootstrap';
-import {AXIOS} from './http-common'
 
 
 export default class CustomersFilter extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: '',
-            name: ''
+            id: (this.props.outerState && this.props.outerState.id) || '',
+            name: (this.props.outerState && this.props.outerState.name) ||  ''
         }
     }
 
@@ -21,27 +20,36 @@ export default class CustomersFilter extends React.Component {
     }
 
     onSubmit = (event) => {
-        AXIOS.get('/query', {params: {query: this.state.query}})
-            .then((result) => this.setResult(result.data))
-            .catch((error) => alert(error))
+        this.props.onSubmit(this.state)
+        event.preventDefault()
+    }
+
+    onReset = (event) => {
+        this.setState({id: '', name: ''})
+        this.props.onSubmit(null)
         event.preventDefault()
     }
 
     render() {
         return (
-            <Form onSubmit={() => this.props.onSubmit(this.state)}>
+            <tr><td>
+            <Form onSubmit={this.onSubmit}>
                 <Form.Row>
-                    <Col>
+                    {/* <Col>
                         <Form.Control placeholder="Id" value={this.state.id} onChange={this.onIdChange}/>
-                    </Col>
+                    </Col> */}
                     <Col>
                         <Form.Control placeholder="Name" value={this.state.name} onChange={this.onNameChange}/>
                     </Col>
                     <Col>
                         <Button variant="primary" type="submit">Filter</Button>
                     </Col>
+                    <Col>
+                        <Button variant="primary" onClick={this.onReset}>Reset</Button>
+                    </Col>
                 </Form.Row>
             </Form>
+            </td></tr>
         )
     }
 }

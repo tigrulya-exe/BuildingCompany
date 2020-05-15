@@ -49,6 +49,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
 
     fun <F : Filter<E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
         val page = service.getAllEntitiesByFilter(filter, requestParams)
+        logger().info("${entityName}s filter method was queried")
         return mapper.toPageDto(page)
     }
 }

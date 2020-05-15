@@ -7,7 +7,7 @@ class FindRequestParameters {
     }
 
     var page: Int? = null
-    var size: Int? = null
+    var pageSize: Int? = null
     var order: Order? = null
-    var sortColumnName: String? = null
+    var orderBy: String? = null
 }
