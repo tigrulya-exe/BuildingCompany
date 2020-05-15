@@ -11,7 +11,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
         {title: 'Expirience Years', field: 'expirienceYears'},
         {title: 'Area Id', field: 'areaId'},
         {title: 'Post', field: 'post'},
-        {title: 'Knowledge of English', field: 'knowledgeOfEnglish'},
+        {title: 'Knowledge of English', field: 'knowledgeOfEnglish', type: 'boolean'},
         {title: 'Category', field: 'category'},
     ]
 
@@ -19,7 +19,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='technical-specialists'
+                entityName='technical-specialist'
                 tableName='Technical Specialists'
             />
         )

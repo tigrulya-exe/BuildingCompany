@@ -8,7 +8,7 @@ import java.util.stream.Collectors
 
 fun getPageable(parameters: FindRequestParameters?, sort: Sort): Pageable {
     return parameters?.page?.let { page ->
-        parameters.size?.let { from ->
+        parameters.pageSize?.let { from ->
             sort.let {
                 PageRequest.of(page, from, sort)
             }
@@ -17,7 +17,7 @@ fun getPageable(parameters: FindRequestParameters?, sort: Sort): Pageable {
 }
 
 fun getSort(parameters: FindRequestParameters?): Sort {
-    return parameters?.sortColumnName?.let {
+    return parameters?.orderBy?.let {
         when (parameters.order) {
             FindRequestParameters.Order.DESCENDING -> Sort.by(it).descending()
             else -> Sort.by(it).ascending()

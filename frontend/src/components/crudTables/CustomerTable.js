@@ -1,7 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
-import {Button, Form} from 'react-bootstrap';
-
+import CustomersFilter from '../filters/CustomersFilter'
 
 export default class CustomerTable extends React.Component {
     columns = [
@@ -15,7 +14,7 @@ export default class CustomerTable extends React.Component {
                 columns={this.columns}
                 entityName='customer'
                 tableName='Customers'
-                // filterForm={ вот тут надо передать форму }
+                filterForm ={<CustomersFilter/>}
             />
         )
     }
