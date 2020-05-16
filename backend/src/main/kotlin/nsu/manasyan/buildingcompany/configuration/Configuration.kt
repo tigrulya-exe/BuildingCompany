@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import java.time.Clock
+
+
+
 
 
 annotation class NoArgConstructor
@@ -27,6 +31,21 @@ class GlobalConfiguration {
         return mapper
     }
 
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurerAdapter() {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/**")
+                    .allowedMethods("*")
+            }
+        }
+    }
+
+    @Bean
+    fun clock(): Clock {
+        return Clock.systemDefaultZone()
+    }
+
 //    @Bean
 //    fun logFilter(): CommonsRequestLoggingFilter? {
 //        val filter = CommonsRequestLoggingFilter()
@@ -37,17 +56,4 @@ class GlobalConfiguration {
 //        filter.setAfterMessagePrefix("REQUEST DATA : ")
 //        return filter
 //    }
-
-    @Configuration
-    class MyConfiguration {
-        @Bean
-        fun corsConfigurer(): WebMvcConfigurer {
-            return object : WebMvcConfigurerAdapter() {
-                override fun addCorsMappings(registry: CorsRegistry) {
-                    registry.addMapping("/**")
-                        .allowedMethods("*")
-                }
-            }
-        }
-    }
 }
