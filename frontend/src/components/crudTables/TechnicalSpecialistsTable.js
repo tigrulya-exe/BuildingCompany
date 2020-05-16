@@ -1,5 +1,7 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import TechnicalSpecialistsFilter from '../filters/TechnicalSpecialistsFilter'
+
 
 export default class TechnicalSpecialistsTable extends React.Component {
     columns = [
@@ -8,7 +10,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
         {title: 'Surname', field: 'surname'},
         {title: 'Patronymic', field: 'patronymic'},
         {title: 'Educational Institution', field: 'educationalInstitution'},
-        {title: 'Expirience Years', field: 'expirienceYears'},
+        {title: 'Experience Years', field: 'experienceYears'},
         {title: 'Area Id', field: 'areaId'},
         {title: 'Post', field: 'post'},
         {title: 'Knowledge of English', field: 'knowledgeOfEnglish', type: 'boolean'},
@@ -21,6 +23,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
                 columns={this.columns}
                 entityName='technical-specialist'
                 tableName='Technical Specialists'
+                filterForm={<TechnicalSpecialistsFilter/>}
             />
         )
     }

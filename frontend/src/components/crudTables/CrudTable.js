@@ -31,7 +31,10 @@ export default class CrudTable extends React.Component {
     addEntity = newData =>
         new Promise(resolve => {
             AXIOS.post(`/${this.props.entityName}s`, newData)
-                .then(() => this.showMessage(`${this.props.entityName} was added`))
+                .then(() => {
+                    this.showMessage(`${this.props.entityName} was added`)
+                    this.state.tableRef.current.onQueryChange();
+                })
                 .catch((reason) => this.showMessage(`Error adding ${this.props.entityName}: ${reason}`))
             resolve()
         })
@@ -39,7 +42,10 @@ export default class CrudTable extends React.Component {
     updateEntity = (newData, oldData) =>
         new Promise((resolve, reject) => {
             AXIOS.put(`/${this.props.entityName}s`, newData)
-                .then(() => this.showMessage(`${this.props.entityName} was updated`))
+                .then(() => {
+                    this.showMessage(`${this.props.entityName} was updated`)
+                    this.state.tableRef.current.onQueryChange();
+                })
                 .catch((reason) => this.showMessage(`Error updating ${this.props.entityName}: ${reason}`))
 
             resolve()
@@ -48,7 +54,10 @@ export default class CrudTable extends React.Component {
     deleteEntity = oldData =>
         new Promise((resolve, reject) => {
             AXIOS.delete(`/${this.props.entityName}s/${oldData.id}`)
-                .then(() => this.showMessage(`${this.props.entityName} was deleted`))
+                .then(() => {
+                    this.showMessage(`${this.props.entityName} was deleted`)
+                    this.state.tableRef.current.onQueryChange();
+                })
                 .catch((reason) => this.showMessage(`Error deleting ${this.props.entityName}: ${reason}`))
 
             resolve()
@@ -127,6 +136,8 @@ export default class CrudTable extends React.Component {
                             onSubmit: this.onFilterSubmit, outerState: this.state.formState
                         })
                     }}
+                    detailPanel={this.props.detailPanel}
+                    onRowClick={this.props.onRowClick}
                 />
                 <div>{this.state.showMessage ? this.state.infoMessage : null}</div>
             </>
