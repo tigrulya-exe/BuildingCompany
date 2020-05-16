@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import BrigadesFilter from '../filters/BrigadesFilter'
 
 export default class BrigadesTable extends React.Component {
     columns = [
@@ -13,6 +14,7 @@ export default class BrigadesTable extends React.Component {
                 columns={this.columns}
                 entityName='brigade'
                 tableName='Brigades'
+                filterForm={<BrigadesFilter/>}
             />
         )
     }

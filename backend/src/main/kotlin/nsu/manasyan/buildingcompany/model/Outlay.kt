@@ -6,9 +6,9 @@ import javax.persistence.*
 @Entity
 @Table(name = "Outlays")
 class Outlay(var materialCount: Int) : Identifiable() {
-    @OneToOne
-    @JoinColumn(name = "ScheduleRowId", referencedColumnName = "id")
-    lateinit var scheduleRow: WorkSchedule
+    @ManyToOne
+    @JoinColumn(name = "brigadeObjectWorkId", referencedColumnName = "id")
+    lateinit var brigadeWork: BrigadeObjectWork
 
     @ManyToOne
     @JoinColumn(name = "MaterialId", referencedColumnName = "id")

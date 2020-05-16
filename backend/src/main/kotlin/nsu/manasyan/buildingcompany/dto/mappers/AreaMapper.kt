@@ -21,7 +21,7 @@ class AreaMapper(
     override fun toEntity(dto: AreaDto): Area {
         val entity = mapper.map(dto, Area::class.java)
         entity.manager = dto.managerId?.let { technicalSpecialistsService.getEntity(it) }
-        entity.management = dto.managerId?.let { constructionManagementService.getEntity(it) }
+        entity.management = dto.managementId?.let { constructionManagementService.getEntity(it) }
         return entity
     }
 }

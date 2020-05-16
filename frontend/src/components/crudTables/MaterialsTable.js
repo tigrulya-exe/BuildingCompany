@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import MaterialsFilter from '../filters/MaterialsFilter'
 
 export default class MaterialsTable extends React.Component {
     columns = [
@@ -13,6 +14,7 @@ export default class MaterialsTable extends React.Component {
                 columns={this.columns}
                 entityName='material'
                 tableName='Materials'
+                filterForm={<MaterialsFilter/>}
             />
         )
     }

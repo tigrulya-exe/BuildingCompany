@@ -1,5 +1,6 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import BuildingObjectsFilter from '../filters/BuildingObjectsFilter'
 
 export default class BuildingObjectsTable extends React.Component {
     columns = [
@@ -15,6 +16,7 @@ export default class BuildingObjectsTable extends React.Component {
                 columns={this.columns}
                 entityName='building-object'
                 tableName='Building objects'
+                filterForm={<BuildingObjectsFilter/>}
             />
         )
     }

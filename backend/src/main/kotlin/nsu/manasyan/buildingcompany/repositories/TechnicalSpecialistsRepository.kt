@@ -18,9 +18,10 @@ interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpeciali
 
     @Query(
         """
-        select ts   
-        from TechnicalSpecialist ts
-        where (:#{#filter.areaId} = ts.area.id or :#{#filter.managementId} = ts.area.management.id)
+        select ts
+        from TechnicalSpecialist ts left join Area a on ts.area = a
+        where (:#{#filter.areaId} is null or :#{#filter.areaId} = a.id)
+        and (:#{#filter.managementId} is null or :#{#filter.areaId} = a.management.id)
         and (:#{#filter.name} is null or lower(ts.name) like :#{#filter.name})
         and (:#{#filter.surname} is null or lower(ts.surname) like :#{#filter.surname})
         and (:#{#filter.patronymic} is null or lower(ts.patronymic) like :#{#filter.patronymic}) 

@@ -18,15 +18,13 @@ interface OutlayRepository : JpaFilterRepository<Outlay, Int> {
     @Query(
         """
         select o   
-        from Outlay o join WorkSchedule s
+        from Outlay o join BrigadeObjectWork b on o.brigadeWork = b
         where (:#{#filter.materialId} is null or o.material.id = :#{#filter.materialId})
-        and (:#{#filter.brigadeId} is null or s.brigade.id = :#{#filter.brigadeId})
-        and (:#{#filter.objectId} is null or s.buildingObject.id = :#{#filter.objectId})
-        and (:#{#filter.workTypeId} is null or s.workType.id = :#{#filter.workTypeId})
+        and (:#{#filter.brigadeId} is null or b.brigade.id = :#{#filter.brigadeId})
+        and (:#{#filter.buildingObjectId} is null or b.buildingObject.id = :#{#filter.buildingObjectId})
+        and (:#{#filter.workTypeId} is null or b.workType.id = :#{#filter.workTypeId})
         and (:#{#filter.materialCountMin} is null or o.materialCount >= :#{#filter.materialCountMin})
         and (:#{#filter.materialCountMax} is null or o.materialCount <= :#{#filter.materialCountMax})
-        and (:#{#filter.startDateMin} is null or s.startDate >= :#{#filter.startDateMin})
-        and (:#{#filter.startDateMax} is null or s.startDate <= :#{#filter.startDateMax})
     """
     )
     override fun findAllByFilter(
@@ -41,12 +39,10 @@ interface OutlayExceedanceRepository : JpaRepository<OutlayExceedance, Int>
 
 @NoArgConstructor
 data class OutlayFilter(
-    var objectId: Int?,
+    var buildingObjectId: Int?,
     var workTypeId: Int?,
     var materialCountMin: Int?,
     var materialCountMax: Int?,
     var brigadeId: Int?,
-    var materialId: Int?,
-    var startDateMin: Date?,
-    var startDateMax: Date?
+    var materialId: Int?
 ) : Filter<Outlay>

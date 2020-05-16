@@ -1,5 +1,8 @@
 import React from 'react';
 import CrudTable from './CrudTable'
+import AreasFilter from '../filters/AreasFilter'
+import ManagerInfo from '../extendedInfos/ManagerInfo'
+
 
 export default class AreasTable extends React.Component {
     columns = [
@@ -14,6 +17,9 @@ export default class AreasTable extends React.Component {
                 columns={this.columns}
                 entityName='area'
                 tableName='Areas'
+                filterForm={<AreasFilter/>}
+                detailPanel={(rowData) => <ManagerInfo id={rowData.managerId}/>}
+                onRowClick={(event, rowData, togglePanel) => togglePanel()}
             />
         )
     }

@@ -2,19 +2,20 @@ import React from 'react';
 import { Form, Col } from 'react-bootstrap';
 import AbstractFilter from './AbstractFilter'
 
-export default class CustomersFilter extends React.Component {
+
+export default class MaterialsFilter extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.props.outerState || {
-            id: '',
+        this.defaultState = {
             name: '',
         }
+        this.state = this.props.outerState || this.defaultState
     }
 
     render() {
         return (
             <AbstractFilter
-                formId="customersFilter"
+                formId="materialsFilter"
                 defaultState={this.defaultState}
                 state={this.state}
                 setState={(state) => this.setState(state)}
