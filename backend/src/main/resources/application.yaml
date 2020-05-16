@@ -27,3 +27,7 @@ spring:
 application:
   path: /api/v1
   default-page-size: 20
+
+jwt:
+  expiration: 3h
+  secret: springTestKey

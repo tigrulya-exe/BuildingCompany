@@ -62,7 +62,7 @@ class JwtProvider(
         return getExpirationDate(token).before(Date(clock.millis()))
     }
 
-    override fun generateToken(userId: Int, refreshTokenId: Int): String? {
+    override fun generateToken(userId: Int, refreshTokenId: Int): String {
         val claims: Map<String, Any> = HashMap()
         return Jwts.builder()
             .setClaims(claims)

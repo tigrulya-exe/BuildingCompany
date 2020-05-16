@@ -12,7 +12,8 @@ import javax.persistence.Table
 class User(
     var nickname: String,
     var email: String,
-    var fullName: String
+    var fullName: String,
+    var password: String
 ) : Identifiable(){
 
     @ManyToMany

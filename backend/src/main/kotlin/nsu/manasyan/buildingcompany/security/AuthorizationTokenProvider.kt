@@ -6,7 +6,7 @@ import java.util.*
 
 @Component
 interface AuthorizationTokenProvider {
-    fun generateToken(tokenId: Int, refreshTokenId: Int): String?
+    fun generateToken(tokenId: Int, refreshTokenId: Int): String
 
     fun validateToken(token: String, user: User): Boolean
 

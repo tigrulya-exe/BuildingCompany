@@ -5,13 +5,12 @@ import org.modelmapper.config.Configuration.AccessLevel
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.time.Clock
-
-
-
 
 
 annotation class NoArgConstructor
@@ -44,6 +43,11 @@ class GlobalConfiguration {
     @Bean
     fun clock(): Clock {
         return Clock.systemDefaultZone()
+    }
+
+    @Bean
+    fun passwordEncoder(): PasswordEncoder{
+        return BCryptPasswordEncoder()
     }
 
 //    @Bean
