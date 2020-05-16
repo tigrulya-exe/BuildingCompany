@@ -2,10 +2,7 @@ package nsu.manasyan.buildingcompany.security.model
 
 import nsu.manasyan.buildingcompany.model.Identifiable
 import nsu.manasyan.buildingcompany.security.model.UserRole
-import javax.persistence.Entity
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "Users")
@@ -16,7 +13,7 @@ class User(
     var password: String
 ) : Identifiable(){
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "UsersRoles")
-    var roles = mutableSetOf<UserRole>()
+    var roles : MutableSet<UserRole> = mutableSetOf()
 }

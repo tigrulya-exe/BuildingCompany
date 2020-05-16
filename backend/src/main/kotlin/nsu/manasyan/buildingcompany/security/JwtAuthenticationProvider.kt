@@ -22,6 +22,7 @@ class JwtAuthenticationProvider(
         }
 
         jwtAuthentication.user = user
+        jwtAuthentication.isAuthenticated = true
         return jwtAuthentication
     }
 

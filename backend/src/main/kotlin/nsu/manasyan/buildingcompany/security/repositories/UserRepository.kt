@@ -24,6 +24,8 @@ interface UserRepository : JpaFilterRepository<User, Int> {
     override fun findAllByFilter(filter: Filter<User>?, pageable: Pageable): Page<User>
 
     fun findByNicknameIgnoreCase(nickname: String) : Optional<User>
+
+    fun findByEmailIgnoreCase(email: String) : Optional<User>
 }
 
 @NoArgConstructor

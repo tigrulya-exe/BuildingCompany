@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter
 
 @Configuration
 class SecurityConfig(
@@ -24,11 +24,13 @@ class SecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
 //        http.logout().disable();
-        //        http.logout().disable();
         http.httpBasic().disable()
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(jwtRequestFilter, AbstractPreAuthenticatedProcessingFilter::class.java)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        http.authorizeRequests()
-            .antMatchers("/api/**").hasRole("DEFAULT")
+        http.anonymous()
+            .and().authorizeRequests()
+            .antMatchers("/api/v1/users/sign-**").permitAll()
+            .and().authorizeRequests()
+            .antMatchers("/api/**").hasAuthority("DEFAULT")
     }
 }
