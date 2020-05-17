@@ -1,8 +1,9 @@
-package nsu.manasyan.buildingcompany.security
+package nsu.manasyan.buildingcompany.security.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import nsu.manasyan.buildingcompany.security.AuthorizationTokenProvider
 import nsu.manasyan.buildingcompany.security.model.User
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.convert.DurationUnit
@@ -25,7 +26,7 @@ class JwtProvider(
     @Value("\${jwt.expiration}")
     private var duration: Duration
 
-) : AuthorizationTokenProvider{
+) : AuthorizationTokenProvider {
     companion object{
         private const val AUTH_HEADER = "Authorization"
 

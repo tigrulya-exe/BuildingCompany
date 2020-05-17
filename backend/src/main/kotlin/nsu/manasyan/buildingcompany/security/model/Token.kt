@@ -8,7 +8,7 @@ import javax.persistence.*
 @Table(name = "Tokens")
 class Token(
     var stringRepresentation: String,
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.REMOVE], orphanRemoval = true)
     @JoinColumn(name = "userId", referencedColumnName = "id")
     var user: User,
     @Temporal(TemporalType.TIMESTAMP)

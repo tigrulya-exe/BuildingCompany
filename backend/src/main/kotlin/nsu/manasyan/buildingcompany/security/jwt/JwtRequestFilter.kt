@@ -1,6 +1,5 @@
-package nsu.manasyan.buildingcompany.security
+package nsu.manasyan.buildingcompany.security.jwt
 
-import nsu.manasyan.buildingcompany.security.model.UserRole
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
@@ -23,7 +22,8 @@ class JwtRequestFilter(
     ) {
         val stringJwt = jwtProvider.getTokenFromRequest(request)
         stringJwt?.let {
-            SecurityContextHolder.getContext().authentication = JwtAuthentication(it)
+            SecurityContextHolder.getContext().authentication =
+                JwtAuthentication(it)
         }
         filterChain.doFilter(request, response)
     }

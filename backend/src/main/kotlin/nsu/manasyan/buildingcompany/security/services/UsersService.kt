@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.security.services
 
 import nsu.manasyan.buildingcompany.logger
-import nsu.manasyan.buildingcompany.security.JwtProvider
+import nsu.manasyan.buildingcompany.security.jwt.JwtProvider
 import nsu.manasyan.buildingcompany.security.events.RegistrationCompleteEvent
 import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
@@ -11,7 +11,6 @@ import org.springframework.context.ApplicationEventPublisher
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import kotlin.math.log
 
 @Service
 class UsersService(
@@ -23,15 +22,17 @@ class UsersService(
     private val tokenService: TokenService
 ) : AbstractCrudService<User>(userRepository) {
 
-    @Transactional
-    override fun addEntity(entity: User) {
-        checkUniqueParams(entity)
-        entity.password = bCryptPasswordEncoder.encode(entity.password)
-        entity.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
+//    @Transactional
+    fun signUp(user: User) {
+        checkUniqueParams(user)
+        user.password = bCryptPasswordEncoder.encode(user.password)
+        user.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
 
-        logger().info("User ${entity.nickname} signed up")
-        eventPublisher.publishEvent(RegistrationCompleteEvent(entity))
-        super.addEntity(entity)
+        logger().info("User ${user.nickname} signed up")
+        val t = userRepository.save(user)
+        eventPublisher.publishEvent(RegistrationCompleteEvent(t))
+//        eventPublisher.publishEvent(RegistrationCompleteEvent(userRepository.save(user)))
+
     }
 
     fun authenticate(credentials: Credentials): AuthorizationTokensDto {

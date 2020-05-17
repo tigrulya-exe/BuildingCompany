@@ -13,7 +13,7 @@ class User(
     var password: String
 ) : Identifiable(){
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.REMOVE])
     @JoinTable(name = "UsersRoles")
     var roles : MutableSet<UserRole> = mutableSetOf()
 }

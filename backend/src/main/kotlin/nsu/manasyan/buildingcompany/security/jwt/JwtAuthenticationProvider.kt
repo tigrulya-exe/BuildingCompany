@@ -1,4 +1,4 @@
-package nsu.manasyan.buildingcompany.security
+package nsu.manasyan.buildingcompany.security.jwt
 
 import nsu.manasyan.buildingcompany.security.model.User
 import nsu.manasyan.buildingcompany.security.services.UsersService
