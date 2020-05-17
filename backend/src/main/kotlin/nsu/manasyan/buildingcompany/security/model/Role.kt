@@ -11,6 +11,7 @@ class UserRole(
     var role: Role
 ) : GrantedAuthority, Identifiable() {
     enum class Role {
+        UNCONFIRMED,
         DEFAULT,
         ADMIN
     }

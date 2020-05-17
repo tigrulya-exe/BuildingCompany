@@ -9,26 +9,26 @@ import nsu.manasyan.buildingcompany.security.model.UserRole
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
 import nsu.manasyan.buildingcompany.security.repositories.UserRepository
 import nsu.manasyan.buildingcompany.services.AbstractCrudService
+import org.springframework.context.event.ApplicationEventMulticaster
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-
 
 @Service
 class UsersService(
     private val userRepository: UserRepository,
     private val bCryptPasswordEncoder: PasswordEncoder,
     private val jwtProvider: JwtProvider,
-    private val roleRepository: RoleRepository
+    private val roleRepository: RoleRepository,
+    private val eventMulticaster: ApplicationEventMulticaster,
+    private val tokenService: TokenService
 ) : AbstractCrudService<User>(userRepository) {
 
     @Transactional
     override fun addEntity(entity: User) {
         checkUniqueParams(entity)
         entity.password = bCryptPasswordEncoder.encode(entity.password)
-        val o = roleRepository.findByRole(UserRole.Role.DEFAULT)
-
-        entity.roles.add(roleRepository.findByRole(UserRole.Role.DEFAULT))
+        entity.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
         logger().info("User ${entity.nickname} signed up")
         super.addEntity(entity)
     }

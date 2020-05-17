@@ -3,7 +3,17 @@ spring:
     url: jdbc:postgresql://localhost:5432/BuildingCompany
     username: postgres
     password: password
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: cftteam.beta@gmail.com
+    password: cft4ever
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     hibernate:
@@ -27,6 +37,9 @@ spring:
 application:
   path: /api/v1
   default-page-size: 20
+
+token:
+  expiration: 2d
 
 jwt:
   expiration: 3h
