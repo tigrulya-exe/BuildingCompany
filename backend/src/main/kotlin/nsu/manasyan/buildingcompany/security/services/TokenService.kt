@@ -34,6 +34,21 @@ class TokenService(
         return token.expirationDate.before(Date(clock.millis()))
     }
 
+    fun validateToken(stringToken: String, type: Token.Type): Token{
+        val token = repository
+            .findByStringRepresentationAndType(stringToken, type)
+            .orElseThrow{ throw java.lang.IllegalArgumentException("Wrong token") }
+        if(isTokenExpired(token)){
+            throw IllegalArgumentException("Wrong token")
+        }
+
+        return token
+    }
+
+    fun removeToken(id: Int){
+        repository.deleteById(id)
+    }
+
     @Transactional
     fun generateToken(user: User, type: Token.Type): String{
         val stringToken = UUID.randomUUID().toString()
