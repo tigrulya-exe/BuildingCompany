@@ -2,17 +2,16 @@ package nsu.manasyan.buildingcompany.security.services
 
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.security.JwtProvider
-import nsu.manasyan.buildingcompany.security.model.AuthorizationTokensDto
-import nsu.manasyan.buildingcompany.security.model.Credentials
-import nsu.manasyan.buildingcompany.security.model.User
-import nsu.manasyan.buildingcompany.security.model.UserRole
+import nsu.manasyan.buildingcompany.security.events.RegistrationCompleteEvent
+import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
 import nsu.manasyan.buildingcompany.security.repositories.UserRepository
 import nsu.manasyan.buildingcompany.services.AbstractCrudService
-import org.springframework.context.event.ApplicationEventMulticaster
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import kotlin.math.log
 
 @Service
 class UsersService(
@@ -20,7 +19,7 @@ class UsersService(
     private val bCryptPasswordEncoder: PasswordEncoder,
     private val jwtProvider: JwtProvider,
     private val roleRepository: RoleRepository,
-    private val eventMulticaster: ApplicationEventMulticaster,
+    private val eventPublisher: ApplicationEventPublisher,
     private val tokenService: TokenService
 ) : AbstractCrudService<User>(userRepository) {
 
@@ -29,13 +28,19 @@ class UsersService(
         checkUniqueParams(entity)
         entity.password = bCryptPasswordEncoder.encode(entity.password)
         entity.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
+
         logger().info("User ${entity.nickname} signed up")
+        eventPublisher.publishEvent(RegistrationCompleteEvent(entity))
         super.addEntity(entity)
     }
 
     fun authenticate(credentials: Credentials): AuthorizationTokensDto {
         val user = findUserByNickname(credentials.login)
-        // TODO: добавить проверку на подтверждение почты
+
+        if (!isConfirmed(user)) {
+            throw IllegalArgumentException("Unconfirmed")
+        }
+
         if (!bCryptPasswordEncoder.matches(credentials.password, user.password)) {
             throw IllegalArgumentException("Wrong credentials")
         }
@@ -48,6 +53,24 @@ class UsersService(
         return userRepository
             .findByNicknameIgnoreCase(nickname)
             .orElseThrow { throw IllegalArgumentException("Wrong credentials") }
+    }
+
+    @Transactional
+    fun confirmEmail(token: String) {
+        val user = tokenService.getUser(token, Token.Type.EMAIL_CONFIRM)
+        if(isConfirmed(user)){
+            throw IllegalArgumentException("User already confirmed")
+        }
+
+        val unconfirmedRole = roleRepository.findByRole(UserRole.Role.UNCONFIRMED)
+        val defaultRole = roleRepository.findByRole(UserRole.Role.DEFAULT)
+        user.roles.remove(unconfirmedRole)
+        user.roles.add(defaultRole)
+        logger().info("User ${user.nickname} confirmed his email ${user.email}")
+    }
+
+    private fun isConfirmed(user: User): Boolean {
+        return !user.roles.map { r -> r.role }.contains(UserRole.Role.UNCONFIRMED)
     }
 
     private fun checkUniqueParams(user: User) {

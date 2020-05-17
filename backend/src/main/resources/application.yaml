@@ -38,6 +38,11 @@ application:
   path: /api/v1
   default-page-size: 20
 
+app:
+  port: 8080
+  domainName: localhost
+  path: /api/v1
+
 token:
   expiration: 2d
 
