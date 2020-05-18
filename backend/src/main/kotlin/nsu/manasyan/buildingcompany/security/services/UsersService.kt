@@ -46,8 +46,8 @@ class UsersService(
             throw IllegalArgumentException("Wrong credentials")
         }
         logger().info("User ${user.nickname} logged in")
-        val jwt = jwtProvider.generateToken(user.id!!, 777)
         val refreshToken = refreshTokenService.generateToken(user)
+        val jwt = jwtProvider.generateToken(user.id!!, refreshToken.id!!)
         return AuthorizationTokensDto(jwt, refreshToken.stringRepresentation)
     }
 
