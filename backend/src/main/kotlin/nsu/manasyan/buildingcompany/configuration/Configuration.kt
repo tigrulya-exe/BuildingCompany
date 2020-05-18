@@ -5,9 +5,15 @@ import org.modelmapper.config.Configuration.AccessLevel
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.event.ApplicationEventMulticaster
+import org.springframework.context.event.SimpleApplicationEventMulticaster
+import org.springframework.core.task.SimpleAsyncTaskExecutor
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import java.time.Clock
 
 
 annotation class NoArgConstructor
@@ -27,6 +33,33 @@ class GlobalConfiguration {
         return mapper
     }
 
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurerAdapter() {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/**")
+                    .allowedMethods("*")
+            }
+        }
+    }
+
+    @Bean
+    fun clock(): Clock {
+        return Clock.systemDefaultZone()
+    }
+
+    @Bean
+    fun passwordEncoder(): PasswordEncoder {
+        return BCryptPasswordEncoder()
+    }
+
+    @Bean(name = ["applicationEventMulticaster"])
+    fun simpleApplicationEventMulticaster(): ApplicationEventMulticaster {
+        val eventMulticaster = SimpleApplicationEventMulticaster()
+        eventMulticaster.setTaskExecutor(SimpleAsyncTaskExecutor())
+        return eventMulticaster
+    }
+
 //    @Bean
 //    fun logFilter(): CommonsRequestLoggingFilter? {
 //        val filter = CommonsRequestLoggingFilter()
@@ -37,17 +70,4 @@ class GlobalConfiguration {
 //        filter.setAfterMessagePrefix("REQUEST DATA : ")
 //        return filter
 //    }
-
-    @Configuration
-    class MyConfiguration {
-        @Bean
-        fun corsConfigurer(): WebMvcConfigurer {
-            return object : WebMvcConfigurerAdapter() {
-                override fun addCorsMappings(registry: CorsRegistry) {
-                    registry.addMapping("/**")
-                        .allowedMethods("*")
-                }
-            }
-        }
-    }
 }

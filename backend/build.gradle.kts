@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("org.springframework.boot") version "2.2.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
@@ -8,6 +9,7 @@ plugins {
     kotlin("plugin.spring") version "1.3.71"
     kotlin("plugin.allopen") version "1.3.61"
     kotlin("plugin.jpa") version "1.3.71"
+    kotlin("kapt") version "1.3.71"
 }
 
 group = "nsu.manasyan"
@@ -19,11 +21,14 @@ repositories {
 
 dependencies {
     runtimeOnly(project(":frontend"))
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.modelmapper:modelmapper:2.3.6")
 //    implementation("com.google.code.gson:gson:2.8.6")
-//    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("io.jsonwebtoken:jjwt:0.2")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
     implementation("org.flywaydb:flyway-core")
@@ -51,6 +56,6 @@ allOpen {
     annotation("javax.persistence.MappedSuperclass")
 }
 
-noArg{
+noArg {
     annotation("nsu.manasyan.buildingcompany.configuration.NoArgConstructor")
 }
