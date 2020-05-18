@@ -34,6 +34,7 @@ class UsersService(
         eventPublisher.publishEvent(RegistrationCompleteEvent(userRepository.save(user)))
     }
 
+    @Transactional
     fun authenticate(credentials: Credentials): AuthorizationTokensDto {
         val user = getUserByNickname(credentials.login)
 
@@ -50,6 +51,7 @@ class UsersService(
         return AuthorizationTokensDto(jwt, refreshToken.stringRepresentation)
     }
 
+    @Transactional
     fun updateTokens(refreshTokenString: String): AuthorizationTokensDto {
         val newRefresh =  refreshTokenService.updateToken(refreshTokenString)
         val user = newRefresh.user

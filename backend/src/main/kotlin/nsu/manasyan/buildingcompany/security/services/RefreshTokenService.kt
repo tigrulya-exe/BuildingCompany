@@ -21,6 +21,7 @@ class RefreshTokenService(
     private val duration: Duration
 ) : TokenService(repository, clock, duration) {
 
+    @Transactional
     fun generateToken(user: User): Token {
         repository.deleteByUserAndType(user, Token.Type.REFRESH)
         return generateToken(user, Token.Type.REFRESH)

@@ -11,8 +11,7 @@ import MaterialsTable from './crudTables/MaterialsTable';
 import OutlaysTable from './crudTables/OutlaysTable';
 import TechnicalSpecialistsTable from './crudTables/TechnicalSpecialistsTable';
 import WorkScheduleTable from './crudTables/WorkScheduleTable';
-
-
+import Login from './Login';
 
 import {Route, Switch,} from "react-router-dom";
 
@@ -52,6 +51,9 @@ export default class RouteSwitch extends React.Component {
                 </Route>
                 <Route path="/work-schedules">
                     <WorkScheduleTable/>
+                </Route>
+                <Route path="/">
+                    <Login/>
                 </Route>
             </Switch>
         );
