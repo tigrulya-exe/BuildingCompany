@@ -2,10 +2,7 @@ package nsu.manasyan.buildingcompany.security.controllers
 
 import nsu.manasyan.buildingcompany.dto.mappers.UserMapper
 import nsu.manasyan.buildingcompany.logger
-import nsu.manasyan.buildingcompany.security.model.AuthorizationTokensDto
-import nsu.manasyan.buildingcompany.security.model.Credentials
-import nsu.manasyan.buildingcompany.security.model.NewPasswordDto
-import nsu.manasyan.buildingcompany.security.model.UserDto
+import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.services.UsersService
 import org.springframework.web.bind.annotation.*
 
@@ -34,20 +31,22 @@ class AuthorizationController(
         return modelAndView;
     }
 
+    @PostMapping("/refresh")
+    fun refreshTokens(@RequestBody tokenDto: TokenDto): AuthorizationTokensDto {
+        return usersService.updateTokens(tokenDto.token)
+    }
+
+    /**
+     * 1 part
+     */
     @PostMapping("/restore")
     fun restorePassword(@RequestParam email: String) {
         usersService.restorePassword(email)
     }
 
-    @PostMapping("/restore/{token}")
-    fun restore(
-        @RequestBody newPasswordDto: NewPasswordDto,
-        @PathVariable token: String
-    ) {
-        val newPassword: String = newPasswordDto.newPassword
-        usersService.changePassword(token, newPassword)
-    }
-
+    /**
+     * 2 part
+     */
     @GetMapping("/restore/{token}")
     fun getRestorePage(@PathVariable token: String): ModelAndView? {
         usersService.validateRestoreToken(token)
@@ -55,5 +54,17 @@ class AuthorizationController(
         modelAndView.viewName = "/restore.html"
         logger().debug("The restore page has been queried.")
         return modelAndView
+    }
+
+    /**
+     * 3 part
+     */
+    @PostMapping("/restore/{token}")
+    fun restore(
+        @RequestBody newPasswordDto: NewPasswordDto,
+        @PathVariable token: String
+    ) {
+        val newPassword: String = newPasswordDto.newPassword
+        usersService.changePassword(token, newPassword)
     }
 }

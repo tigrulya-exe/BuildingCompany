@@ -46,6 +46,9 @@ app:
 token:
   expiration: 2d
 
+refresh-token:
+  expiration: 60d
+
 jwt:
   expiration: 3h
   secret: springTestKey

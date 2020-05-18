@@ -20,7 +20,8 @@ class UsersService(
     private val jwtProvider: JwtProvider,
     private val roleRepository: RoleRepository,
     private val eventPublisher: ApplicationEventPublisher,
-    private val tokenService: TokenService
+    private val tokenService: TokenService,
+    private val refreshTokenService: RefreshTokenService
 ) : AbstractCrudService<User>(userRepository) {
 
 //    @Transactional
@@ -45,7 +46,16 @@ class UsersService(
         }
         logger().info("User ${user.nickname} logged in")
         val jwt = jwtProvider.generateToken(user.id!!, 777)
-        return AuthorizationTokensDto(jwt, "")
+        val refreshToken = refreshTokenService.generateToken(user)
+        return AuthorizationTokensDto(jwt, refreshToken.stringRepresentation)
+    }
+
+    fun updateTokens(refreshTokenString: String): AuthorizationTokensDto {
+        val newRefresh =  refreshTokenService.updateToken(refreshTokenString)
+        val user = newRefresh.user
+        val jwt = jwtProvider.generateToken(user.id!!, newRefresh.id!!)
+
+        return AuthorizationTokensDto(jwt, newRefresh.stringRepresentation)
     }
 
     fun restorePassword(email: String){

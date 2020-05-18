@@ -13,7 +13,8 @@ import org.springframework.security.web.authentication.preauth.AbstractPreAuthen
 @Configuration
 class SecurityConfig(
     private val jwtAuthenticationProvider: JwtAuthenticationProvider,
-    private val jwtRequestFilter: JwtRequestFilter
+    private val jwtRequestFilter: JwtRequestFilter,
+    private val exceptionHandlerFilter: ExceptionHandlerFilter
 ) : WebSecurityConfigurerAdapter() {
 
     @Autowired
@@ -26,6 +27,7 @@ class SecurityConfig(
 //        http.logout().disable();
         http.httpBasic().disable()
         http.addFilterBefore(jwtRequestFilter, AbstractPreAuthenticatedProcessingFilter::class.java)
+        http.addFilterBefore(exceptionHandlerFilter, JwtRequestFilter::class.java)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http.anonymous()
             .and().authorizeRequests()

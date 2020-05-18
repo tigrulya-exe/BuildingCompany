@@ -14,7 +14,7 @@ import java.util.*
 
 @Service
 class TokenService(
-    private val repository: TokenRepository,
+    protected val repository: TokenRepository,
 
     private val clock: Clock,
 
@@ -23,10 +23,7 @@ class TokenService(
     private val duration: Duration
 ) {
     fun getUser(stringToken: String, type: Token.Type) : User{
-        val token = repository
-            .findByStringRepresentationAndType(stringToken, type)
-            .orElseThrow{ throw IllegalArgumentException() }
-
+        val token = getTokenByStringAndType(stringToken, type)
         return token.user
     }
 
@@ -35,9 +32,7 @@ class TokenService(
     }
 
     fun validateToken(stringToken: String, type: Token.Type): Token{
-        val token = repository
-            .findByStringRepresentationAndType(stringToken, type)
-            .orElseThrow{ throw java.lang.IllegalArgumentException("Wrong token") }
+        val token = getTokenByStringAndType(stringToken, type)
         if(isTokenExpired(token)){
             throw IllegalArgumentException("Wrong token")
         }
@@ -50,13 +45,18 @@ class TokenService(
     }
 
     @Transactional
-    fun generateToken(user: User, type: Token.Type): String{
+    fun generateToken(user: User, type: Token.Type): Token{
         val stringToken = UUID.randomUUID().toString()
         val expirationDate = Date(clock.millis() + duration.toMillis())
         val token = Token(stringToken, user, expirationDate)
         token.type = type
-        repository.save(token)
 
-        return stringToken
+        return repository.save(token)
+    }
+
+    protected fun getTokenByStringAndType(stringToken: String, type: Token.Type): Token {
+        return repository
+            .findByStringRepresentationAndType(stringToken, type)
+            .orElseThrow{ throw java.lang.IllegalArgumentException("Wrong token") }
     }
 }

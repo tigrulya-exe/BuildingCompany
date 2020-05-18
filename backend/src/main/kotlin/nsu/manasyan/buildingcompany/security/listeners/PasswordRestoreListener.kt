@@ -21,7 +21,7 @@ class PasswordRestoreListener(
         val user = event.getUser()
         try{
             val token = tokenService.generateToken(user, Token.Type.PASSWORD_RESTORE)
-            val confirmUrl = "http://${properties.domainName}:${properties.port}/restore/${token}"
+            val confirmUrl = "http://${properties.domainName}:${properties.port}/restore/${token.stringRepresentation}"
             val message =
                 """Hello,  ${user.fullName}!
 Click on the link below to change your password:
