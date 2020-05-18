@@ -76,7 +76,7 @@ class UsersService(
         val token = tokenService.validateToken(stringToken, Token.Type.PASSWORD_RESTORE)
         val user = tokenService.getUser(stringToken, Token.Type.PASSWORD_RESTORE)
 
-        user.password = newPassword
+        user.password = bCryptPasswordEncoder.encode(newPassword)
         tokenService.removeToken(token.id!!)
         logger().info("User ${user.nickname} changed password")
     }
