@@ -1,6 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import { AXIOS } from '../http-common'
+import {AXIOS} from '../http-common'
 
 export default class CrudTable extends React.Component {
     constructor(props) {
@@ -14,8 +14,8 @@ export default class CrudTable extends React.Component {
     }
 
     onFilterSubmit = (state) => {
-        this.setState({ formState: state })
-            this.state.tableRef.current.onQueryChange()
+        this.setState({formState: state})
+        this.state.tableRef.current.onQueryChange()
     }
 
     showMessage(text) {
@@ -25,7 +25,7 @@ export default class CrudTable extends React.Component {
             showMessage: true
         })
         console.log("Interval: " + text)
-        setTimeout(() => this.setState({ showMessage: false }), 6000)
+        setTimeout(() => this.setState({showMessage: false}), 6000)
     }
 
     addEntity = newData =>
@@ -93,7 +93,7 @@ export default class CrudTable extends React.Component {
         const params = Object.assign(this.getQueryParams(query), this.state.formState)
         return AXIOS.get(
             `/${this.props.entityName}s/filter`,
-            { params });
+            {params});
     }
 
     render() {

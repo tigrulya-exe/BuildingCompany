@@ -1,16 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
-import RouteSwitch from './components/RouteSwitch';
+import RouteSwitch from './components/routing/RouteSwitch';
 import NavBar from './components/NavBar';
 
 import {BrowserRouter as Router,} from "react-router-dom";
+import {AuthProvider} from "./components/AuthProvider";
 
 function App() {
     return (
         <Router>
-            <NavBar/>
-            <RouteSwitch/>
+            <AuthProvider>
+                <NavBar/>
+                <RouteSwitch/>
+            </AuthProvider>
         </Router>
     );
 }

@@ -4,6 +4,7 @@ import nsu.manasyan.buildingcompany.security.jwt.JwtAuthenticationProvider
 import nsu.manasyan.buildingcompany.security.jwt.JwtRequestFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
@@ -31,6 +32,7 @@ class SecurityConfig(
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http.anonymous()
             .and().authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .antMatchers("/api/**").hasAuthority("DEFAULT")
             .antMatchers("/api/v1/users/**").hasAuthority("ADMIN")
     }
