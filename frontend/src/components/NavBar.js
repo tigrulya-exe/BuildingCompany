@@ -48,7 +48,7 @@ export default class NavBar extends React.Component {
                                 <Button variant="outline-primary" onClick={this.onLogout}>Logout</Button>
                             </Form>
                             : <Form inline>
-                                <Button variant="outline-primary" onClick={this.onSignIn}>Sign In</Button>
+                                <Button variant="light" onClick={this.onSignIn}>Sign In</Button>
                                 <Button variant="primary" onClick={this.onSignUp}>Sign Up</Button>
                             </Form>
                     }
