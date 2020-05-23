@@ -45,7 +45,7 @@ export default class NavBar extends React.Component {
                     {
                         this.context.isAuthorized
                             ? <Form inline>
-                                <Button variant="outline-primary" onClick={this.onLogout}>Logout</Button>
+                                <Button variant="danger" onClick={this.onLogout}>Logout</Button>
                             </Form>
                             : <Form inline>
                                 <Button variant="light" onClick={this.onSignIn}>Sign In</Button>
