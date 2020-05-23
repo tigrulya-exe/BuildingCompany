@@ -85,7 +85,7 @@ export default class Login extends React.Component {
                                     <Form.Control type="password" placeholder="Введите ваш пароль"/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Button variant="primary" type="submit">
+                                    <Button className="float-right" variant="primary" type="submit">
                                         Отправить
                                     </Button>
                                 </Form.Group>

@@ -108,7 +108,7 @@ export default class RegistrationForm extends React.Component {
                                     <Form.Control placeholder="Введите вашу почту"/>
                                 </Form.Group>
 
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" className="float-right" type="submit">
                                     Отправить
                                 </Button>
                             </Form>

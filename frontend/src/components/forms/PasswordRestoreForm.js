@@ -92,7 +92,7 @@ export default class PasswordRestoreForm extends React.Component {
                                     <Form.Control type="email" placeholder="Введите вашу почту"/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Button variant="primary" type="submit">
+                                    <Button variant="primary" className="float-right" type="submit">
                                         Отправить
                                     </Button>
                                 </Form.Group>

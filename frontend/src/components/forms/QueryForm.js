@@ -37,7 +37,7 @@ export default class QueryForm extends React.Component {
                     <Form.Label>SQL query</Form.Label>
                     <Form.Control as="textarea" rows="8" value={this.state.query} onChange={this.onChange}/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" className="float-right" type="submit">
                     Execute
                 </Button>
                 <Form.Group controlId="result">
