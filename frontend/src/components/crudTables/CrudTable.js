@@ -1,6 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import {AXIOS} from '../http-common'
+import {AXIOS} from '../../util/AxiosConfig'
 
 export default class CrudTable extends React.Component {
     constructor(props) {

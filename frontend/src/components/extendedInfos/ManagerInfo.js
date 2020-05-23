@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Col } from 'react-bootstrap';
-import { AXIOS } from '../http-common'
+import { AXIOS } from '../../util/AxiosConfig'
 
 export default class ManagerInfo extends React.Component {
     constructor(props) {

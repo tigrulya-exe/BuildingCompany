@@ -1,11 +1,11 @@
 import React from 'react';
 import {Button, Form} from 'react-bootstrap';
-import {AXIOS} from './http-common'
+import {AXIOS} from '../../util/AxiosConfig'
 
 
 export default class QueryForm extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             query: '',
             result: ''
@@ -14,7 +14,7 @@ export default class QueryForm extends React.Component {
 
     onChange = (event) => {
         this.setState({query: event.target.value});
-    }
+    };
 
     setResult(plainResults) {
 
@@ -28,7 +28,7 @@ export default class QueryForm extends React.Component {
             .then((result) => this.setResult(result.data))
             .catch((error) => alert(error))
         event.preventDefault()
-    }
+    };
 
     render() {
         return (

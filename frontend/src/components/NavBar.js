@@ -1,9 +1,26 @@
 import React from 'react';
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Button, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 
 import {Link} from "react-router-dom";
+import {AuthContext} from "../context/AuthContextProvider";
+import history from "../routing/History";
 
 export default class NavBar extends React.Component {
+    static contextType = AuthContext;
+
+    onSignIn = () => {
+        history.push('/login');
+    };
+
+    onLogout = () => {
+        history.push('/login');
+        this.context.logout();
+    };
+
+    onSignUp = () => {
+        history.push('/sign-up');
+    };
+
     render() {
         return (
             <Navbar bg="dark" variant="dark" expand="lg">
@@ -25,6 +42,17 @@ export default class NavBar extends React.Component {
                             <NavDropdown.Item><Link to="/work-schedules">Work Schedules</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                    {
+                        this.context.isAuthorized
+                            ? <Form inline>
+                                <Button variant="outline-primary" onClick={this.onLogout}>Logout</Button>
+                            </Form>
+                            : <Form inline>
+                                <Button variant="outline-primary" onClick={this.onSignIn}>Sign In</Button>
+                                <Button variant="primary" onClick={this.onSignUp}>Sign Up</Button>
+                            </Form>
+                    }
+
                 </Navbar.Collapse>
             </Navbar>
         )
