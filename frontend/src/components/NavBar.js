@@ -43,6 +43,7 @@ export default class NavBar extends React.Component {
                         </NavDropdown>
                         <NavDropdown title="Queries" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/objects-by-area-or-management">ObjectsByAreaOrManagement</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     {

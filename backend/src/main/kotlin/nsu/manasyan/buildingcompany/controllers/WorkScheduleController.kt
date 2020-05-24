@@ -33,4 +33,5 @@ class WorkScheduleController(
         val workScheduleFilter = WorkScheduleFilter(filter, startDateMin, startDateMax)
         return super.findAllByFilter(workScheduleFilter, params)
     }
+
 }

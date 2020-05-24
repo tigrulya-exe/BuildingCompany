@@ -23,6 +23,13 @@ interface BuildingObjectRepository : JpaFilterRepository<BuildingObject, Int> {
         @Param("filter") filter: Filter<BuildingObject>?,
         pageable: Pageable
     ): Page<BuildingObject>
+
+    @Query("""
+        select b
+        from BuildingObject b left join Area a on b.area = a
+        where a.id in :areaIds or a.management.id in :managementIds
+    """)
+    fun findByAreasOrManagements(areaIds: List<Int>, managementIds: List<Int>, pageable: Pageable): Page<BuildingObject>
 }
 
 @NoArgConstructor

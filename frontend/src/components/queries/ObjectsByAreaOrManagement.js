@@ -4,10 +4,10 @@ import CollapseContainer from "../CollapseContainer";
 import AreaSelectTable from "../readOnlyTables/AreaSelectTable";
 import ManagementsSelectTable from "../readOnlyTables/ManagementsSelectTable";
 import ModalWindow from "../modals/Modal";
-import TechnicalSpecialistsSelectTable from "../readOnlyTables/TechnicalSpecialistsSelectTable";
+import BuildingObjectsSelectTable from "../readOnlyTables/BuldingObjectSelectTable";
 
 
-export default class SpecialistsByAreaOrManagement extends React.Component {
+export default class ObjectsByAreaOrManagement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,8 +64,8 @@ export default class SpecialistsByAreaOrManagement extends React.Component {
                         <Form.Label>{`Selected area ids: ${this.state.areaIds}`}</Form.Label> <br/>
                         <CollapseContainer
                             buttonText="Expand areas"
-                            childId="AreaSelectTable">
-                            <div id="AreaSelectTable">
+                            childId="ObjectAreaSelectTable">
+                            <div id="ObjectAreaSelectTable">
                                 <AreaSelectTable onSelectSubmit={(data) => this.onTableSubmit(data, 'areaIds')}/>
                             </div>
                         </CollapseContainer>
@@ -74,16 +74,16 @@ export default class SpecialistsByAreaOrManagement extends React.Component {
                         <Form.Label>{`Selected management ids: ${this.state.managementIds}`}</Form.Label> <br/>
                         <CollapseContainer
                             buttonText="Expand managements"
-                            childId="ManagementSelectTable">
-                            <div id="ManagementSelectTable">
+                            childId="ObjectManagementSelectTable">
+                            <div id="ObjectManagementSelectTable">
                                 <ManagementsSelectTable
                                     onSelectSubmit={(data) => this.onTableSubmit(data, 'managementIds')}/>
                             </div>
                         </CollapseContainer>
                     </Form.Group>
                 </Form>
-                <TechnicalSpecialistsSelectTable
-                    url='/technical-specialists/by-areas-or-managements'
+                <BuildingObjectsSelectTable
+                    url='/building-objects/by-areas-or-managements'
                     params={{
                         areaIds: this.state.areaIds,
                         managementIds: this.state.managementIds
