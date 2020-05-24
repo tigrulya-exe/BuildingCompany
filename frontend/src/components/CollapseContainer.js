@@ -17,7 +17,7 @@ export default class CollapseContainer extends React.Component {
                     onClick={() => this.setState({ open: !this.state.open })}
                     aria-controls={this.props.childId}
                     aria-expanded={this.state.open}
-                >Filter</Button>
+                >{this.props.buttonText || 'Filter'}</Button>
                 <Collapse in={this.state.open}>
                     {this.props.children}
                 </Collapse>

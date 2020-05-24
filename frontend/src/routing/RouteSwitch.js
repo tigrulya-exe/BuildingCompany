@@ -19,6 +19,7 @@ import UnauthenticatedRoute from "./UnauthenticatedRoute";
 import {Switch,} from "react-router-dom";
 import RegistrationForm from "../components/forms/RegistrationForm";
 import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
+import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 
 export default function RouteSwitch(props) {
     return (
@@ -62,6 +63,10 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<TechnicalSpecialistsTable/>}
                 path="/technical-specialists">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<SpecialistsByAreaOrManagement/>}
+                path="/specialists-by-area-or-management">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<WorkScheduleTable/>}

@@ -41,6 +41,9 @@ export default class NavBar extends React.Component {
                             <NavDropdown.Item><Link to="/technical-specialists">Technical Specialists</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/work-schedules">Work Schedules</Link></NavDropdown.Item>
                         </NavDropdown>
+                        <NavDropdown title="Queries" id="basic-nav-dropdown">
+                            <NavDropdown.Item><Link to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     {
                         this.context.isAuthorized
