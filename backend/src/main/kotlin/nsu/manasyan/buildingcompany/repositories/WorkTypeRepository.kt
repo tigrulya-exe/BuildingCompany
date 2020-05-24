@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 interface WorkTypeRepository : JpaFilterRepository<WorkType, Int> {
@@ -22,6 +23,8 @@ interface WorkTypeRepository : JpaFilterRepository<WorkType, Int> {
         @Param("filter") filter: Filter<WorkType>?,
         pageable: Pageable
     ): Page<WorkType>
+
+    fun getByName(name: String) : Optional<WorkType>
 }
 
 class WorkTypeFilter : Filter<WorkType> {

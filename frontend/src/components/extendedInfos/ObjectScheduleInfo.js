@@ -23,7 +23,7 @@ export default class ObjectScheduleInfo extends React.Component {
                 </Form.Group>
                 <Form.Group as={Col} controlId="workType">
                     <Form.Label>Work type</Form.Label>
-                    <Form.Control disabled value={schedule.workTypeId} />
+                    <Form.Control disabled value={schedule.workType} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="brigadeId">
                     <Form.Label>Brigade id</Form.Label>

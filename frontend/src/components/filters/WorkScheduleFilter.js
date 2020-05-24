@@ -1,16 +1,17 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import AbstractFilter from './AbstractFilter'
-import DateTimePicker from 'react-datetime-picker';
+import {DateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 export default class WorkScheduleFilter extends React.Component {
     constructor(props) {
         super(props)
         this.defaultState = {
-            startDateMin: '',
-            startDateMax: '',
+            startDateMin: new Date(),
+            startDateMax: new Date(),
             buildingObjectId: '',
-            workTypeId: '',
+            workType: '',
             brigadeId: ''
         }
         this.state = this.props.outerState || this.defaultState
@@ -19,7 +20,7 @@ export default class WorkScheduleFilter extends React.Component {
     onMaxChange = date => {
         this.setState({startDateMax: date})
     }
-    
+
     onMinChange = date => {
         this.setState({startDateMin: date})
     }
@@ -34,34 +35,38 @@ export default class WorkScheduleFilter extends React.Component {
                 onSubmit={this.props.onSubmit}>
                 <Form.Row>
                     <Form.Group as={Col} controlId="startDateMin">
-                        <Form.Label>Start date min</Form.Label>
-                        <br></br>
-                        <DateTimePicker
-                            value={this.state.startDateMin}
-                            onChange={this.onMinChange}
-                        />
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <DateTimePicker
+                                value={this.state.startDateMin}
+                                onChange={this.onMinChange}
+                                label="Min date"
+                                showTodayButton
+                            />
+                        </MuiPickersUtilsProvider>
                     </Form.Group>
                     <Form.Group as={Col} controlId="startDateMax">
-                        <Form.Label>Start date max</Form.Label>
-                        <br></br>
-                        <DateTimePicker
-                            value={this.state.startDateMax}
-                            onChange={this.onMaxChange}
-                        />
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <DateTimePicker
+                                value={this.state.startDateMax}
+                                onChange={this.onMaxChange}
+                                label="Max date"
+                                showTodayButton
+                            />
+                        </MuiPickersUtilsProvider>
                     </Form.Group>
                     <Form.Group as={Col} controlId="buildingObjectId">
                         <Form.Label>Building object id</Form.Label>
-                        <Form.Control value={this.state.buildingObjectId} />
+                        <Form.Control value={this.state.buildingObjectId}/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group as={Col} controlId="workTypeId">
+                    <Form.Group as={Col} controlId="workType">
                         <Form.Label>Work Type Id</Form.Label>
-                        <Form.Control value={this.state.workTypeId} />
+                        <Form.Control value={this.state.workType}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="brigadeId">
                         <Form.Label>Brigade Id</Form.Label>
-                        <Form.Control value={this.state.brigadeId} />
+                        <Form.Control value={this.state.brigadeId}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

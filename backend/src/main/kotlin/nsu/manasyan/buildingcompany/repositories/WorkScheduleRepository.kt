@@ -4,6 +4,7 @@ import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.model.ScheduleDelay
 import nsu.manasyan.buildingcompany.model.WorkSchedule
 import nsu.manasyan.buildingcompany.util.filters.Filter
+import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
@@ -22,7 +23,7 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
         from WorkSchedule s join BrigadeObjectWork b on s.brigadeWork = b
         where (:#{#filter.brigadeId} is null or b.brigade.id = :#{#filter.brigadeId})
         and (:#{#filter.buildingObjectId} is null or b.buildingObject.id = :#{#filter.buildingObjectId})
-        and (:#{#filter.workTypeId} is null or b.workType.id = :#{#filter.workTypeId})
+        and (:#{#filter.workType} is null or lower(b.workType.name) like :#{#filter.workType})
         and (coalesce(:#{#filter.startDateMin},:#{#filter.startDateMin}) is null or s.startDate >= :#{#filter.startDateMin})
         and (coalesce(:#{#filter.startDateMax}, :#{#filter.startDateMax}) is null or s.startDate <= :#{#filter.startDateMax})
     """
@@ -37,20 +38,23 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
 interface ScheduleDelayRepository : JpaRepository<ScheduleDelay, Int>
 
 @NoArgConstructor
-data class BrigadeObjectWorkFilter(
+class BrigadeObjectWorkFilter(
     var buildingObjectId: Int?,
-    var workTypeId: Int?,
-    var brigadeId: Int?
-) : Filter<WorkSchedule>
+    var brigadeId: Int?,
+    workType: String?
+) : Filter<WorkSchedule>{
+    var workType: String? by FilterStringDelegate(workType)
+}
 
 @NoArgConstructor
-data class WorkScheduleFilter(
+class WorkScheduleFilter(
     var buildingObjectId: Int?,
-    var workTypeId: Int?,
     var brigadeId: Int?,
     var startDateMin: Date?,
-    var startDateMax: Date?
+    var startDateMax: Date?,
+    workType: String?
 ) : Filter<WorkSchedule>{
+    var workType: String? by FilterStringDelegate(workType)
 
     constructor(
         outerFilter : BrigadeObjectWorkFilter?,
@@ -58,9 +62,8 @@ data class WorkScheduleFilter(
         startDateMax: Date?)
             : this(
         outerFilter?.buildingObjectId,
-        outerFilter?.workTypeId,
         outerFilter?.brigadeId,
         startDateMin,
-        startDateMax
-    )
+        startDateMax,
+        outerFilter?.workType)
 }

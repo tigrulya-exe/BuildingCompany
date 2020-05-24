@@ -9,6 +9,6 @@ data class WorkScheduleDto(
     var startDate: Date,
     var endDate: Date,
     var buildingObjectId: Int,
-    var workTypeId: Int,
+    var workType: String,
     var brigadeId: Int
 ) : Dto<WorkSchedule>()

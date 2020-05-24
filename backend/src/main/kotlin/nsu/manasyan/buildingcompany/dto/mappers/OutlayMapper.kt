@@ -17,7 +17,7 @@ class OutlayMapper(
         dto.materialId = entity.material.id!!
         dto.brigadeId = entity.brigadeWork.brigade.id!!
         dto.buildingObjectId = entity.brigadeWork.buildingObject.id!!
-        dto.workTypeId = entity.brigadeWork.workType.id!!
+        dto.workType = entity.brigadeWork.workType.name
         return dto
     }
 
@@ -25,7 +25,7 @@ class OutlayMapper(
         val entity = mapper.map(dto, Outlay::class.java)
         entity.material = materialsService.getEntity(dto.materialId)
         entity.brigadeWork = brigadeObjectWorkService
-            .getOrCreate(dto.brigadeId, dto.workTypeId, dto.buildingObjectId)
+            .getOrCreate(dto.brigadeId, dto.workType, dto.buildingObjectId)
         return entity
     }
 }

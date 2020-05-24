@@ -13,14 +13,14 @@ class WorkScheduleMapper(
         val dto = mapper.map(entity, WorkScheduleDto::class.java)
         dto.brigadeId = entity.brigadeWork.brigade.id!!
         dto.buildingObjectId = entity.brigadeWork.buildingObject.id!!
-        dto.workTypeId = entity.brigadeWork.workType.id!!
+        dto.workType = entity.brigadeWork.workType.name
         return dto
     }
 
     override fun toEntity(dto: WorkScheduleDto): WorkSchedule {
         val entity = mapper.map(dto, WorkSchedule::class.java)
         entity.brigadeWork = brigadeObjectWorkService
-            .getOrCreate(dto.brigadeId, dto.workTypeId, dto.buildingObjectId)
+            .getOrCreate(dto.brigadeId, dto.workType, dto.buildingObjectId)
         return entity
     }
 }

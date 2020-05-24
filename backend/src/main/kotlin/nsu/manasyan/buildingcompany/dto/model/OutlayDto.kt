@@ -9,6 +9,6 @@ data class OutlayDto(
     var materialCount: Int,
     var materialId: Int,
     var buildingObjectId: Int,
-    var workTypeId: Int,
+    var workType: String,
     var brigadeId: Int
 ) : Dto<Outlay>()
