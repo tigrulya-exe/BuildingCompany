@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
+import nsu.manasyan.buildingcompany.model.Machinery
 import nsu.manasyan.buildingcompany.model.ScheduleDelay
 import nsu.manasyan.buildingcompany.model.WorkSchedule
 import nsu.manasyan.buildingcompany.util.filters.Filter
@@ -32,6 +33,18 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
         @Param("filter") filter: Filter<WorkSchedule>?,
         pageable: Pageable
     ): Page<WorkSchedule>
+
+    @Query("""
+        select s.machinery
+        from WorkSchedule s join BrigadeObjectWork b on s.brigadeWork = b
+        where (:buildingObjectId is null or b.buildingObject.id = :buildingObjectId)
+        and (coalesce(:startDateMin, :startDateMin) is null or s.startDate >= :startDateMin)
+        and (coalesce(:startDateMax, :startDateMax) is null or s.startDate <= :startDateMax)
+    """)
+    fun findMachineryByObjectAndDates(startDateMin: Date?,
+                                      startDateMax: Date?,
+                                      buildingObjectId: Int?,
+                                      pageable: Pageable) : Page<Machinery>
 }
 
 @Repository
@@ -49,11 +62,11 @@ class BrigadeObjectWorkFilter(
 @NoArgConstructor
 class WorkScheduleFilter(
     var buildingObjectId: Int?,
-    var brigadeId: Int?,
     var startDateMin: Date?,
     var startDateMax: Date?,
-    workType: String?
-) : Filter<WorkSchedule>{
+    workType: String? = null,
+    var brigadeId: Int? = null
+    ) : Filter<WorkSchedule>{
     var workType: String? by FilterStringDelegate(workType)
 
     constructor(
@@ -62,8 +75,8 @@ class WorkScheduleFilter(
         startDateMax: Date?)
             : this(
         outerFilter?.buildingObjectId,
-        outerFilter?.brigadeId,
         startDateMin,
         startDateMax,
-        outerFilter?.workType)
+        outerFilter?.workType,
+        outerFilter?.brigadeId)
 }

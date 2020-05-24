@@ -54,7 +54,7 @@ export default class ObjectScheduleInfo extends React.Component {
     render() {
         return (
             <>
-                <Form.Label>Schedule</Form.Label>
+                <h5><Form.Label>Schedule</Form.Label></h5>
                 {this.getSchedules()}
             </>
         )

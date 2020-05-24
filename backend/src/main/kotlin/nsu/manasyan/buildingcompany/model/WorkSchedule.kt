@@ -1,6 +1,5 @@
 package nsu.manasyan.buildingcompany.model
 
-import nsu.manasyan.buildingcompany.model.workers.Brigade
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
@@ -11,6 +10,10 @@ class WorkSchedule(var startDate: Date, var endDate: Date) : Identifiable() {
     @ManyToOne
     @JoinColumn(name = "brigadeObjectWorkId", referencedColumnName = "id")
     lateinit var brigadeWork: BrigadeObjectWork
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "WorkScheduleMachinery")
+    var machinery = mutableListOf<Machinery>()
 }
 
 @Entity

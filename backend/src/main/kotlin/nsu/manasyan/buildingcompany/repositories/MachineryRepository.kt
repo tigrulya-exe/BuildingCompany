@@ -27,6 +27,7 @@ interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
         @Param("filter") filter: Filter<Machinery>?,
         pageable: Pageable
     ): Page<Machinery>
+
 }
 
 @NoArgConstructor
