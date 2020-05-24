@@ -10,6 +10,7 @@ import nsu.manasyan.buildingcompany.util.getPageable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import org.springframework.web.bind.annotation.RequestParam
 
 @Service
 class TechnicalSpecialistsService(
@@ -22,7 +23,15 @@ class TechnicalSpecialistsService(
         filter: Filter<TechnicalSpecialist>?,
         params: FindRequestParameters?
     ): Page<TechnicalSpecialist> {
-        val pageable = getPageable(params, Sort.unsorted())
+        val pageable = getPageable(params)
         return technicksRepository.findAllByFilter(filter, pageable)
+    }
+
+    fun findByAreasOrManagements(
+        areaIds: List<Int>,
+        managementIds: List<Int>,
+        params: FindRequestParameters?): Page<TechnicalSpecialist> {
+        val pageable = getPageable(params)
+        return technicksRepository.findByAreasOrManagements(areaIds, managementIds, pageable)
     }
 }

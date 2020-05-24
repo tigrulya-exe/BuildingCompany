@@ -2,10 +2,14 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import {AXIOS} from '../../util/AxiosConfig'
 
-export default class SelectTable extends React.Component {
+export default class ReadOnlyTable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            params: this.props.params
+        };
+
+        this.tableRef = React.createRef();
     }
 
     resolveResults = (resolve, response) => {
@@ -20,14 +24,14 @@ export default class SelectTable extends React.Component {
         console.log("page " + query.page);
         console.log("pageSize " + query.pageSize);
 
-        return AXIOS.get(
-            `/${this.props.entityName}s`,
+        return AXIOS.get(this.props.url,
             {
                 params: this.getQueryParams(query)
             });
     };
 
     getQueryParams = (query) => ({
+        ...this.props.params,
         page: query.page,
         pageSize: query.pageSize,
         orderBy: query.orderBy && query.orderBy.field,
@@ -37,6 +41,7 @@ export default class SelectTable extends React.Component {
     render() {
         return (
             <MaterialTable
+                tableRef={this.tableRef}
                 title={this.props.tableName}
                 columns={this.props.columns}
                 data={query =>
@@ -56,21 +61,19 @@ export default class SelectTable extends React.Component {
                 options={{
                     actionsColumnIndex: -1,
                     search: false,
-                    pageSize: 8,
+                    pageSize: 5,
                     pageSizeOptions: [],
-                    selection: true
+                    selection: this.props.onSelectSubmit
                 }}
-                onSelectionChange={(rows) => {
-                    if (rows.length === 0) {
-                        this.props.onSelectSubmit([])
-                    }
-                }}
+                onSelectionChange={this.props.onSelectSubmit && ((rows) => {
+                    this.props.onSelectSubmit(rows)
+                })}
                 actions={[
                     {
-                        tooltip: 'Remove All Selected Users',
-                        icon: 'add',
-                        // onClick: (evt, data) => alert('You want to delete ' + data.length + ' rows')
-                        onClick: (evt, data) => this.props.onSelectSubmit(data)
+                        icon: 'refresh',
+                        tooltip: 'Refresh Data',
+                        isFreeAction: true,
+                        onClick: () => this.tableRef.current && this.tableRef.current.onQueryChange(),
                     }
                 ]}
                 detailPanel={this.props.detailPanel}

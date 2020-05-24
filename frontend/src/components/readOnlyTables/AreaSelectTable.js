@@ -1,6 +1,6 @@
 import React from 'react';
 import ManagerInfo from '../extendedInfos/ManagerInfo'
-import SelectTable from "./SelectTable";
+import ReadOnlyTable from "./ReadOnlyTable";
 
 
 export default class AreaSelectTable extends React.Component {
@@ -12,9 +12,9 @@ export default class AreaSelectTable extends React.Component {
 
     render() {
         return (
-            <SelectTable
+            <ReadOnlyTable
                 columns={this.columns}
-                entityName='area'
+                url='/areas'
                 tableName='Areas'
                 detailPanel={(rowData) => <ManagerInfo id={rowData.managerId}/>}
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}

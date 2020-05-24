@@ -33,6 +33,18 @@ interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpeciali
         @Param("filter") filter: Filter<TechnicalSpecialist>?,
         pageable: Pageable
     ): Page<TechnicalSpecialist>
+
+    @Query("""
+        select ts
+        from TechnicalSpecialist ts left join Area a on ts.area = a
+        where a.id in :areaIds or a.management.id in :managementIds
+    """)
+    fun findByAreasOrManagements(
+        areaIds: List<Int>,
+        managementIds: List<Int>,
+        pageable: Pageable
+    ) : Page<TechnicalSpecialist>
+
 }
 
 @Repository

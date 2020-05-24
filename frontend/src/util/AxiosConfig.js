@@ -22,6 +22,11 @@ const injectToken = (request) => {
     return request
 };
 
+const logResponse = (response) => {
+    console.log(response);
+    return response;
+}
+
 /**
  * Если сервер вернул 401 или 403 (позже убрать) ошибку то редиректим на путь логина
  */
@@ -37,5 +42,6 @@ const redirectIfNotAuthorized = (err) => {
 AXIOS.interceptors.request.use(injectToken);
 axiosNonApi.interceptors.request.use(injectToken);
 
-AXIOS.interceptors.response.use(null, redirectIfNotAuthorized);
+AXIOS.interceptors.response.use(logResponse, redirectIfNotAuthorized);
 axiosNonApi.interceptors.response.use(null, redirectIfNotAuthorized);
+

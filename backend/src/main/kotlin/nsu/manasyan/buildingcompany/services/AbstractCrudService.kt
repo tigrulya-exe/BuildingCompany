@@ -59,7 +59,7 @@ abstract class AbstractCrudService<E : Identifiable>(
         return repository.findAllByFilter(filter, pageable)
     }
 
-    private fun getPageable(parameters: FindRequestParameters?): Pageable {
+    protected fun getPageable(parameters: FindRequestParameters?): Pageable {
         val sort = getSort(parameters)
         val pageable = getPageable(parameters, sort)
         val intPageSize = defaultPageSize.toInt()
