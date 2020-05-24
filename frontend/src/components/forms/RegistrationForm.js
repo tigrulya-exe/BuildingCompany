@@ -48,7 +48,7 @@ export default class RegistrationForm extends React.Component {
     onRegistrationError = (error) => {
         this.setState({
             showModal: true,
-            modalMessage: `Поправьте ошибки: ${error.response.data.error || 'Неизвестная ошибка'}`,
+            modalMessage: `Поправьте ошибки: ${(error.response && error.response.data.error) || 'Неизвестная ошибка'}`,
             modalTitle: 'Oшибка!'
         });
     };

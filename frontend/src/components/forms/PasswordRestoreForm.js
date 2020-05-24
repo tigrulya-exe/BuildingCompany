@@ -38,7 +38,7 @@ export default class PasswordRestoreForm extends React.Component {
     onRestoreError = (error) => {
         this.setState({
             showModal: true,
-            modalMessage: `Поправьте ошибки: ${error.response.data.error || 'Неизвестная ошибка'}`,
+            modalMessage: `Поправьте ошибки: ${(error.response && error.response.data.error) || 'Неизвестная ошибка'}`,
             modalTitle: 'Oшибка!'
         });
     };

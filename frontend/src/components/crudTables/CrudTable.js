@@ -10,11 +10,18 @@ export default class CrudTable extends React.Component {
             showMessage: false,
             tableRef: React.createRef(),
             formState: null,
-        }
+
+        };
+
+        this.firstFilter = false;
     }
 
     onFilterSubmit = (state) => {
-        this.setState({formState: state})
+        this.setState({
+            formState: state,
+        });
+
+        this.firstFilter = state !== null;
         this.state.tableRef.current.onQueryChange()
     }
 
@@ -90,7 +97,11 @@ export default class CrudTable extends React.Component {
     })
 
     getFilteredEntities = (query) => {
-        const params = Object.assign(this.getQueryParams(query), this.state.formState)
+        const params = Object.assign(this.getQueryParams(query), this.state.formState);
+        if(this.firstFilter){
+            params.page = 0;
+            this.firstFilter = false;
+        }
         return AXIOS.get(
             `/${this.props.entityName}s/filter`,
             {params});
