@@ -20,7 +20,7 @@ interface WorkTypeRepository : JpaFilterRepository<WorkType, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<WorkType>?,
+        @Param("filter") filter: Filter<in WorkType>?,
         pageable: Pageable
     ): Page<WorkType>
 

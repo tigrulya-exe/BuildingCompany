@@ -2,9 +2,7 @@ package nsu.manasyan.buildingcompany.util.filters
 
 import kotlin.reflect.KProperty
 
-class FilterStringDelegate(
-    initial: String? = null
-) {
+class FilterStringDelegate(initial: String? = null) {
     private var backingString: String? = formatString(initial)
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {

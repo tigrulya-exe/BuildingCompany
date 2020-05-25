@@ -9,7 +9,7 @@ import BrigadesTable from '../components/crudTables/BrigadesTable';
 import ConstructionManagementTable from '../components/crudTables/ConstructionManagementTable';
 import MaterialsTable from '../components/crudTables/MaterialsTable';
 import OutlaysTable from '../components/crudTables/OutlaysTable';
-import TechnicalSpecialistsTable from '../components/crudTables/TechnicalSpecialistsTable';
+import TechnicalSpecialistsTable from '../components/crudTables/persons/TechnicalSpecialistsTable';
 import WorkScheduleTable from '../components/crudTables/WorkScheduleTable';
 import Login from '../components/forms/Login';
 
@@ -22,7 +22,7 @@ import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 import ObjectsByAreaOrManagement from "../components/queries/ObjectsByAreaOrManagement";
 import MachineryByBuildingObjects from "../components/queries/MachineryByBuildingObjects";
-import TechicalSpecialistsPage from "../components/crudTables/TechicalSpecialistsPage";
+import TechicalSpecialistsPage from "../components/crudTables/persons/TechicalSpecialistsPage";
 
 export default function RouteSwitch(props) {
     return (

@@ -20,7 +20,7 @@ interface BuildingObjectRepository : JpaFilterRepository<BuildingObject, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<BuildingObject>?,
+        @Param("filter") filter: Filter<in BuildingObject>?,
         pageable: Pageable
     ): Page<BuildingObject>
 

@@ -30,7 +30,7 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<WorkSchedule>?,
+        @Param("filter") filter: Filter<in WorkSchedule>?,
         pageable: Pageable
     ): Page<WorkSchedule>
 

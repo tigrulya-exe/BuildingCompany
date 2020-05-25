@@ -17,7 +17,7 @@ interface BrigadeRepository : JpaFilterRepository<Brigade, Int> {
         where (:#{#filter.managerId} is null or b.manager.id = :#{#filter.managerId})
     """
     )
-    override fun findAllByFilter(filter: Filter<Brigade>?, pageable: Pageable): Page<Brigade>
+    override fun findAllByFilter(filter: Filter<in Brigade>?, pageable: Pageable): Page<Brigade>
 }
 
 @NoArgConstructor

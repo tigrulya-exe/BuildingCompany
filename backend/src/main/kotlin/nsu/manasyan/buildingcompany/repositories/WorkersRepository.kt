@@ -22,7 +22,7 @@ interface WorkersRepository : JpaFilterRepository<Worker, Int> {
         and (:#{#filter.brigadeId} is null or w.brigade.id = :#{#filter.brigadeId})
     """
     )
-    override fun findAllByFilter(filter: Filter<Worker>?, pageable: Pageable): Page<Worker>
+    override fun findAllByFilter(filter: Filter<in Worker>?, pageable: Pageable): Page<Worker>
 }
 
 // TODO: Замутить иерархию фильтров или избавиться от E в Filter<E>

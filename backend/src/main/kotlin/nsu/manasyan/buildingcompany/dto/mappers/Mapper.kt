@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import java.util.stream.Collectors
 
-abstract class Mapper<E, D : Dto<E>> {
+abstract class Mapper<E, D : Dto<in E>> {
     @Autowired
     lateinit var mapper: ModelMapper
 

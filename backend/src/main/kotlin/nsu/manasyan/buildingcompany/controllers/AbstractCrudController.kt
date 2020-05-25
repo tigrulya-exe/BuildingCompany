@@ -10,7 +10,7 @@ import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import org.springframework.web.bind.annotation.*
 
-abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
+abstract class AbstractCrudController<E : Identifiable, D : Dto<in E>>(
     open val service: CommonCrudService<E>,
     val mapper: Mapper<E, D>,
     private val entityName: String
@@ -47,7 +47,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<E>>(
         logger().info("$entityName '${dto.id}' was updated")
     }
 
-    fun <F : Filter<E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
+    fun <F : Filter<in E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
         val page = service.getAllEntitiesByFilter(filter, requestParams)
         logger().info("${entityName}s filter method was queried")
         return mapper.toPageDto(page)

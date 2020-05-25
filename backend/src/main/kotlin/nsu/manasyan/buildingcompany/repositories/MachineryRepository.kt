@@ -24,7 +24,7 @@ interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
         and (:#{#filter.type} is null or lower(m.type) like :#{#filter.type})
     """)
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<Machinery>?,
+        @Param("filter") filter: Filter<in Machinery>?,
         pageable: Pageable
     ): Page<Machinery>
 

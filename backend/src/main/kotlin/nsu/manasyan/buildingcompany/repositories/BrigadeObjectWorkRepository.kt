@@ -22,7 +22,7 @@ interface BrigadeObjectWorkRepository : JpaFilterRepository<BrigadeObjectWork, I
         and (:#{#filter.workTypeId} is null or b.workType.id = :#{#filter.workTypeId})
     """
     )
-    override fun findAllByFilter(filter: Filter<BrigadeObjectWork>?, pageable: Pageable): Page<BrigadeObjectWork>
+    override fun findAllByFilter(filter: Filter<in BrigadeObjectWork>?, pageable: Pageable): Page<BrigadeObjectWork>
 
     fun findDistinctByBrigadeAndWorkTypeAndBuildingObject(
         brigade: Brigade,

@@ -19,7 +19,7 @@ interface ConstructionManagementsRepository : JpaFilterRepository<ConstructionMa
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<ConstructionManagement>?,
+        @Param("filter") filter: Filter<in ConstructionManagement>?,
         pageable: Pageable
     ): Page<ConstructionManagement>
 }

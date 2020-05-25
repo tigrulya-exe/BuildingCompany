@@ -28,7 +28,7 @@ interface OutlayRepository : JpaFilterRepository<Outlay, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<Outlay>?,
+        @Param("filter") filter: Filter<in Outlay>?,
         pageable: Pageable
     ): Page<Outlay>
 

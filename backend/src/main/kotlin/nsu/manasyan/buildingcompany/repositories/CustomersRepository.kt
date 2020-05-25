@@ -19,7 +19,7 @@ interface CustomersRepository : JpaFilterRepository<Customer, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<Customer>?,
+        @Param("filter") filter: Filter<in Customer>?,
         pageable: Pageable
     ): Page<Customer>
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import CrudTable from './CrudTable'
-import TechnicalSpecialistsFilter from '../filters/TechnicalSpecialistsFilter'
+import CrudTable from '../CrudTable'
+import TechnicalSpecialistsFilter from '../../filters/TechnicalSpecialistsFilter'
 
 
 export default class TechnicalSpecialistsTable extends React.Component {

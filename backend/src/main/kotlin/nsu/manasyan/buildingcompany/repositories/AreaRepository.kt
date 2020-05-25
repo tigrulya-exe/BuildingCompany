@@ -21,7 +21,7 @@ interface AreaRepository : JpaFilterRepository<Area, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<Area>?,
+        @Param("filter") filter: Filter<in Area>?,
         pageable: Pageable
     ): Page<Area>
 }

@@ -54,7 +54,7 @@ abstract class AbstractCrudService<E : Identifiable>(
         throw NoDataFoundException("Wrong id")
     }
 
-    override fun getAllEntitiesByFilter(filter: Filter<E>?, parameters: FindRequestParameters?): Page<E> {
+    override fun getAllEntitiesByFilter(filter: Filter<in E>?, parameters: FindRequestParameters?): Page<E> {
         val pageable = getPageable(parameters)
         return repository.findAllByFilter(filter, pageable)
     }

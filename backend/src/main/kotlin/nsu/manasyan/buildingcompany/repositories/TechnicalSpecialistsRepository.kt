@@ -8,7 +8,6 @@ import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
@@ -30,31 +29,65 @@ interface TechnicalSpecialistsRepository : JpaFilterRepository<TechnicalSpeciali
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<TechnicalSpecialist>?,
+        @Param("filter") filter: Filter<in TechnicalSpecialist>?,
         pageable: Pageable
     ): Page<TechnicalSpecialist>
 
-    @Query("""
+    @Query(
+        """
         select ts
         from TechnicalSpecialist ts left join Area a on ts.area = a
         where a.id in :areaIds or a.management.id in :managementIds
-    """)
+    """
+    )
     fun findByAreasOrManagements(
         areaIds: List<Int>,
         managementIds: List<Int>,
         pageable: Pageable
-    ) : Page<TechnicalSpecialist>
+    ): Page<TechnicalSpecialist>
 
 }
 
 @Repository
-interface ForemenRepository : JpaRepository<Foreman, Int>
+interface ForemenRepository : JpaFilterRepository<Foreman, Int> {
+    @Query(
+        """
+        select ts
+        from Foreman ts left join Area a on ts.area = a
+        where (:#{#filter.areaId} is null or :#{#filter.areaId} = a.id)
+        and (:#{#filter.managementId} is null or :#{#filter.areaId} = a.management.id)
+        and (:#{#filter.name} is null or lower(ts.name) like :#{#filter.name})
+        and (:#{#filter.surname} is null or lower(ts.surname) like :#{#filter.surname})
+        and (:#{#filter.patronymic} is null or lower(ts.patronymic) like :#{#filter.patronymic}) 
+        and (:#{#filter.educationalInstitution} is null or lower(ts.educationalInstitution) like :#{#filter.educationalInstitution})  
+        and (:#{#filter.experienceYears} is null or ts.experienceYears = :#{#filter.experienceYears})
+        and (:#{#filter.knowledgeOfEnglish} is null or ts.knowledgeOfEnglish = :#{#filter.knowledgeOfEnglish})
+    """
+    )
+    override fun findAllByFilter(filter: Filter<in Foreman>?, pageable: Pageable): Page<Foreman>
+}
 
 @Repository
-interface MastersRepository : JpaRepository<Master, Int>
+interface MastersRepository : JpaFilterRepository<Master, Int> {
+    @Query(
+        """
+        select ts
+        from Master ts left join Area a on ts.area = a
+        where (:#{#filter.areaId} is null or :#{#filter.areaId} = a.id)
+        and (:#{#filter.managementId} is null or :#{#filter.areaId} = a.management.id)
+        and (:#{#filter.name} is null or lower(ts.name) like :#{#filter.name})
+        and (:#{#filter.surname} is null or lower(ts.surname) like :#{#filter.surname})
+        and (:#{#filter.patronymic} is null or lower(ts.patronymic) like :#{#filter.patronymic}) 
+        and (:#{#filter.educationalInstitution} is null or lower(ts.educationalInstitution) like :#{#filter.educationalInstitution})  
+        and (:#{#filter.experienceYears} is null or ts.experienceYears = :#{#filter.experienceYears})
+        and (:#{#filter.category} is null or ts.category = :#{#filter.category})
+    """
+    )
+    override fun findAllByFilter(filter: Filter<in Master>?, pageable: Pageable): Page<Master>
+}
 
 @NoArgConstructor
-data class TechnicalSpecialistFilter(
+open class TechnicalSpecialistFilter(
     var areaId: Int?,
     var managementId: Int?,
     var experienceYears: Int?
@@ -63,4 +96,19 @@ data class TechnicalSpecialistFilter(
     var surname: String? by FilterStringDelegate()
     var patronymic: String? by FilterStringDelegate()
     var educationalInstitution: String? by FilterStringDelegate()
+}
+
+class ForemanFilter(
+    areaId: Int?,
+    managementId: Int?,
+    experienceYears: Int?,
+    var knowledgeOfEnglish: Boolean?
+) : TechnicalSpecialistFilter(areaId, managementId, experienceYears)
+
+class MasterFilter(
+    areaId: Int?,
+    managementId: Int?,
+    experienceYears: Int?
+) : TechnicalSpecialistFilter(areaId, managementId, experienceYears){
+    var category: String? by FilterStringDelegate()
 }

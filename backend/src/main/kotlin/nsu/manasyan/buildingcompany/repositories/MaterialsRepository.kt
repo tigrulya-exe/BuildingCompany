@@ -19,7 +19,7 @@ interface MaterialsRepository : JpaFilterRepository<Material, Int> {
     """
     )
     override fun findAllByFilter(
-        @Param("filter") filter: Filter<Material>?,
+        @Param("filter") filter: Filter<in Material>?,
         pageable: Pageable
     ): Page<Material>
 }
