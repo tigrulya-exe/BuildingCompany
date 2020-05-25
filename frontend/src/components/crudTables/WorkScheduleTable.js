@@ -16,7 +16,7 @@ export default class WorkScheduleTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='/work-schedules'
+                url='/work-schedules'
                 tableName='WorkSchedule'
                 filterForm={<WorkScheduleFilter/>}
             />

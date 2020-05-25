@@ -19,7 +19,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='/technical-specialists'
+                url='/technical-specialists'
                 tableName='Technical Specialists'
                 filterForm={<TechnicalSpecialistsFilter/>}
             />

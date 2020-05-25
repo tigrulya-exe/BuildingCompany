@@ -12,7 +12,7 @@ export default class CustomerTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='/customers'
+                url='/customers'
                 tableName='Customers'
                 filterForm ={<CustomersFilter/>}
             />

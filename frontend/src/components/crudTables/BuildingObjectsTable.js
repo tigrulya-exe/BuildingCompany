@@ -14,7 +14,7 @@ export default class BuildingObjectsTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='/building-objects'
+                url='/building-objects'
                 tableName='Building objects'
                 filterForm={<BuildingObjectsFilter/>}
             />
