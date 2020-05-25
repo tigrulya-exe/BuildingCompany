@@ -34,17 +34,6 @@ interface WorkScheduleRepository : JpaFilterRepository<WorkSchedule, Int> {
         pageable: Pageable
     ): Page<WorkSchedule>
 
-    @Query("""
-        select s.machinery
-        from WorkSchedule s join BrigadeObjectWork b on s.brigadeWork = b
-        where (:buildingObjectId is null or b.buildingObject.id = :buildingObjectId)
-        and (coalesce(:startDateMin, :startDateMin) is null or s.startDate >= :startDateMin)
-        and (coalesce(:startDateMax, :startDateMax) is null or s.startDate <= :startDateMax)
-    """)
-    fun findMachineryByObjectAndDates(startDateMin: Date?,
-                                      startDateMax: Date?,
-                                      buildingObjectId: Int?,
-                                      pageable: Pageable) : Page<Machinery>
 }
 
 @Repository

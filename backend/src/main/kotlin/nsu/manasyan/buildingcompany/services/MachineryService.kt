@@ -15,8 +15,7 @@ import java.util.*
 
 @Service
 class MachineryService(
-    private val machineryRepository: MachineryRepository,
-    private val workScheduleRepository: WorkScheduleRepository
+    private val machineryRepository: MachineryRepository
 ) :
     AbstractCrudService<Machinery>(machineryRepository) {
 
@@ -25,13 +24,7 @@ class MachineryService(
                             buildingObjectId: Int?,
                             params: FindRequestParameters?) : Page<Machinery> {
         val pageable = getPageable(params)
-        val machineryFilter = MachineryFilter(null, null, buildingObjectId)
-        val firstPart = workScheduleRepository
-            .findMachineryByObjectAndDates(startDateMin, startDateMax, buildingObjectId, pageable)
-        val secondPart = machineryRepository.findAllByFilter(machineryFilter, pageable)
-        val result = firstPart.content.union(secondPart.content).toList()
-
-        return PageImpl(result, pageable, result.size.toLong())
+        return machineryRepository.findByBuildingObjectOrWorkSchedule(startDateMin, startDateMax, buildingObjectId, pageable)
     }
 
 

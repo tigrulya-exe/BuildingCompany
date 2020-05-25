@@ -21,6 +21,7 @@ import RegistrationForm from "../components/forms/RegistrationForm";
 import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 import ObjectsByAreaOrManagement from "../components/queries/ObjectsByAreaOrManagement";
+import MachineryByBuildingObjects from "../components/queries/MachineryByBuildingObjects";
 
 export default function RouteSwitch(props) {
     return (
@@ -72,6 +73,10 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<ObjectsByAreaOrManagement/>}
                 path="/objects-by-area-or-management">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<MachineryByBuildingObjects/>}
+                path="/machinery-by-building-objects">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<WorkScheduleTable/>}

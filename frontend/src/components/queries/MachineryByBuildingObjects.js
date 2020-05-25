@@ -1,30 +1,35 @@
 import React from 'react';
-import {Form} from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import CollapseContainer from "../CollapseContainer";
 import ModalWindow from "../modals/Modal";
-import BuildingObjectsSelectTable from "../readOnlyTables/BuldingObjectSelectTable";
+import BuildingObjectsSingleSelectTable from "../readOnlyTables/BuildingObjectSingleSelectTable";
+import MachinerySelectTable from "../readOnlyTables/MachinerySelectTable";
+import {DateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 
 export default class ObjectsByAreaOrManagement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            areaIds: '',
-            managementIds: '',
-            showResult: false,
+            buildingObjectId: null,
             showModal: false,
-            modalMessage: ''
+            modalMessage: '',
+            startDateMin: null,
+            startDateMax: null
         }
     }
 
-    onTableSubmit = (data, propName) => {
-        if (data) {
-            this.setState({[propName]: this.arrayToParams(data.map(data => data.id))})
-        }
-    };
+    onMaxChange = date => {
+        this.setState({startDateMax: date})
+    }
 
-    arrayToParams = (array) => {
-        return array.length ? array.reduce((f, s) => `${f},${s}`) : ''
+    onMinChange = date => {
+        this.setState({startDateMin: date})
+    }
+
+    onTableSubmit = (data, propName) => {
+        this.setState({[propName]: data})
     };
 
     onError = (responseBody) => {
@@ -33,7 +38,6 @@ export default class ObjectsByAreaOrManagement extends React.Component {
             modalMessage: responseBody.error || 'Unknown error'
         })
     };
-
 
     render() {
         return (
@@ -45,23 +49,48 @@ export default class ObjectsByAreaOrManagement extends React.Component {
                     onModalClose={() => this.setState({showModal: false})}
                 />
                 <Form onSubmit={this.onSubmit}>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="startDateMin">
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <DateTimePicker
+                                    value={this.state.startDateMin}
+                                    onChange={this.onMinChange}
+                                    label="Min date"
+                                    showTodayButton
+                                    clearable
+                                />
+                            </MuiPickersUtilsProvider>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="startDateMax">
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <DateTimePicker
+                                    value={this.state.startDateMax}
+                                    onChange={this.onMaxChange}
+                                    label="Max date"
+                                    showTodayButton
+                                    clearable
+                                />
+                            </MuiPickersUtilsProvider>
+                        </Form.Group>
+                    </Form.Row>
                     <Form.Group controlId="BuildingObjectSelectForm">
-                        <Form.Label>{`Selected building object ids: ${this.state.areaIds}`}</Form.Label> <br/>
+                        <Form.Label>{`Selected building object id: ${this.state.buildingObjectId}`}</Form.Label> <br/>
                         <CollapseContainer
                             buttonText="Expand areas"
                             childId="ObjectAreaSelectTable">
                             <div id="ObjectAreaSelectTable">
-                                <BuildingObjectsSelectTable
-                                    onSelectSubmit={(data) => this.onTableSubmit(data, 'areaIds')}/>
+                                <BuildingObjectsSingleSelectTable
+                                    onSelectSubmit={(data) => this.onTableSubmit(data, 'buildingObjectId')}/>
                             </div>
                         </CollapseContainer>
                     </Form.Group>
                 </Form>
-                <BuildingObjectsSelectTable
-                    url='/building-objects/by-areas-or-managements'
+                <MachinerySelectTable
+                    url='/machinerys/by-building-object'
                     params={{
-                        areaIds: this.state.areaIds,
-                        managementIds: this.state.managementIds
+                        buildingObjectId: this.state.buildingObjectId,
+                        startDateMin: this.state.startDateMin,
+                        startDateMax: this.state.startDateMax
                     }}/>
             </>
         )

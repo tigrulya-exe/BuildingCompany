@@ -8,8 +8,8 @@ export default class WorkScheduleFilter extends React.Component {
     constructor(props) {
         super(props)
         this.defaultState = {
-            startDateMin: new Date(),
-            startDateMax: new Date(),
+            startDateMin: null,
+            startDateMax: null,
             buildingObjectId: '',
             workType: '',
             brigadeId: ''
@@ -40,6 +40,7 @@ export default class WorkScheduleFilter extends React.Component {
                                 value={this.state.startDateMin}
                                 onChange={this.onMinChange}
                                 label="Min date"
+                                clearable
                                 showTodayButton
                             />
                         </MuiPickersUtilsProvider>
@@ -50,6 +51,7 @@ export default class WorkScheduleFilter extends React.Component {
                                 value={this.state.startDateMax}
                                 onChange={this.onMaxChange}
                                 label="Max date"
+                                clearable
                                 showTodayButton
                             />
                         </MuiPickersUtilsProvider>

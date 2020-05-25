@@ -63,7 +63,8 @@ export default class ReadOnlyTable extends React.Component {
                     search: false,
                     pageSize: 5,
                     pageSizeOptions: [],
-                    selection: this.props.onSelectSubmit
+                    selection: this.props.onSelectSubmit,
+                    selectionProps: this.props.selectionProps
                 }}
                 onSelectionChange={this.props.onSelectSubmit && ((rows) => {
                     this.props.onSelectSubmit(rows)
