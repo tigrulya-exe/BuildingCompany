@@ -13,7 +13,7 @@ export default class ConstructionManagementTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='construction-management'
+                entityName='/construction-managements'
                 tableName='Construction Managements'
                 filterForm={<ConstructionManagementsFilter />}
                 detailPanel={(rowData) => <ManagerInfo id={rowData.managerId}/>}

@@ -16,7 +16,7 @@ export default class OutlaysTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='outlay'
+                entityName='/outlays'
                 tableName='Outlays'
                 filterForm={<OutlaysFilter/>}
             />

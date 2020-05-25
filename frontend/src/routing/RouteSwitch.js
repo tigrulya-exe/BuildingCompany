@@ -22,6 +22,7 @@ import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 import ObjectsByAreaOrManagement from "../components/queries/ObjectsByAreaOrManagement";
 import MachineryByBuildingObjects from "../components/queries/MachineryByBuildingObjects";
+import TechicalSpecialistsPage from "../components/crudTables/TechicalSpecialistsPage";
 
 export default function RouteSwitch(props) {
     return (
@@ -63,8 +64,8 @@ export default function RouteSwitch(props) {
                 path="/outlays">
             </AuthenticatedRoute>
             <AuthenticatedRoute
-                component={<TechnicalSpecialistsTable/>}
-                path="/technical-specialists">
+                component={<TechicalSpecialistsPage/>}
+                path="/technical-specialists/:name">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<SpecialistsByAreaOrManagement/>}

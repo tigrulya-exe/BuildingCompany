@@ -1,9 +1,6 @@
 package nsu.manasyan.buildingcompany.model
 
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
+import javax.persistence.*
 
 @Entity
 class BuildingObject(var name: String) : Identifiable() {
@@ -15,6 +12,10 @@ class BuildingObject(var name: String) : Identifiable() {
     @JoinColumn(name = "areaId", referencedColumnName = "id")
     lateinit var area: Area
 
+    @ManyToMany
+    @JoinTable(name = "BuildingObjectWorkTypes")
+    var workTypes = mutableSetOf<WorkType>()
+
     @OneToMany(mappedBy = "buildingObject")
-    lateinit var machinery: MutableSet<Machinery>
+    var machinery = mutableSetOf<Machinery>()
 }

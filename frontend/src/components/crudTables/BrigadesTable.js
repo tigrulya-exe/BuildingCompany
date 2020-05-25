@@ -12,7 +12,7 @@ export default class BrigadesTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='brigade'
+                entityName='/brigades'
                 tableName='Brigades'
                 filterForm={<BrigadesFilter/>}
             />

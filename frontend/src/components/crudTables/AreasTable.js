@@ -15,7 +15,7 @@ export default class AreasTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='area'
+                url='/areas'
                 tableName='Areas'
                 filterForm={<AreasFilter/>}
                 detailPanel={(rowData) => <ManagerInfo id={rowData.managerId}/>}

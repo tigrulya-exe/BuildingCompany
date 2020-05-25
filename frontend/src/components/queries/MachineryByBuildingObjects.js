@@ -86,7 +86,7 @@ export default class ObjectsByAreaOrManagement extends React.Component {
                     </Form.Group>
                 </Form>
                 <MachinerySelectTable
-                    url='/machinerys/by-building-object'
+                    url='/machinery/by-building-object'
                     params={{
                         buildingObjectId: this.state.buildingObjectId,
                         startDateMin: this.state.startDateMin,

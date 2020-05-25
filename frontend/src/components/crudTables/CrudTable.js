@@ -1,20 +1,27 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import {AXIOS} from '../../util/AxiosConfig'
+import ModalWindow from "../modals/Modal";
 
 export default class CrudTable extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            infoMessage: '',
-            showMessage: false,
+            modalMessage: '',
+            modalTitle: '',
+            showModal: false,
             tableRef: React.createRef(),
             formState: null,
-
         };
 
         this.firstFilter = false;
     }
+
+    onModalClose = () => {
+        this.setState({
+            showModal : false
+        })
+    };
 
     onFilterSubmit = (state) => {
         this.setState({
@@ -23,49 +30,59 @@ export default class CrudTable extends React.Component {
 
         this.firstFilter = state !== null;
         this.state.tableRef.current.onQueryChange()
+    };
+
+    showModal = (text, title)=> {
+        this.setState({
+            modalTitle: title,
+            modalMessage: text,
+            showModal: true
+        });
     }
 
-    showMessage(text) {
-        console.log(text)
-        this.setState({
-            infoMessage: text,
-            showMessage: true
-        })
-        console.log("Interval: " + text)
-        setTimeout(() => this.setState({showMessage: false}), 6000)
-    }
+    showError = (text) => this.showModal(text, 'Error!');
+
+    showSuccess = (text) => this.showModal(text, 'Success!');
+
+    getErrorFromReason = (reason) => reason.response?.data?.error;
 
     addEntity = newData =>
         new Promise(resolve => {
-            AXIOS.post(`/${this.props.entityName}s`, newData)
+            AXIOS.post(`${this.props.url}`, newData)
                 .then(() => {
-                    this.showMessage(`${this.props.entityName} was added`)
+                    this.showSuccess('Entity was added!');
                     this.state.tableRef.current.onQueryChange();
                 })
-                .catch((reason) => this.showMessage(`Error adding ${this.props.entityName}: ${reason}`))
+                .catch((reason) =>
+                    this.showError(`Error adding entity: ${this.getErrorFromReason(reason)}`)
+                )
             resolve()
-        })
+        });
 
     updateEntity = (newData, oldData) =>
         new Promise((resolve, reject) => {
-            AXIOS.put(`/${this.props.entityName}s`, newData)
+            AXIOS.put(`${this.props.url}`, newData)
                 .then(() => {
-                    this.showMessage(`${this.props.entityName} was updated`)
+                    this.showSuccess(`Entity was updated`);
                     this.state.tableRef.current.onQueryChange();
                 })
-                .catch((reason) => this.showMessage(`Error updating ${this.props.entityName}: ${reason}`))
+                .catch((reason) =>
+                    this.showError(`Error updating entity: ${this.getErrorFromReason(reason)}`)
+                );
 
             resolve()
-        })
+        });
 
     deleteEntity = oldData =>
         new Promise((resolve, reject) => {
-            AXIOS.delete(`/${this.props.entityName}s/${oldData.id}`)
+            AXIOS.delete(`${this.props.url}/${oldData.id}`)
                 .then(() => {
-                    this.showMessage(`${this.props.entityName} was deleted`)
+                    this.showSuccess(`Entity was deleted`);
                     this.state.tableRef.current.onQueryChange();
                 })
-                .catch((reason) => this.showMessage(`Error deleting ${this.props.entityName}: ${reason}`))
+                .catch((reason) =>
+                    this.showError(`Error deleting entity: ${this.getErrorFromReason(reason)}`)
+                );
 
             resolve()
         });
@@ -76,25 +93,25 @@ export default class CrudTable extends React.Component {
             page: response.data.pageNumber,
             totalCount: response.data.totalElements,
         })
-    }
+    };
 
     getAllEntities = (query) => {
-        console.log("page " + query.page)
-        console.log("pageSize " + query.pageSize)
+        console.log("page " + query.page);
+        console.log("pageSize " + query.pageSize);
 
         return AXIOS.get(
-            `/${this.props.entityName}s`,
+            `${this.props.url}`,
             {
                 params: this.getQueryParams(query)
             });
-    }
+    };
 
     getQueryParams = (query) => ({
         page: query.page,
         pageSize: query.pageSize,
         orderBy: query.orderBy && query.orderBy.field,
         order: query.orderDirection && (query.orderDirection === 'asc' ? 'ASCENDING' : 'DESCENDING')
-    })
+    });
 
     getFilteredEntities = (query) => {
         const params = Object.assign(this.getQueryParams(query), this.state.formState);
@@ -102,14 +119,18 @@ export default class CrudTable extends React.Component {
             params.page = 0;
             this.firstFilter = false;
         }
-        return AXIOS.get(
-            `/${this.props.entityName}s/filter`,
-            {params});
-    }
+        return AXIOS.get(`${this.props.url}/filter`, {params});
+    };
 
     render() {
         return (
             <>
+                <ModalWindow
+                    show={this.state.showModal}
+                    title={this.state.modalTitle}
+                    message={this.state.modalMessage}
+                    onModalClose={this.onModalClose}
+                />
                 <MaterialTable
                     tableRef={this.state.tableRef}
                     title={this.props.tableName}
@@ -117,18 +138,23 @@ export default class CrudTable extends React.Component {
                     data={query =>
                         new Promise((resolve, reject) => {
                             const requestPromise = this.state.formState
-                                ? this.getFilteredEntities(query) : this.getAllEntities(query)
+                                ? this.getFilteredEntities(query)
+                                : this.getAllEntities(query);
+
                             requestPromise
-                                .then(response => this.resolveResults(resolve, response))
-                                .catch((reason) => {
-                                    this.showMessage(`Error refreshing ${this.props.entityName}s: ${reason}`)
-                                    resolve({
-                                        data: [],
-                                        page: 0,
-                                        totalCount: 0
+                                .then(
+                                    response => this.resolveResults(resolve, response)
+                                )
+                                .catch(
+                                    (reason) => {
+                                        this.showError(`Error refreshing entities: ${this.getErrorFromReason(reason)}`);
+                                        resolve({
+                                            data: [],
+                                            page: 0,
+                                            totalCount: 0
+                                        })
                                     })
-                                })
-                        })
+                            })
                     }
                     options={{
                         actionsColumnIndex: -1,
@@ -150,7 +176,6 @@ export default class CrudTable extends React.Component {
                     detailPanel={this.props.detailPanel}
                     onRowClick={this.props.onRowClick}
                 />
-                <div>{this.state.showMessage ? this.state.infoMessage : null}</div>
             </>
         )
     }

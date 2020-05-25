@@ -12,7 +12,7 @@ export default class MaterialsTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='material'
+                entityName='/materials'
                 tableName='Materials'
                 filterForm={<MaterialsFilter/>}
             />

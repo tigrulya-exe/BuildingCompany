@@ -13,14 +13,15 @@ export default class TechnicalSpecialistsTable extends React.Component {
         {title: 'Experience Years', field: 'experienceYears'},
         {title: 'Area Id', field: 'areaId'},
         {title: 'Post', field: 'post'},
+        {title: 'Knowledge of English', field: 'knowledgeOfEnglish', type: 'boolean'},
     ]
 
     render() {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='/technical-specialists'
-                tableName='Technical Specialists'
+                entityName='/foremen'
+                tableName='Foremen'
                 filterForm={<TechnicalSpecialistsFilter/>}
             />
         )

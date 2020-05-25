@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("\${application.path}/machinerys")
+@RequestMapping("\${application.path}/machinery")
 class MachineryController(
     private val machineryService: MachineryService,
     mapper: MachineryMapper

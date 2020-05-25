@@ -14,7 +14,7 @@ export default class MachineryTable extends React.Component {
         return (
             <CrudTable
                 columns={this.columns}
-                entityName='machinery'
+                entityName='/machinery'
                 tableName='Machinery'
                 filterForm={<MachineryFilter/>}
             />
