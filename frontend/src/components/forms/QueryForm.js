@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form} from 'react-bootstrap';
+import {Button, Col, Form, Jumbotron, Row} from 'react-bootstrap';
 import {AXIOS} from '../../util/AxiosConfig'
 
 
@@ -8,7 +8,7 @@ export default class QueryForm extends React.Component {
         super(props);
         this.state = {
             query: '',
-            result: ''
+            results: []
         }
     }
 
@@ -19,14 +19,24 @@ export default class QueryForm extends React.Component {
     setResult(plainResults) {
 
         this.setState({
-            result: plainResults.map(r => r.join('\t\t|\t\t')).join('\n')
+            results: plainResults
         })
+    }
+
+    getRow = (tuple) => {
+        return (Array.isArray(tuple)
+            && (<Row>{tuple && tuple.map(column => <Col sm style={{border:'1px solid'}}>{column}</Col>)}</Row>))
+            || (<Row><Col sm style={{border:'1px solid'}}>{tuple}</Col></Row>)
+    }
+
+    getResults = () => {
+        return this.state.results && this.state.results.map(tuple => this.getRow(tuple))
     }
 
     onSubmit = (event) => {
         AXIOS.get('/query', {params: {query: this.state.query}})
             .then((result) => this.setResult(result.data))
-            .catch((error) => alert(error))
+            .catch((error) => alert(error));
         event.preventDefault()
     };
 
@@ -40,9 +50,11 @@ export default class QueryForm extends React.Component {
                 <Button variant="primary" className="float-right" type="submit">
                     Execute
                 </Button>
-                <Form.Group controlId="result">
-                    <Form.Control readOnly as="textarea" rows="8" value={this.state.result}/>
-                </Form.Group>
+                <br/>
+                <br/>
+                <Jumbotron >
+                    {this.getResults()}
+                </Jumbotron>
             </Form>
         )
     }
