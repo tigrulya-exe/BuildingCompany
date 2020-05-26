@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "Workers")
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Worker(
+class Worker(
     name: String,
     surname: String,
     patronymic: String?,

@@ -31,7 +31,7 @@ class Foreman(
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
-    @Transient
+    @Enumerated(EnumType.STRING)
     override var post: Post? =
         Post.FOREMAN
 }
@@ -46,7 +46,7 @@ class Master(
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
-    @Transient
+    @Enumerated(EnumType.STRING)
     override var post: Post? =
         Post.MASTER
 }

@@ -6,6 +6,7 @@ export default class BrigadesTable extends React.Component {
     columns = [
         {title: 'Id', field: 'id', type: 'numeric', editable: 'never'},
         {title: 'Manager Id', field: 'managerId', type: 'numeric'},
+        {title: 'Construction management id', field: 'constructionManagementId', type: 'numeric'}
     ]
 
     render() {

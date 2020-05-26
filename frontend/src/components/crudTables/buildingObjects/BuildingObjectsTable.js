@@ -1,6 +1,6 @@
 import React from 'react';
-import CrudTable from './CrudTable'
-import BuildingObjectsFilter from '../filters/BuildingObjectsFilter'
+import CrudTable from '../CrudTable'
+import BuildingObjectsFilter from '../../filters/buildingObjects/BuildingObjectsFilter'
 
 export default class BuildingObjectsTable extends React.Component {
     columns = [

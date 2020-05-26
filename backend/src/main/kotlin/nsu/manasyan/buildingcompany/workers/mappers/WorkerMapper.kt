@@ -1,10 +1,19 @@
 package nsu.manasyan.buildingcompany.workers.mappers
 
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.model.Post
 import nsu.manasyan.buildingcompany.workers.dto.WorkerDto
+import nsu.manasyan.buildingcompany.workers.model.Locksmith
+import nsu.manasyan.buildingcompany.workers.model.Mason
 import nsu.manasyan.buildingcompany.workers.model.Worker
 import nsu.manasyan.buildingcompany.workers.services.BrigadeService
 import org.springframework.stereotype.Component
+import kotlin.reflect.KClass
+
+//val postMap = mapOf<KClass<*>, Post>(
+//    Mason::class to Post.MASON,
+//    Locksmith::class to Post.LOCKSMITH,
+//)
 
 @Component
 class WorkerMapper(

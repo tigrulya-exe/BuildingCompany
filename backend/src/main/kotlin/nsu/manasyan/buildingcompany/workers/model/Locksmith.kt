@@ -2,8 +2,9 @@ package nsu.manasyan.buildingcompany.workers.model
 
 import nsu.manasyan.buildingcompany.model.Post
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.Table
-import javax.persistence.Transient
 
 @Entity
 @Table(name = "Locksmiths")
@@ -15,7 +16,7 @@ class Locksmith(
     var higherEducation: Boolean,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears) {
-    @Transient
-    override var post: Post? =
-        Post.LOCKSMITH
+
+    @Enumerated(EnumType.STRING)
+    override var post: Post? = null
 }

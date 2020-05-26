@@ -1,15 +1,19 @@
 import React from 'react';
 import { Form, Col } from 'react-bootstrap';
-import AbstractFilter from './AbstractFilter'
+import AbstractFilter from '../AbstractFilter'
 
-export default class BuildingObjectsFilter extends React.Component {
+export default class ResidentialHousesFilter extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.defaultState = {
             customerId: '',
             areaId: '',
             name: '',
-        }
+            minFlatCount: '',
+            maxFlatCount: '',
+            minFloorCount: '',
+            maxFloorCount: '',
+        };
         this.state = this.props.outerState || this.defaultState
     }
 
@@ -33,6 +37,24 @@ export default class BuildingObjectsFilter extends React.Component {
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
                         <Form.Control value={this.state.areaId} />
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="minFlatCount">
+                        <Form.Label>Min Flat Count</Form.Label>
+                        <Form.Control value={this.state.minFlatCount} />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="maxFlatCount">
+                        <Form.Label>Max Flat Count</Form.Label>
+                        <Form.Control value={this.state.maxFlatCount} />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="minFloorCount">
+                        <Form.Label>Min Floor Count</Form.Label>
+                        <Form.Control value={this.state.minFloorCount} />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="maxFloorCount">
+                        <Form.Label> Max Floor Count</Form.Label>
+                        <Form.Control value={this.state.maxFloorCount} />
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

@@ -2,14 +2,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QueryForm from '../components/forms/QueryForm';
 import CustomerTable from '../components/crudTables/CustomerTable';
-import BuildingObjectsTable from '../components/crudTables/BuildingObjectsTable'
+import BuildingObjectsTable from '../components/crudTables/buildingObjects/BuildingObjectsTable'
 import AreasTable from '../components/crudTables/AreasTable';
 import MachineryTable from '../components/crudTables/MachineryTable';
 import BrigadesTable from '../components/crudTables/BrigadesTable';
 import ConstructionManagementTable from '../components/crudTables/ConstructionManagementTable';
 import MaterialsTable from '../components/crudTables/MaterialsTable';
 import OutlaysTable from '../components/crudTables/OutlaysTable';
-import TechnicalSpecialistsTable from '../components/crudTables/persons/TechnicalSpecialistsTable';
 import WorkScheduleTable from '../components/crudTables/WorkScheduleTable';
 import Login from '../components/forms/Login';
 
@@ -22,7 +21,9 @@ import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 import ObjectsByAreaOrManagement from "../components/queries/ObjectsByAreaOrManagement";
 import MachineryByBuildingObjects from "../components/queries/MachineryByBuildingObjects";
-import TechicalSpecialistsPage from "../components/crudTables/persons/TechicalSpecialistsPage";
+import TechicalSpecialistsPage from "../components/crudTables/technicalStuff/TechicalSpecialistsPage";
+import WorkersPage from "../components/crudTables/workers/WorkersPage";
+import BuildingObjectsPage from "../components/crudTables/buildingObjects/BuildingObjectsPage";
 
 export default function RouteSwitch(props) {
     return (
@@ -34,10 +35,6 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<QueryForm/>}
                 path="/query">
-            </AuthenticatedRoute>
-            <AuthenticatedRoute
-                component={<BuildingObjectsTable/>}
-                path="/building-objects">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<MachineryTable/>}
@@ -66,6 +63,14 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<TechicalSpecialistsPage/>}
                 path="/technical-specialists/:name">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<WorkersPage/>}
+                path="/workers/:name">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<BuildingObjectsPage/>}
+                path="/building-objects/:name">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<SpecialistsByAreaOrManagement/>}

@@ -1,9 +1,9 @@
 import React from 'react';
 import CrudTable from '../CrudTable'
-import TechnicalSpecialistsFilter from '../../filters/TechnicalSpecialistsFilter'
+import TechnicalSpecialistsFilter from '../../filters/technicalStuff/TechnicalSpecialistsFilter'
 
 
-export default class TechnicalSpecialistsTable extends React.Component {
+export default class ForemenTable extends React.Component {
     columns = [
         {title: 'Id', field: 'id', type: 'numeric', editable: 'never'},
         {title: 'Name', field: 'name'},
@@ -13,14 +13,15 @@ export default class TechnicalSpecialistsTable extends React.Component {
         {title: 'Experience Years', field: 'experienceYears'},
         {title: 'Area Id', field: 'areaId'},
         {title: 'Post', field: 'post'},
+        {title: 'Knowledge of English', field: 'knowledgeOfEnglish', type: 'boolean'},
     ]
 
     render() {
         return (
             <CrudTable
                 columns={this.columns}
-                url='/technical-specialists'
-                tableName='Technical Specialists'
+                url='/foremen'
+                tableName='Foremen'
                 filterForm={<TechnicalSpecialistsFilter/>}
             />
         )

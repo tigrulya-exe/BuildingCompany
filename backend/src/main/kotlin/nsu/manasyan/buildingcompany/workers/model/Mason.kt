@@ -1,9 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.model
 
 import nsu.manasyan.buildingcompany.model.Post
-import javax.persistence.Entity
-import javax.persistence.Table
-import javax.persistence.Transient
+import javax.persistence.*
 
 
 @Entity
@@ -15,7 +13,6 @@ class Mason(
     var bricksPerHour: Int,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears) {
-    @Transient
-    override var post:
-            Post? = Post.MASON
+    @Enumerated(EnumType.STRING)
+    override var post: Post? = Post.MASON
 }

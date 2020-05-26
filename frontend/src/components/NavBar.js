@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Button, Form, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 
 import {Link} from "react-router-dom";
 import {AuthContext} from "../context/AuthContextProvider";
@@ -31,20 +31,25 @@ export default class NavBar extends React.Component {
                         <Nav.Link><Link to="/query">Native query</Link></Nav.Link>
                         <NavDropdown title="Tables" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link to="/customers">Customers</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/building-objects">Building Objects</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/building-objects/all">Building Objects</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/machinery">Machinery</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/areas">Areas</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/brigades">Brigades</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/construction-managements">Construction Managements</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/construction-managements">Construction
+                                Managements</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/materials">Materials</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/outlays">Outlays</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/technical-specialists/all">Technical Specialists</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/technical-specialists/all">Technical
+                                Specialists</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/workers/all">Workers</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/work-schedules">Work Schedules</Link></NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Queries" id="basic-nav-dropdown">
-                            <NavDropdown.Item><Link to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/objects-by-area-or-management">ObjectsByAreaOrManagement</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/machinery-by-building-objects">MachineryByBuildingObjects</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/machinery-by-building-objects">MachineryByBuildingObjects</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     {

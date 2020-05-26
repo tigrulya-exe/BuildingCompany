@@ -7,5 +7,6 @@ import nsu.manasyan.buildingcompany.workers.model.Brigade
 @NoArgConstructor
 data class BrigadeDto(
     var managerId: Int?,
+    var constructionManagementId: Int,
     var workerIds: MutableSet<Int>?
 ) : Dto<Brigade>()

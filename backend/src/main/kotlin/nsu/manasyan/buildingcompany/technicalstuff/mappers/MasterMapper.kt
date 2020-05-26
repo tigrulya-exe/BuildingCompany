@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.technicalstuff.mappers
 
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.model.Post
 import nsu.manasyan.buildingcompany.technicalstuff.dto.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.technicalstuff.model.Master
 import nsu.manasyan.buildingcompany.services.AreaService
@@ -17,7 +18,10 @@ class MasterMapper(private val areaService: AreaService) :
 
     override fun toEntity(dto: TechnicalSpecialistDto): Master {
         val entity = mapper.map(dto, Master::class.java)
-        entity.area = dto.areaId?.let { areaService.getEntity(it) }
+        entity.apply {
+            area = dto.areaId?.let { areaService.getEntity(it) }
+            post = Post.MASTER
+        }
         return entity
     }
 }

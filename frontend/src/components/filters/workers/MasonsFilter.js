@@ -1,19 +1,18 @@
 import React from 'react';
 import { Form, Col } from 'react-bootstrap';
-import AbstractFilter from './AbstractFilter'
+import AbstractFilter from '../AbstractFilter'
 
-export default class TechnicalSpecialistsFilter extends React.Component {
+export default class MasonsFilter extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.defaultState = {
             name: '',
             surname: '',
             patronymic: '',
-            educationalInstitution: '',
-            areaId: '',
-            managementId: '',
+            brigadeId: '',
             experienceYears: '',
-        }
+            minBricksPerHour: '',
+        };
         this.state = this.props.outerState || this.defaultState
     }
 
@@ -40,21 +39,17 @@ export default class TechnicalSpecialistsFilter extends React.Component {
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group as={Col} controlId="educationalInstitution">
-                        <Form.Label>Educational Institution</Form.Label>
-                        <Form.Control value={this.state.educationalInstitution} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="areaId">
-                        <Form.Label>Area Id</Form.Label>
-                        <Form.Control value={this.state.areaId} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="managementId">
-                        <Form.Label>Management Id</Form.Label>
-                        <Form.Control value={this.state.managementId} />
+                    <Form.Group as={Col} controlId="brigadeId">
+                        <Form.Label>Brigade Id</Form.Label>
+                        <Form.Control value={this.state.brigadeId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="experienceYears">
-                        <Form.Label>Experience Years Id</Form.Label>
+                        <Form.Label>Experience Years</Form.Label>
                         <Form.Control value={this.state.experienceYears} />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="minBricksPerHour">
+                        <Form.Label>Min bricks per hour</Form.Label>
+                        <Form.Control value={this.state.minBricksPerHour}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

@@ -28,7 +28,6 @@ export default function TechnicalSpecialistsPage(props) {
                 <Nav.Item>
                     <Nav.Link eventKey="masters"><Link to="/technical-specialists/masters">Masters</Link></Nav.Link>
                 </Nav.Item>
-
             </Nav>
             {pageMap.get(name)}
         </>

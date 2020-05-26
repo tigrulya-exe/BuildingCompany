@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.mappers
 
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.model.Post
 import nsu.manasyan.buildingcompany.workers.dto.MasonDto
 import nsu.manasyan.buildingcompany.workers.model.Mason
 import org.springframework.stereotype.Component
@@ -18,7 +19,10 @@ class MasonMapper(
     override fun toEntity(dto: MasonDto): Mason {
         val entity = mapper.map(dto, Mason::class.java)
         val worker = workerMapper.toEntity(dto)
-        entity.brigade = worker.brigade
+        entity.apply {
+            brigade = worker.brigade
+            post = Post.MASON
+        }
         return entity
     }
 }

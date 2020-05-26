@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.dto
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
+import nsu.manasyan.buildingcompany.model.Post
 
 @NoArgConstructor
 class LocksmithDto (
@@ -9,6 +10,7 @@ class LocksmithDto (
     patronymic: String?,
     experienceYears: Int?,
     brigadeId: Int?,
+    post: Post?,
     var category: Int,
     var higherEducation: Boolean
 ) : WorkerDto(
@@ -16,5 +18,6 @@ class LocksmithDto (
     surname,
     patronymic,
     experienceYears,
-    brigadeId
+    brigadeId,
+    post
 )

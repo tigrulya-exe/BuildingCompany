@@ -1,6 +1,7 @@
 package nsu.manasyan.buildingcompany.technicalstuff.mappers
 
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.model.Post
 import nsu.manasyan.buildingcompany.technicalstuff.dto.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.technicalstuff.model.Foreman
 import nsu.manasyan.buildingcompany.services.AreaService
@@ -17,7 +18,10 @@ class ForemanMapper(private val areaService: AreaService) :
 
     override fun toEntity(dto: TechnicalSpecialistDto): Foreman {
         val entity = mapper.map(dto, Foreman::class.java)
-        entity.area = dto.areaId?.let { areaService.getEntity(it) }
+        entity.apply {
+            area = dto.areaId?.let { areaService.getEntity(it) }
+            post = Post.FOREMAN
+        }
         return entity
     }
 }

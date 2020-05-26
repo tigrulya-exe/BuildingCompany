@@ -11,6 +11,6 @@ abstract class Person(
     var name: String,
     var surname: String,
     var patronymic: String?,
-    @Transient
+    @Enumerated(EnumType.STRING)
     open var post: Post? = null
 ) : Identifiable()
