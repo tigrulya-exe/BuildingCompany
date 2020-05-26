@@ -15,5 +15,5 @@ class ConstructionManagement(manager: TechnicalSpecialist?) : Identifiable() {
         }
 
     @OneToMany
-    lateinit var areas: MutableSet<Area>
+    var areas = mutableSetOf<Area>()
 }

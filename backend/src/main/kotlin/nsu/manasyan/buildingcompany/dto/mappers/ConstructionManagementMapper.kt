@@ -24,7 +24,7 @@ class ConstructionManagementMapper(
     override fun toEntity(dto: ConstructionManagementDto): ConstructionManagement {
         val entity = mapper.map(dto, ConstructionManagement::class.java)
         entity.manager = dto.managerId?.let { technicalSpecialistsService.getEntity(it) }
-        entity.areas = areaRepository.findAll(getAreasSpecification(dto.areaIds)).toMutableSet()
+//        entity.areas = areaRepository.findAll(getAreasSpecification(dto.areaIds)).toMutableSet()
         return entity
     }
 

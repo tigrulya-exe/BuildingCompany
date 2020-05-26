@@ -6,5 +6,5 @@ import nsu.manasyan.buildingcompany.model.ConstructionManagement
 @NoArgConstructor
 data class ConstructionManagementDto(
     var managerId: Int?,
-    var areaIds: MutableSet<Int>
+    var areaIds: MutableSet<Int>?
 ) : Dto<ConstructionManagement>()
