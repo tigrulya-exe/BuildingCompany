@@ -4,8 +4,6 @@ import {
     Link,
     useParams
 } from "react-router-dom";
-import ForemenTable from "../technicalStuff/ForemenTable";
-import MastersTable from "../technicalStuff/MastersTable";
 import BuildingObjectsTable from "./BuildingObjectsTable";
 import BridgesTable from "./BridgesTable";
 import ResidentialHousesTable from "./ResidentialHousesTable";

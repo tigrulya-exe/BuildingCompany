@@ -100,7 +100,7 @@ export default class CrudTable extends React.Component {
         console.log("pageSize " + query.pageSize);
 
         return AXIOS.get(
-            `${this.props.url}`,
+            this.props.url,
             {
                 params: this.getQueryParams(query)
             });

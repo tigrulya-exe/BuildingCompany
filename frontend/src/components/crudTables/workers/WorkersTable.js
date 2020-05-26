@@ -1,6 +1,6 @@
 import React from 'react';
-import CrudTable from '../CrudTable'
 import WorkersFilter from "../../filters/workers/WorkersFilter";
+import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
 
 
 export default class WorkersTable extends React.Component {
@@ -16,7 +16,7 @@ export default class WorkersTable extends React.Component {
 
     render() {
         return (
-            <CrudTable
+            <ReadOnlyTable
                 columns={this.columns}
                 url='/workers'
                 tableName='Workers'

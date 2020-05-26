@@ -12,8 +12,6 @@ export default class TechnicalSpecialistsTable extends React.Component {
         {title: 'Experience Years', field: 'experienceYears'},
         {title: 'Area Id', field: 'areaId'},
         {title: 'Post', field: 'post'},
-        {title: 'Knowledge of English', field: 'knowledgeOfEnglish', type: 'boolean'},
-        {title: 'Category', field: 'category'},
     ];
 
     render() {

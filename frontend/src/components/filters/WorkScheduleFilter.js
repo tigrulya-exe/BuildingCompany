@@ -6,24 +6,24 @@ import DateFnsUtils from "@date-io/date-fns";
 
 export default class WorkScheduleFilter extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.defaultState = {
             startDateMin: null,
             startDateMax: null,
             buildingObjectId: '',
             workType: '',
             brigadeId: ''
-        }
+        };
         this.state = this.props.outerState || this.defaultState
     }
 
     onMaxChange = date => {
         this.setState({startDateMax: date})
-    }
+    };
 
     onMinChange = date => {
         this.setState({startDateMin: date})
-    }
+    };
 
     render() {
         return (

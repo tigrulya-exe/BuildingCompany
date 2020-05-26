@@ -1,6 +1,7 @@
 import React from 'react';
 import CrudTable from '../CrudTable'
 import TechnicalSpecialistsFilter from '../../filters/technicalStuff/TechnicalSpecialistsFilter'
+import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
 
 
 export default class TechnicalSpecialistsTable extends React.Component {
@@ -17,7 +18,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
 
     render() {
         return (
-            <CrudTable
+            <ReadOnlyTable
                 columns={this.columns}
                 url='/technical-specialists'
                 tableName='Technical Specialists'
