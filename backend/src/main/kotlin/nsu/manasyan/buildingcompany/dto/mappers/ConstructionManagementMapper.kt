@@ -4,7 +4,7 @@ import nsu.manasyan.buildingcompany.dto.model.ConstructionManagementDto
 import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.model.ConstructionManagement
 import nsu.manasyan.buildingcompany.repositories.AreaRepository
-import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
+import nsu.manasyan.buildingcompany.technicalstuff.services.TechnicalSpecialistsService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Component

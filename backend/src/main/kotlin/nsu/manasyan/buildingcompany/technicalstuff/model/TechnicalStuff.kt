@@ -1,7 +1,8 @@
-package nsu.manasyan.buildingcompany.model.workers
+package nsu.manasyan.buildingcompany.technicalstuff.model
 
 import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.model.Post
+import nsu.manasyan.buildingcompany.model.workers.Person
 import javax.persistence.*
 
 @Entity
@@ -22,7 +23,6 @@ class TechnicalSpecialist(
 
 @Entity
 @Table(name = "Foremen")
-@Inheritance(strategy = InheritanceType.JOINED)
 class Foreman(
     name: String,
     surname: String,
@@ -31,13 +31,13 @@ class Foreman(
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
+    @Transient
     override var post: Post? =
         Post.FOREMAN
 }
 
 @Entity
 @Table(name = "Masters")
-@Inheritance(strategy = InheritanceType.JOINED)
 class Master(
     name: String,
     surname: String,
@@ -46,6 +46,7 @@ class Master(
     educationalInstitution: String,
     experienceYears: Int? = null
 ) : TechnicalSpecialist(name, surname, patronymic, educationalInstitution, experienceYears) {
+    @Transient
     override var post: Post? =
         Post.MASTER
 }

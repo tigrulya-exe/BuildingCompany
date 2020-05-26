@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.model
 
-import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
+import nsu.manasyan.buildingcompany.technicalstuff.model.TechnicalSpecialist
 import javax.persistence.*
 
 @Entity

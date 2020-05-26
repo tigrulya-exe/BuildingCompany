@@ -3,7 +3,7 @@ package nsu.manasyan.buildingcompany.dto.mappers
 import nsu.manasyan.buildingcompany.dto.model.AreaDto
 import nsu.manasyan.buildingcompany.model.Area
 import nsu.manasyan.buildingcompany.services.ConstructionManagementService
-import nsu.manasyan.buildingcompany.services.TechnicalSpecialistsService
+import nsu.manasyan.buildingcompany.technicalstuff.services.TechnicalSpecialistsService
 import org.springframework.stereotype.Component
 
 @Component

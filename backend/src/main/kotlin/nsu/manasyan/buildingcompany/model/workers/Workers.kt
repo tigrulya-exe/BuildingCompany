@@ -31,6 +31,7 @@ class Mason(
     var bricksPerHour: Int,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears) {
+    @Transient
     override var post: Post? =
         Post.MASON
 }
@@ -45,6 +46,7 @@ class Locksmith(
     var higherEducation: Boolean,
     experienceYears: Int? = null
 ) : Worker(name, surname, patronymic, experienceYears) {
+    @Transient
     override var post: Post? =
         Post.LOCKSMITH
 }

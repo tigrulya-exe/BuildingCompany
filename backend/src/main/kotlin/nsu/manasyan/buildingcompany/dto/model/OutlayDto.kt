@@ -8,7 +8,5 @@ import java.util.*
 data class OutlayDto(
     var materialCount: Int,
     var materialId: Int,
-    var buildingObjectId: Int,
-    var workType: String,
-    var brigadeId: Int
+    var buildingObjectId: Int
 ) : Dto<Outlay>()

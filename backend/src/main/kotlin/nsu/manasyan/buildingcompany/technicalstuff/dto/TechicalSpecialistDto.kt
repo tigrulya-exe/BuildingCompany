@@ -1,8 +1,9 @@
-package nsu.manasyan.buildingcompany.dto.model
+package nsu.manasyan.buildingcompany.technicalstuff.dto
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
+import nsu.manasyan.buildingcompany.dto.model.Dto
 import nsu.manasyan.buildingcompany.model.Post
-import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
+import nsu.manasyan.buildingcompany.technicalstuff.model.TechnicalSpecialist
 
 @NoArgConstructor
 data class TechnicalSpecialistDto(

@@ -1,5 +1,6 @@
 package nsu.manasyan.buildingcompany.services
 
+import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.model.BrigadeObjectWork
 import nsu.manasyan.buildingcompany.repositories.BrigadeObjectWorkRepository
 import org.springframework.stereotype.Service

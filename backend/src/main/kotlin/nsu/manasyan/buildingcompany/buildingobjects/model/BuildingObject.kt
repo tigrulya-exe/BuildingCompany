@@ -1,8 +1,11 @@
-package nsu.manasyan.buildingcompany.model
+package nsu.manasyan.buildingcompany.buildingobjects.model
 
+import nsu.manasyan.buildingcompany.model.*
 import javax.persistence.*
 
 @Entity
+@Table(name = "BuildingObjects")
+@Inheritance(strategy = InheritanceType.JOINED)
 class BuildingObject(var name: String) : Identifiable() {
     @ManyToOne
     @JoinColumn(name = "customerId", referencedColumnName = "id")

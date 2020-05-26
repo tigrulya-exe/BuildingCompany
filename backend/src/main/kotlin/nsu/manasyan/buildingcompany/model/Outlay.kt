@@ -1,14 +1,15 @@
 package nsu.manasyan.buildingcompany.model
 
+import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
 import java.io.Serializable
 import javax.persistence.*
 
 @Entity
 @Table(name = "Outlays")
 class Outlay(var materialCount: Int) : Identifiable() {
-    @ManyToOne
-    @JoinColumn(name = "brigadeObjectWorkId", referencedColumnName = "id")
-    lateinit var brigadeWork: BrigadeObjectWork
+    @OneToOne
+    @JoinColumn(name = "objectId", referencedColumnName = "id")
+    lateinit var buildingObject: BuildingObject
 
     @ManyToOne
     @JoinColumn(name = "MaterialId", referencedColumnName = "id")

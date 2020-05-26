@@ -1,8 +1,8 @@
-package nsu.manasyan.buildingcompany.services
+package nsu.manasyan.buildingcompany.buildingobjects.services
 
-import nsu.manasyan.buildingcompany.model.BuildingObject
-import nsu.manasyan.buildingcompany.model.workers.TechnicalSpecialist
-import nsu.manasyan.buildingcompany.repositories.BuildingObjectRepository
+import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
+import nsu.manasyan.buildingcompany.buildingobjects.repositories.BuildingObjectRepository
+import nsu.manasyan.buildingcompany.services.AbstractCrudService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service

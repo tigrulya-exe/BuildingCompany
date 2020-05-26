@@ -1,11 +1,12 @@
-package nsu.manasyan.buildingcompany.controllers
+package nsu.manasyan.buildingcompany.buildingobjects.controllers
 
-import nsu.manasyan.buildingcompany.dto.mappers.BuildingObjectMapper
-import nsu.manasyan.buildingcompany.dto.model.BuildingObjectDto
+import nsu.manasyan.buildingcompany.buildingobjects.mappers.BuildingObjectMapper
+import nsu.manasyan.buildingcompany.buildingobjects.dto.BuildingObjectDto
 import nsu.manasyan.buildingcompany.dto.model.PageDto
-import nsu.manasyan.buildingcompany.model.BuildingObject
-import nsu.manasyan.buildingcompany.repositories.BuildingObjectFilter
-import nsu.manasyan.buildingcompany.services.BuildingObjectService
+import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
+import nsu.manasyan.buildingcompany.buildingobjects.repositories.BuildingObjectFilter
+import nsu.manasyan.buildingcompany.controllers.AbstractCrudController
+import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

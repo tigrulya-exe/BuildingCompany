@@ -1,13 +1,11 @@
-package nsu.manasyan.buildingcompany.dto.mappers
+package nsu.manasyan.buildingcompany.buildingobjects.mappers
 
-import nsu.manasyan.buildingcompany.dto.model.BuildingObjectDto
-import nsu.manasyan.buildingcompany.model.BuildingObject
-import nsu.manasyan.buildingcompany.model.Machinery
-import nsu.manasyan.buildingcompany.repositories.MachineryRepository
+import nsu.manasyan.buildingcompany.buildingobjects.dto.BuildingObjectDto
+import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
+import nsu.manasyan.buildingcompany.dto.mappers.Mapper
 import nsu.manasyan.buildingcompany.services.AreaService
 import nsu.manasyan.buildingcompany.services.CustomersService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
-import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Component
 
 @Component
@@ -19,7 +17,6 @@ class BuildingObjectMapper(
         val dto = mapper.map(entity, BuildingObjectDto::class.java)
         dto.customerId = entity.customer?.id
         dto.areaId = entity.area.id!!
-        dto.machineryIds = identifiablesToIds(entity.machinery)
         return dto
     }
 
