@@ -8,7 +8,7 @@ import {DateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 
-export default class ObjectsByAreaOrManagement extends React.Component {
+export default class MachineryByBuildingObject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

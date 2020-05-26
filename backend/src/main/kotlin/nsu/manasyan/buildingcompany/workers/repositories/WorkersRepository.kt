@@ -25,6 +25,16 @@ interface WorkersRepository :
     """
     )
     override fun findAllByFilter(filter: Filter<in Worker>?, pageable: Pageable): Page<Worker>
+
+
+    @Query("""
+        select distinct w   
+        from Worker w 
+        join BrigadeObjectWork bow on w.brigade.id = bow.brigade.id
+        where bow.buildingObject.id = :buildingObjectId
+    """
+    )
+    fun findDistinctByBuildingObject(buildingObjectId: Int, pageable: Pageable): Page<Worker>
 }
 
 @NoArgConstructor

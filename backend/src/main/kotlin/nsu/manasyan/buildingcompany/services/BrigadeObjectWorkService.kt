@@ -16,7 +16,7 @@ class BrigadeObjectWorkService(
 
     fun getOrCreate(brigadeId: Int, workTypeName: String, objectId: Int) : BrigadeObjectWork {
         val brigade = brigadeService.getEntity(brigadeId)
-        val workType = workTypeService.getByName(workTypeName)
+        val workType = workTypeService.getOrCreateByName(workTypeName)
         val buildingObject = buildingObjectService.getEntity(objectId)
 
         val entity = bOWrepository

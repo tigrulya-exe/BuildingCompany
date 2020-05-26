@@ -7,9 +7,9 @@ import java.util.*
 
 @Service
 class WorkTypeService(private val workTypeRepository: WorkTypeRepository) : AbstractCrudService<WorkType>(workTypeRepository){
-    fun getByName(name: String): WorkType {
+    fun getOrCreateByName(name: String): WorkType {
         return workTypeRepository
-            .getByName(name)
-            .orElseThrow{ IllegalArgumentException("Wrong work type name!") }
+            .findByNameIgnoreCase(name)
+            .orElseGet{ workTypeRepository.save(WorkType(name)) }
     }
 }

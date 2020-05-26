@@ -66,7 +66,7 @@ export default class ReadOnlyTable extends React.Component {
         ...this.props.params,
         page: query.page,
         pageSize: query.pageSize,
-        orderBy: query.orderBy && query.orderBy.field,
+        orderBy: query.orderBy?.sortField || query.orderBy?.field,
         order: query.orderDirection && (query.orderDirection === 'asc' ? 'ASCENDING' : 'DESCENDING')
     });
 

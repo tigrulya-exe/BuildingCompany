@@ -11,16 +11,18 @@ export default class WorkersTable extends React.Component {
         {title: 'Surname', field: 'surname'},
         {title: 'Patronymic', field: 'patronymic'},
         {title: 'Experience Years', field: 'experienceYears'},
-        {title: 'Brigade Id', field: 'brigadeId'},
+        {title: 'Brigade Id', field: 'brigadeId', sortField: 'brigade'},
     ];
 
     render() {
         return (
             <ReadOnlyTable
                 columns={this.columns}
-                url='/workers'
                 tableName='Workers'
                 filterForm={<WorkersFilter/>}
+                params={this.props.params}
+                url={this.props.url || '/workers'}
+                onSelectSubmit={this.props.onSelectSubmit}
             />
         )
     }

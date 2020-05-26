@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QueryForm from '../components/forms/QueryForm';
 import CustomerTable from '../components/crudTables/CustomerTable';
-import BuildingObjectsTable from '../components/crudTables/buildingObjects/BuildingObjectsTable'
 import AreasTable from '../components/crudTables/AreasTable';
 import MachineryTable from '../components/crudTables/MachineryTable';
 import BrigadesTable from '../components/crudTables/BrigadesTable';
@@ -20,10 +19,11 @@ import RegistrationForm from "../components/forms/RegistrationForm";
 import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
 import ObjectsByAreaOrManagement from "../components/queries/ObjectsByAreaOrManagement";
-import MachineryByBuildingObjects from "../components/queries/MachineryByBuildingObjects";
+import MachineryByBuildingObject from "../components/queries/MachineryByBuildingObject";
 import TechicalSpecialistsPage from "../components/crudTables/technicalStuff/TechicalSpecialistsPage";
 import WorkersPage from "../components/crudTables/workers/WorkersPage";
 import BuildingObjectsPage from "../components/crudTables/buildingObjects/BuildingObjectsPage";
+import WorkersByBuildingObject from "../components/queries/WorkersByBuildingObject";
 
 export default function RouteSwitch(props) {
     return (
@@ -77,12 +77,16 @@ export default function RouteSwitch(props) {
                 path="/specialists-by-area-or-management">
             </AuthenticatedRoute>
             <AuthenticatedRoute
+                component={<WorkersByBuildingObject/>}
+                path="/workers-by-building-object">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
                 component={<ObjectsByAreaOrManagement/>}
                 path="/objects-by-area-or-management">
             </AuthenticatedRoute>
             <AuthenticatedRoute
-                component={<MachineryByBuildingObjects/>}
-                path="/machinery-by-building-objects">
+                component={<MachineryByBuildingObject/>}
+                path="/machinery-by-building-object">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<WorkScheduleTable/>}
