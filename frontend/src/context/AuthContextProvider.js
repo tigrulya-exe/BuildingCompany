@@ -1,4 +1,5 @@
 import React from 'react'
+import TokenStorage from "./TokenStorage";
 
 const AuthContext = React.createContext();
 
@@ -6,24 +7,27 @@ const AuthContext = React.createContext();
  * Глобальный контекст для опрделения авторизирован пользователь или нет
  */
 
+let tokenStorage;
+
 class AuthContextProvider extends React.Component {
     constructor(props) {
         super(props);
+        tokenStorage = new TokenStorage([this.onTokensChange]);
         this.state = {
-            isAuthorized: localStorage.getItem("refreshToken")
+            isAuthorized: tokenStorage.isAuthorized,
         }
     }
 
+    onTokensChange = (isAuthorized) => {
+        this.setState({isAuthorized})
+    };
+
     login = (tokens) => {
-        localStorage.setItem('jwt', tokens.jwt);
-        localStorage.setItem('refreshToken', tokens.refreshToken)
-        this.setState({isAuthorized: true});
+        tokenStorage.login(tokens);
     };
 
     logout = () => {
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('refreshToken');
-        this.setState({isAuthorized: false})
+        tokenStorage.logout();
     };
 
     render() {
@@ -39,4 +43,4 @@ class AuthContextProvider extends React.Component {
     }
 }
 
-export {AuthContextProvider, AuthContext}
+export {AuthContextProvider, AuthContext, tokenStorage}

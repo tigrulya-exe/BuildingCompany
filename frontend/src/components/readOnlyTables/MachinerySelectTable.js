@@ -12,11 +12,10 @@ export default class MachinerySelectTable extends React.Component {
     render() {
         return (
             <SingleSelectTable
+                {...this.props}
                 columns={this.columns}
                 url={this.props.url || '/machinery'}
                 tableName='Machinery'
-                params={this.props.params}
-                onSelectSubmit={this.props.onSelectSubmit}
             />
         )
     }

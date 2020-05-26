@@ -56,7 +56,7 @@ class UsersService(
         val newRefresh = refreshTokenService.updateToken(refreshTokenString)
         val user = newRefresh.user
         val jwt = jwtProvider.generateToken(user.id!!, newRefresh.id!!)
-
+        logger().info("User ${user.nickname} refreshed tokens")
         return AuthorizationTokensDto(jwt, newRefresh.stringRepresentation)
     }
 

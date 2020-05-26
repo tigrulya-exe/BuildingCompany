@@ -15,12 +15,7 @@ export default class SingleSelectTable extends React.Component {
     render() {
         return (
             <ReadOnlyTable
-                tableName={this.props.tableName}
-                columns={this.props.columns}
-                detailPanel={this.props.detailPanel}
-                onRowClick={this.props.onRowClick}
-                params={this.props.params}
-                url={this.props.url}
+                {...this.props}
                 selectionProps={rowData => ({
                     disabled: rowData.id !== this.state.checkedId && this.state.isChecked,
                 })}

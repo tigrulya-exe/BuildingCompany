@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import AbstractFilter from './AbstractFilter'
 
 export default class CustomersFilter extends React.Component {
@@ -22,7 +22,7 @@ export default class CustomersFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control value={this.state.name} />
+                        <Form.Control value={this.state.name}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

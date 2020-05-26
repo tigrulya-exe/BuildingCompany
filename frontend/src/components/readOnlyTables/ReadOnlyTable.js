@@ -79,6 +79,11 @@ export default class ReadOnlyTable extends React.Component {
         return AXIOS.get(`${this.props.url}/filter`, {params});
     };
 
+    onRefresh = () => {
+        this.props.onRefresh && this.props.onRefresh();
+        return this.tableRef.current?.onQueryChange()
+    };
+
     render() {
         return (
             <MaterialTable
@@ -125,7 +130,7 @@ export default class ReadOnlyTable extends React.Component {
                         icon: 'refresh',
                         tooltip: 'Refresh Data',
                         isFreeAction: true,
-                        onClick: () => this.tableRef.current && this.tableRef.current.onQueryChange(),
+                        onClick: this.onRefresh,
                     }
                 ]}
                 detailPanel={this.props.detailPanel}

@@ -11,12 +11,12 @@ export default class ConstructionManagementTable extends React.Component {
     render() {
         return (
             <ReadOnlyTable
+                {...this.props}
                 columns={this.columns}
                 url='/construction-managements'
                 tableName='Construction Managements'
                 detailPanel={(rowData) => <ManagerInfo id={rowData.managerId}/>}
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}
-                onSelectSubmit={this.props.onSelectSubmit}
             />
         )
     }
