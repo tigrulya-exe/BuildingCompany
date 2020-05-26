@@ -1,8 +1,9 @@
-package nsu.manasyan.buildingcompany.dto.mappers
+package nsu.manasyan.buildingcompany.workers.mappers
 
-import nsu.manasyan.buildingcompany.dto.model.BrigadeDto
-import nsu.manasyan.buildingcompany.model.workers.Brigade
-import nsu.manasyan.buildingcompany.services.WorkersService
+import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.workers.dto.BrigadeDto
+import nsu.manasyan.buildingcompany.workers.model.Brigade
+import nsu.manasyan.buildingcompany.workers.services.WorkersService
 import nsu.manasyan.buildingcompany.util.identifiablesToIds
 import org.springframework.stereotype.Component
 

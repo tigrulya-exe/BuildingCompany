@@ -20,7 +20,7 @@ class RegistrationCompleteListener(
         val user = event.getUser()
         try{
             val token = tokenService.generateToken(user, Token.Type.EMAIL_CONFIRM)
-            val confirmUrl = "http://${properties.domainName}:${properties.port}${properties.path}/confirm?token=${token.stringRepresentation}"
+            val confirmUrl = "http://${properties.domainName}:${properties.port}/confirm?token=${token.stringRepresentation}"
             val message =
                 """Hello,  ${user.fullName}!
 Click on the link below to confirm your email address:

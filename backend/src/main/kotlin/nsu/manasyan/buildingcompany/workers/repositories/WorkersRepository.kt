@@ -1,7 +1,8 @@
-package nsu.manasyan.buildingcompany.repositories
+package nsu.manasyan.buildingcompany.workers.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.model.workers.Worker
+import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.workers.model.Worker
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
@@ -10,7 +11,8 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface WorkersRepository : JpaFilterRepository<Worker, Int> {
+interface WorkersRepository :
+    JpaFilterRepository<Worker, Int> {
     @Query(
         """
         select w   
@@ -25,9 +27,8 @@ interface WorkersRepository : JpaFilterRepository<Worker, Int> {
     override fun findAllByFilter(filter: Filter<in Worker>?, pageable: Pageable): Page<Worker>
 }
 
-// TODO: Замутить иерархию фильтров или избавиться от E в Filter<E>
 @NoArgConstructor
-data class WorkerFilter(
+open class WorkerFilter(
     var brigadeId: Int?,
     var experienceYears: Int?
 ) : Filter<Worker> {
