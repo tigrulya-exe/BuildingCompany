@@ -46,15 +46,15 @@ export default class TechnicalSpecialistsFilter extends React.Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
-                        <Form.Control value={this.state.areaId} />
+                        <Form.Control type="number" value={this.state.areaId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="managementId">
                         <Form.Label>Management Id</Form.Label>
-                        <Form.Control value={this.state.managementId} />
+                        <Form.Control type="number" value={this.state.managementId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="experienceYears">
                         <Form.Label>Experience Years</Form.Label>
-                        <Form.Control value={this.state.experienceYears} />
+                        <Form.Control type="number" value={this.state.experienceYears} />
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

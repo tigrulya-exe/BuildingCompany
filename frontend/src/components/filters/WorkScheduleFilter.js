@@ -58,7 +58,7 @@ export default class WorkScheduleFilter extends React.Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="buildingObjectId">
                         <Form.Label>Building object id</Form.Label>
-                        <Form.Control value={this.state.buildingObjectId}/>
+                        <Form.Control type="number" value={this.state.buildingObjectId}/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
@@ -68,7 +68,7 @@ export default class WorkScheduleFilter extends React.Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="brigadeId">
                         <Form.Label>Brigade Id</Form.Label>
-                        <Form.Control value={this.state.brigadeId}/>
+                        <Form.Control type="number" value={this.state.brigadeId}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

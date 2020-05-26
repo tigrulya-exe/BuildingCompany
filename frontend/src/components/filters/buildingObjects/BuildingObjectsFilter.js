@@ -24,7 +24,7 @@ export default class BuildingObjectsFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="customerId">
                         <Form.Label>Customer id</Form.Label>
-                        <Form.Control value={this.state.customerId} />
+                        <Form.Control type="number" value={this.state.customerId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>Name</Form.Label>
@@ -32,7 +32,7 @@ export default class BuildingObjectsFilter extends React.Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
-                        <Form.Control value={this.state.areaId} />
+                        <Form.Control type="number" value={this.state.areaId} />
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

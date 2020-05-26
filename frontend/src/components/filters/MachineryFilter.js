@@ -26,15 +26,15 @@ export default class MachineryFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="buildingObjectId">
                         <Form.Label>Building object id</Form.Label>
-                        <Form.Control value={this.state.buildingObjectId} />
+                        <Form.Control type="number" value={this.state.buildingObjectId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="managementId">
                         <Form.Label>Management Id</Form.Label>
-                        <Form.Control value={this.state.managementId} />
+                        <Form.Control type="number" value={this.state.managementId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
-                        <Form.Control value={this.state.areaId} />
+                        <Form.Control type="number" value={this.state.areaId} />
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>

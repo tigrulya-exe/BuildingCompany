@@ -23,7 +23,7 @@ export default class ConstructionManagementsFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="managerId">
                         <Form.Label>Manager Id</Form.Label>
-                        <Form.Control value={this.state.managerId} />
+                        <Form.Control type="number" value={this.state.managerId} />
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

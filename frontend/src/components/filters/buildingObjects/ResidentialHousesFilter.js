@@ -28,7 +28,7 @@ export default class ResidentialHousesFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="customerId">
                         <Form.Label>Customer id</Form.Label>
-                        <Form.Control value={this.state.customerId} />
+                        <Form.Control type="number" value={this.state.customerId} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>Name</Form.Label>
@@ -36,25 +36,25 @@ export default class ResidentialHousesFilter extends React.Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
-                        <Form.Control value={this.state.areaId} />
+                        <Form.Control type="number" value={this.state.areaId} />
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col} controlId="minFlatCount">
                         <Form.Label>Min Flat Count</Form.Label>
-                        <Form.Control value={this.state.minFlatCount} />
+                        <Form.Control type="number" value={this.state.minFlatCount} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="maxFlatCount">
                         <Form.Label>Max Flat Count</Form.Label>
-                        <Form.Control value={this.state.maxFlatCount} />
+                        <Form.Control type="number" value={this.state.maxFlatCount} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="minFloorCount">
                         <Form.Label>Min Floor Count</Form.Label>
-                        <Form.Control value={this.state.minFloorCount} />
+                        <Form.Control type="number" value={this.state.minFloorCount} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="maxFloorCount">
                         <Form.Label> Max Floor Count</Form.Label>
-                        <Form.Control value={this.state.maxFloorCount} />
+                        <Form.Control type="number" value={this.state.maxFloorCount} />
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>
