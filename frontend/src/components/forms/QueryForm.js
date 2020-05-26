@@ -25,13 +25,13 @@ export default class QueryForm extends React.Component {
 
     getRow = (tuple) => {
         return (Array.isArray(tuple)
-            && (<Row>{tuple && tuple.map(column => <Col sm style={{border: '1px solid'}}>{column}</Col>)}</Row>))
-            || (<Row><Col sm style={{border: '1px solid'}}>{tuple}</Col></Row>)
-    }
+            && (<Row>{tuple && tuple.map(column => <Col sm ><Form.Control disabled value={column}/></Col>)}</Row>))
+            || (<Row><Col sm><Form.Control disabled value={tuple}/></Col></Row>)
+    };
 
     getResults = () => {
         return this.state.results && this.state.results.map(tuple => this.getRow(tuple))
-    }
+    };
 
     onSubmit = (event) => {
         AXIOS.get('/query', {params: {query: this.state.query}})
