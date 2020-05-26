@@ -6,6 +6,6 @@ import nsu.manasyan.buildingcompany.services.AbstractCrudService
 import org.springframework.stereotype.Service
 
 @Service
-class ResidentialHouseService(repository: ResidentialHousesRepository)
-    : AbstractCrudService<ResidentialHouse>(repository) {
+class ResidentialHouseService(repository: ResidentialHousesRepository) :
+    AbstractCrudService<ResidentialHouse>(repository) {
 }

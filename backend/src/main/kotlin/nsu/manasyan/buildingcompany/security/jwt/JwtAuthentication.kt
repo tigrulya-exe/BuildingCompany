@@ -4,10 +4,10 @@ import nsu.manasyan.buildingcompany.security.model.User
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 
-class JwtAuthentication(val jwt : String) : Authentication {
-    private var isUserAuthenticated : Boolean = false
+class JwtAuthentication(val jwt: String) : Authentication {
+    private var isUserAuthenticated: Boolean = false
 
-    lateinit var user : User
+    lateinit var user: User
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return user.roles
@@ -19,11 +19,11 @@ class JwtAuthentication(val jwt : String) : Authentication {
 
     override fun getName() = user.nickname
 
-    override fun getPrincipal()= user
+    override fun getPrincipal() = user
 
     override fun isAuthenticated() = isUserAuthenticated
 
-    override fun getCredentials()= null
+    override fun getCredentials() = null
 
     override fun getDetails() = null
 }

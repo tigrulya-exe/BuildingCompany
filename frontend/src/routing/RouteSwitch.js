@@ -24,6 +24,7 @@ import TechicalSpecialistsPage from "../components/crudTables/technicalStuff/Tec
 import WorkersPage from "../components/crudTables/workers/WorkersPage";
 import BuildingObjectsPage from "../components/crudTables/buildingObjects/BuildingObjectsPage";
 import WorkersByBuildingObject from "../components/queries/WorkersByBuildingObject";
+import MachineryByManagements from "../components/queries/MachineryByManagements";
 
 export default function RouteSwitch(props) {
     return (
@@ -87,6 +88,10 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<MachineryByBuildingObject/>}
                 path="/machinery-by-building-object">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<MachineryByManagements/>}
+                path="/machinery-by-managements">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<WorkScheduleTable/>}

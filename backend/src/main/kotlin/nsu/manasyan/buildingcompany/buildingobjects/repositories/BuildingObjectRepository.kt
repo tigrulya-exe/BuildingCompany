@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
-import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
+import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
@@ -26,11 +26,13 @@ interface BuildingObjectRepository :
         pageable: Pageable
     ): Page<BuildingObject>
 
-    @Query("""
+    @Query(
+        """
         select b
         from BuildingObject b left join Area a on b.area = a
         where a.id in :areaIds or a.management.id in :managementIds
-    """)
+    """
+    )
     fun findByAreasOrManagements(areaIds: List<Int>, managementIds: List<Int>, pageable: Pageable): Page<BuildingObject>
 }
 

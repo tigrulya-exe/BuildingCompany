@@ -1,5 +1,4 @@
 import React from 'react';
-import CrudTable from '../CrudTable'
 import BuildingObjectsFilter from '../../filters/buildingObjects/BuildingObjectsFilter'
 import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
 

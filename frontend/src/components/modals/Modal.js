@@ -3,12 +3,12 @@ import React from "react";
 
 export default function ModalWindow(props) {
 
-    return  (
+    return (
         <Modal
             aria-labelledby="contained-modal-title-vcenter"
             centered
             onHide={props.onModalClose}
-            show={props.show} >
+            show={props.show}>
             <Modal.Header closeButton>
                 <Modal.Title>{props.title}</Modal.Title>
             </Modal.Header>

@@ -35,6 +35,6 @@ class BridgeFilter(
     var maxWidthInMetres: Float?,
     var minNumberOfTrafficLanes: Int?,
     var maxNumberOfTrafficLanes: Int?
-) : BuildingObjectFilter(areaId, customerId){
+) : BuildingObjectFilter(areaId, customerId) {
     var typeOfSpan by FilterStringDelegate()
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
-import { AXIOS } from '../../util/AxiosConfig'
+import {Col, Form} from 'react-bootstrap';
+import {AXIOS} from '../../util/AxiosConfig'
 
 export default class ManagerInfo extends React.Component {
     constructor(props) {
@@ -34,23 +34,23 @@ export default class ManagerInfo extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control disabled value={this.state.name} />
+                        <Form.Control disabled value={this.state.name}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="surname">
                         <Form.Label>Surname</Form.Label>
-                        <Form.Control disabled value={this.state.surname} />
+                        <Form.Control disabled value={this.state.surname}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="patronymic">
                         <Form.Label>Patronymic</Form.Label>
-                        <Form.Control disabled value={this.state.patronymic} />
+                        <Form.Control disabled value={this.state.patronymic}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="educationalInstitution">
                         <Form.Label>Educational Institution</Form.Label>
-                        <Form.Control disabled value={this.state.educationalInstitution} />
+                        <Form.Control disabled value={this.state.educationalInstitution}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="experienceYears">
                         <Form.Label>Experience Years</Form.Label>
-                        <Form.Control disabled value={this.state.experienceYears} />
+                        <Form.Control disabled value={this.state.experienceYears}/>
                     </Form.Group>
                 </Form.Row>
             </>

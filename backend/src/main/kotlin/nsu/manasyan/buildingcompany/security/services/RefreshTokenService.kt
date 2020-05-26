@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.convert.DurationUnit
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.lang.IllegalArgumentException
 import java.time.Clock
 import java.time.Duration
 import java.time.temporal.ChronoUnit
@@ -34,14 +33,14 @@ class RefreshTokenService(
         return generateToken(token.user)
     }
 
-    fun getUser(stringToken: String): User{
+    fun getUser(stringToken: String): User {
         return super.getUser(stringToken, Token.Type.REFRESH)
     }
 
-    fun validateById(tokenId: Int){
+    fun validateById(tokenId: Int) {
         val token = repository
             .findById(tokenId)
-            .orElseThrow{ throw IllegalArgumentException("Wrong refresh") }
+            .orElseThrow { throw IllegalArgumentException("Wrong refresh") }
         validateToken(token.stringRepresentation, Token.Type.REFRESH)
     }
 }

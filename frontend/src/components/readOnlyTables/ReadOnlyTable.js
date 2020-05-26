@@ -19,7 +19,7 @@ export default class ReadOnlyTable extends React.Component {
 
     onModalClose = () => {
         this.setState({
-            showModal : false
+            showModal: false
         })
     };
 
@@ -32,7 +32,7 @@ export default class ReadOnlyTable extends React.Component {
         this.tableRef.current.onQueryChange()
     };
 
-    showModal = (text, title)=> {
+    showModal = (text, title) => {
         this.setState({
             modalTitle: title,
             modalMessage: text,
@@ -72,7 +72,7 @@ export default class ReadOnlyTable extends React.Component {
 
     getFilteredEntities = (query) => {
         const params = Object.assign(this.getQueryParams(query), this.state.formState);
-        if(this.firstFilter){
+        if (this.firstFilter) {
             params.page = 0;
             this.firstFilter = false;
         }

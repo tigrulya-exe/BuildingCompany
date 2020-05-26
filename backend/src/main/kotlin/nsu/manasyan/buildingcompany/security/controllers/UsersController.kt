@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 class UsersController(
     private val usersService: UsersService,
     private val userMapper: UserMapper
-) : AbstractCrudController<User, UserDto>(usersService, userMapper, "user"){
+) : AbstractCrudController<User, UserDto>(usersService, userMapper, "user") {
 
     @PostMapping("/sign-up")
     override fun addEntity(@RequestBody dto: UserDto) {
@@ -25,7 +25,7 @@ class UsersController(
     }
 
     @PostMapping("/sign-in")
-    fun signIn(@RequestBody credentials: Credentials) : AuthorizationTokensDto{
+    fun signIn(@RequestBody credentials: Credentials): AuthorizationTokensDto {
         return usersService.authenticate(credentials)
     }
 

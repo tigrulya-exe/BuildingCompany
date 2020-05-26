@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import AbstractFilter from './AbstractFilter'
 
 export default class BrigadesFilter extends React.Component {
@@ -23,11 +23,11 @@ export default class BrigadesFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="managerId">
                         <Form.Label>Manager Id</Form.Label>
-                        <Form.Control type="number" value={this.state.managerId} />
+                        <Form.Control type="number" value={this.state.managerId}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="constructionManagementId">
                         <Form.Label>Construction management id</Form.Label>
-                        <Form.Control type="number" value={this.state.constructionManagementId} />
+                        <Form.Control type="number" value={this.state.constructionManagementId}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

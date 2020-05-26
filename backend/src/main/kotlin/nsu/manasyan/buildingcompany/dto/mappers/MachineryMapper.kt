@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.dto.mappers
 
+import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.dto.model.MachineryDto
 import nsu.manasyan.buildingcompany.model.Machinery
-import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import org.springframework.stereotype.Component
 
 @Component

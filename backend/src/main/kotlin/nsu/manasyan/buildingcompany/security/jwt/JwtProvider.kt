@@ -27,7 +27,7 @@ class JwtProvider(
     private var duration: Duration
 
 ) : AuthorizationTokenProvider {
-    companion object{
+    companion object {
         private const val AUTH_HEADER = "Authorization"
 
         private const val BEARER_PREFIX = "Bearer "

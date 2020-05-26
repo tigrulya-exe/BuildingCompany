@@ -1,7 +1,7 @@
-import { createBrowserHistory } from "history";
+import {createBrowserHistory} from "history";
 
 
 /**
  * История нужна для корректных редиректов
  */
-export default createBrowserHistory({forceRefresh:true});
+export default createBrowserHistory({forceRefresh: true});

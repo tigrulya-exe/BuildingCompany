@@ -31,7 +31,8 @@ export default class NavBar extends React.Component {
                         <Nav.Link><Link to="/query">Native query</Link></Nav.Link>
                         <NavDropdown title="Tables" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link to="/customers">Customers</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/building-objects/all">Building Objects</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/building-objects/all">Building
+                                Objects</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/machinery">Machinery</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/areas">Areas</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/brigades">Brigades</Link></NavDropdown.Item>
@@ -47,10 +48,13 @@ export default class NavBar extends React.Component {
                         <NavDropdown title="Queries" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link
                                 to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/objects-by-area-or-management">ObjectsByAreaOrManagement</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/workers-by-building-object">WorkersByBuildingObject</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/machinery-by-managements">MachineryByManagements</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
                                 to="/machinery-by-building-object">MachineryByBuildingObject</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/objects-by-area-or-management">ObjectsByAreaOrManagement</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/workers-by-building-object">WorkersByBuildingObject</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     {

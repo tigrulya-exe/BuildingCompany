@@ -23,13 +23,15 @@ class WorkScheduleController(
 ) : AbstractCrudController<WorkSchedule, WorkScheduleDto>(service, mapper, "WorkSchedule") {
 
     @GetMapping("/filter")
-    fun getAllEntitiesByFilter(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                               @RequestParam
-                               startDateMin: Date?,
-                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                               @RequestParam
-                               startDateMax: Date?,
-                               filter: BrigadeObjectWorkFilter?, params: FindRequestParameters?): PageDto<*> {
+    fun getAllEntitiesByFilter(
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        @RequestParam
+        startDateMin: Date?,
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        @RequestParam
+        startDateMax: Date?,
+        filter: BrigadeObjectWorkFilter?, params: FindRequestParameters?
+    ): PageDto<*> {
         val workScheduleFilter = WorkScheduleFilter(filter, startDateMin, startDateMax)
         return super.findAllByFilter(workScheduleFilter, params)
     }

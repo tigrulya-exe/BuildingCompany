@@ -1,5 +1,4 @@
 import React from 'react';
-import CrudTable from '../CrudTable'
 import TechnicalSpecialistsFilter from '../../filters/technicalStuff/TechnicalSpecialistsFilter'
 import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
 

@@ -1,12 +1,11 @@
 package nsu.manasyan.buildingcompany.technicalstuff.controllers
 
 import nsu.manasyan.buildingcompany.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.technicalstuff.mappers.MasterMapper
 import nsu.manasyan.buildingcompany.dto.model.PageDto
 import nsu.manasyan.buildingcompany.technicalstuff.dto.TechnicalSpecialistDto
+import nsu.manasyan.buildingcompany.technicalstuff.mappers.MasterMapper
 import nsu.manasyan.buildingcompany.technicalstuff.model.Master
 import nsu.manasyan.buildingcompany.technicalstuff.repositories.MasterFilter
-import nsu.manasyan.buildingcompany.technicalstuff.repositories.TechnicalSpecialistFilter
 import nsu.manasyan.buildingcompany.technicalstuff.services.MastersService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.GetMapping

@@ -24,7 +24,7 @@ interface WorkTypeRepository : JpaFilterRepository<WorkType, Int> {
         pageable: Pageable
     ): Page<WorkType>
 
-    fun findByNameIgnoreCase(name: String) : Optional<WorkType>
+    fun findByNameIgnoreCase(name: String): Optional<WorkType>
 }
 
 class WorkTypeFilter : Filter<WorkType> {

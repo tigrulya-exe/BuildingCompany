@@ -19,7 +19,7 @@ export default class CrudTable extends React.Component {
 
     onModalClose = () => {
         this.setState({
-            showModal : false
+            showModal: false
         })
     };
 
@@ -32,7 +32,7 @@ export default class CrudTable extends React.Component {
         this.state.tableRef.current.onQueryChange()
     };
 
-    showModal = (text, title)=> {
+    showModal = (text, title) => {
         this.setState({
             modalTitle: title,
             modalMessage: text,
@@ -115,7 +115,7 @@ export default class CrudTable extends React.Component {
 
     getFilteredEntities = (query) => {
         const params = Object.assign(this.getQueryParams(query), this.state.formState);
-        if(this.firstFilter){
+        if (this.firstFilter) {
             params.page = 0;
             this.firstFilter = false;
         }
@@ -154,7 +154,7 @@ export default class CrudTable extends React.Component {
                                             totalCount: 0
                                         })
                                     })
-                            })
+                        })
                     }
                     options={{
                         actionsColumnIndex: -1,

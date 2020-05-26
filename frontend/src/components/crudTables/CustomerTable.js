@@ -14,7 +14,7 @@ export default class CustomerTable extends React.Component {
                 columns={this.columns}
                 url='/customers'
                 tableName='Customers'
-                filterForm ={<CustomersFilter/>}
+                filterForm={<CustomersFilter/>}
             />
         )
     }

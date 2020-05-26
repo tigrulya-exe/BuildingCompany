@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service
 
 @Service
 class BuildingObjectService(private val objectRepository: BuildingObjectRepository) :
-    AbstractCrudService<BuildingObject>(objectRepository){
+    AbstractCrudService<BuildingObject>(objectRepository) {
 
     fun findByAreasOrManagements(
         areaIds: List<Int>,
         managementIds: List<Int>,
-        params: FindRequestParameters?): Page<BuildingObject> {
+        params: FindRequestParameters?
+    ): Page<BuildingObject> {
         val pageable = getPageable(params)
         return objectRepository.findByAreasOrManagements(areaIds, managementIds, pageable)
     }

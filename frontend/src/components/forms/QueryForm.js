@@ -25,8 +25,8 @@ export default class QueryForm extends React.Component {
 
     getRow = (tuple) => {
         return (Array.isArray(tuple)
-            && (<Row>{tuple && tuple.map(column => <Col sm style={{border:'1px solid'}}>{column}</Col>)}</Row>))
-            || (<Row><Col sm style={{border:'1px solid'}}>{tuple}</Col></Row>)
+            && (<Row>{tuple && tuple.map(column => <Col sm style={{border: '1px solid'}}>{column}</Col>)}</Row>))
+            || (<Row><Col sm style={{border: '1px solid'}}>{tuple}</Col></Row>)
     }
 
     getResults = () => {
@@ -52,7 +52,7 @@ export default class QueryForm extends React.Component {
                 </Button>
                 <br/>
                 <br/>
-                <Jumbotron >
+                <Jumbotron>
                     {this.getResults()}
                 </Jumbotron>
             </Form>

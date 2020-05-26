@@ -1,9 +1,6 @@
 import React from 'react';
 import Nav from "react-bootstrap/Nav";
-import {
-    Link,
-    useParams
-} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import WorkersTable from "./WorkersTable";
 import MasonsTable from "./MasonsTable";
 import LocksmithsTable from "./LocksmithsTable";

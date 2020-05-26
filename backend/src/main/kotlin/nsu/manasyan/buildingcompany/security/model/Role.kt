@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority
 import javax.persistence.*
 
 @Entity
-@Table(name= "Roles")
+@Table(name = "Roles")
 class UserRole(
     @Enumerated(EnumType.STRING)
     var role: Role

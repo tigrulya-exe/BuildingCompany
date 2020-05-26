@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import AbstractFilter from '../AbstractFilter'
 
 export default class TechnicalSpecialistsFilter extends React.Component {
@@ -28,33 +28,33 @@ export default class TechnicalSpecialistsFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control value={this.state.name} />
+                        <Form.Control value={this.state.name}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="surname">
                         <Form.Label>Surname</Form.Label>
-                        <Form.Control value={this.state.surname} />
+                        <Form.Control value={this.state.surname}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="patronymic">
                         <Form.Label>Patronymic</Form.Label>
-                        <Form.Control value={this.state.patronymic} />
+                        <Form.Control value={this.state.patronymic}/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col} controlId="educationalInstitution">
                         <Form.Label>Educational Institution</Form.Label>
-                        <Form.Control value={this.state.educationalInstitution} />
+                        <Form.Control value={this.state.educationalInstitution}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="areaId">
                         <Form.Label>Area Id</Form.Label>
-                        <Form.Control type="number" value={this.state.areaId} />
+                        <Form.Control type="number" value={this.state.areaId}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="managementId">
                         <Form.Label>Management Id</Form.Label>
-                        <Form.Control type="number" value={this.state.managementId} />
+                        <Form.Control type="number" value={this.state.managementId}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="experienceYears">
                         <Form.Label>Experience Years</Form.Label>
-                        <Form.Control type="number" value={this.state.experienceYears} />
+                        <Form.Control type="number" value={this.state.experienceYears}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

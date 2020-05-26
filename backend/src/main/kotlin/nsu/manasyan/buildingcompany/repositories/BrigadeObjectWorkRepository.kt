@@ -1,10 +1,10 @@
 package nsu.manasyan.buildingcompany.repositories
 
-import nsu.manasyan.buildingcompany.model.BrigadeObjectWork
 import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
+import nsu.manasyan.buildingcompany.model.BrigadeObjectWork
 import nsu.manasyan.buildingcompany.model.WorkType
-import nsu.manasyan.buildingcompany.workers.model.Brigade
 import nsu.manasyan.buildingcompany.util.filters.Filter
+import nsu.manasyan.buildingcompany.workers.model.Brigade
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface BrigadeObjectWorkRepository : JpaFilterRepository<BrigadeObjectWork, Int>{
+interface BrigadeObjectWorkRepository : JpaFilterRepository<BrigadeObjectWork, Int> {
     @Query(
         """
         select b

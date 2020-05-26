@@ -22,24 +22,38 @@ interface MachineryRepository : JpaFilterRepository<Machinery, Int> {
         and (:#{#filter.managementId} is null or a.management.id = :#{#filter.managementId})
         and (:#{#filter.buildingObjectId} is null or m.buildingObject.id = :#{#filter.buildingObjectId})
         and (:#{#filter.type} is null or lower(m.type) like :#{#filter.type})
-    """)
+    """
+    )
     override fun findAllByFilter(
         @Param("filter") filter: Filter<in Machinery>?,
         pageable: Pageable
     ): Page<Machinery>
 
 
-    @Query("""
+    @Query(
+        """
         select m 
         from Machinery m left join WorkSchedule ws on m member ws.machinery
         where (:buildingObjectId is null or m.buildingObject.id = :buildingObjectId)
         and (coalesce(:startDateMin, :startDateMin) is null or ws.startDate >= :startDateMin)
         and (coalesce(:startDateMax, :startDateMax) is null or ws.startDate <= :startDateMax)
-    """)
-    fun findByBuildingObjectOrWorkSchedule(startDateMin: Date?,
-                                           startDateMax: Date?,
-                                           buildingObjectId: Int?,
-                                           pageable: Pageable) : Page<Machinery>
+    """
+    )
+    fun findByBuildingObjectOrWorkSchedule(
+        startDateMin: Date?,
+        startDateMax: Date?,
+        buildingObjectId: Int?,
+        pageable: Pageable
+    ): Page<Machinery>
+
+    @Query(
+        """
+        select m 
+        from Machinery m join ConstructionManagement cm on m.buildingObject.area.management.id = cm.id
+        where cm.id in :constructionManagementIds
+    """
+    )
+    fun findByConstructionManagements(constructionManagementIds: List<Int>, pageable: Pageable): Page<Machinery>
 }
 
 @NoArgConstructor

@@ -18,16 +18,17 @@ class RegistrationCompleteListener(
 
     override fun onApplicationEvent(event: RegistrationCompleteEvent) {
         val user = event.getUser()
-        try{
+        try {
             val token = tokenService.generateToken(user, Token.Type.EMAIL_CONFIRM)
-            val confirmUrl = "http://${properties.domainName}:${properties.port}/confirm?token=${token.stringRepresentation}"
+            val confirmUrl =
+                "http://${properties.domainName}:${properties.port}/confirm?token=${token.stringRepresentation}"
             val message =
                 """Hello,  ${user.fullName}!
 Click on the link below to confirm your email address:
 $confirmUrl""".trimIndent()
             emailService.sendMessage(user.email, "Email confirmation", message)
             logger().info("Confirm email was sent to ${user.email}")
-        } catch (exc: Exception){
+        } catch (exc: Exception) {
             logger().error("Error sending email confirm message: ${exc.localizedMessage}")
         }
     }

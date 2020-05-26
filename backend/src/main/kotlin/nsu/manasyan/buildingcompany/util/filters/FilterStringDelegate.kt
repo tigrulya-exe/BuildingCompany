@@ -13,8 +13,8 @@ class FilterStringDelegate(initial: String? = null) {
         backingString = formatString(value)
     }
 
-    private fun formatString(value: String?) : String?{
-        if(value == "" || value == null){
+    private fun formatString(value: String?): String? {
+        if (value == "" || value == null) {
             return null
         }
         return "%${value.toLowerCase()}%"

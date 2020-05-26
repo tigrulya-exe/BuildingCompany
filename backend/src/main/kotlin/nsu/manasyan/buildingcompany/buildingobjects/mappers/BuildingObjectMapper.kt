@@ -5,7 +5,6 @@ import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
 import nsu.manasyan.buildingcompany.dto.mappers.Mapper
 import nsu.manasyan.buildingcompany.services.AreaService
 import nsu.manasyan.buildingcompany.services.CustomersService
-import nsu.manasyan.buildingcompany.util.identifiablesToIds
 import org.springframework.stereotype.Component
 
 @Component
@@ -26,5 +25,5 @@ class BuildingObjectMapper(
         entity.area = areaService.getEntity(dto.areaId)
         return entity
     }
-    
+
 }

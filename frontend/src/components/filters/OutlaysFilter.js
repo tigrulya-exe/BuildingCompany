@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 import AbstractFilter from './AbstractFilter'
 
 export default class OutlaysFilter extends React.Component {
@@ -27,15 +27,15 @@ export default class OutlaysFilter extends React.Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="materialCountMin">
                         <Form.Label>Material count min</Form.Label>
-                        <Form.Control type="number" value={this.state.materialCountMin} />
+                        <Form.Control type="number" value={this.state.materialCountMin}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="materialCountMax">
                         <Form.Label>Material count max</Form.Label>
-                        <Form.Control type="number" value={this.state.materialCountMax} />
+                        <Form.Control type="number" value={this.state.materialCountMax}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="materialId">
                         <Form.Label>Material Id</Form.Label>
-                        <Form.Control type="number" value={this.state.materialId} />
+                        <Form.Control type="number" value={this.state.materialId}/>
                     </Form.Group>
                 </Form.Row>
             </AbstractFilter>

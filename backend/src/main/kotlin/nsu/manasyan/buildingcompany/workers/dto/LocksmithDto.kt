@@ -4,7 +4,7 @@ import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.model.Post
 
 @NoArgConstructor
-class LocksmithDto (
+class LocksmithDto(
     name: String,
     surname: String,
     patronymic: String?,

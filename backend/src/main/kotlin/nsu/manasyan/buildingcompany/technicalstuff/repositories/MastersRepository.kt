@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.technicalstuff.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.technicalstuff.model.Master
 import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.technicalstuff.model.Master
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
@@ -35,6 +35,6 @@ class MasterFilter(
     areaId: Int?,
     managementId: Int?,
     experienceYears: Int?
-) : TechnicalSpecialistFilter(areaId, managementId, experienceYears){
+) : TechnicalSpecialistFilter(areaId, managementId, experienceYears) {
     var category: String? by FilterStringDelegate()
 }

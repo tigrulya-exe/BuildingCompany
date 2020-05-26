@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Collapse } from 'react-bootstrap';
+import {Button, Collapse} from 'react-bootstrap';
 
 
 export default class CollapseContainer extends React.Component {
@@ -14,7 +14,7 @@ export default class CollapseContainer extends React.Component {
         return (
             <>
                 <Button
-                    onClick={() => this.setState({ open: !this.state.open })}
+                    onClick={() => this.setState({open: !this.state.open})}
                     aria-controls={this.props.childId}
                     aria-expanded={this.state.open}
                 >{this.props.buttonText || 'Filter'}</Button>

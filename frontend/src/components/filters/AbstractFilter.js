@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Form, Col } from 'react-bootstrap';
+import {Button, Col, Form} from 'react-bootstrap';
 import CollapseContainer from "../CollapseContainer"
 
 export default class AbstractFilter extends React.Component {
     onFormChange = (event) => {
-        this.props.setState({ [event.target.id]: event.target.value });
+        this.props.setState({[event.target.id]: event.target.value});
     }
 
     onSubmit = (event) => {
@@ -20,19 +20,21 @@ export default class AbstractFilter extends React.Component {
 
     render() {
         return (
-            <tr><td colSpan="100%">
-                <CollapseContainer childId={this.props.formId}>
-                    <Form onSubmit={this.onSubmit} id={this.props.formId} onChange={this.onFormChange}>
-                        {this.props.children}
-                        <Form.Row>
-                            <Col>
-                                <Button variant="primary" type="submit">Filter</Button>
-                                <Button variant="danger" onClick={this.onReset}>Reset</Button>
-                            </Col>
-                        </Form.Row>
-                    </Form>
-                </CollapseContainer>
-            </td></tr>
+            <tr>
+                <td colSpan="100%">
+                    <CollapseContainer childId={this.props.formId}>
+                        <Form onSubmit={this.onSubmit} id={this.props.formId} onChange={this.onFormChange}>
+                            {this.props.children}
+                            <Form.Row>
+                                <Col>
+                                    <Button variant="primary" type="submit">Filter</Button>
+                                    <Button variant="danger" onClick={this.onReset}>Reset</Button>
+                                </Col>
+                            </Form.Row>
+                        </Form>
+                    </CollapseContainer>
+                </td>
+            </tr>
         )
     }
 }

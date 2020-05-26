@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import {axiosNonApi} from '../../util/AxiosConfig'
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContextProvider";
 import ModalWindow from "../modals/Modal";
 
@@ -62,7 +62,7 @@ export default class PasswordRestoreForm extends React.Component {
     };
 
     onSubmit = (event) => {
-        axiosNonApi.post('/restore', null, { params: {email: this.state.email} })
+        axiosNonApi.post('/restore', null, {params: {email: this.state.email}})
             .then((result) => this.handleResponse(result.data))
             .catch((error) => this.onRestoreError(error));
         event.preventDefault()

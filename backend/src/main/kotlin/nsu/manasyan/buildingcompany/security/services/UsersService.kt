@@ -2,8 +2,8 @@ package nsu.manasyan.buildingcompany.security.services
 
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.security.events.PasswordRestoreEvent
-import nsu.manasyan.buildingcompany.security.jwt.JwtProvider
 import nsu.manasyan.buildingcompany.security.events.RegistrationCompleteEvent
+import nsu.manasyan.buildingcompany.security.jwt.JwtProvider
 import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
 import nsu.manasyan.buildingcompany.security.repositories.UserRepository
@@ -24,7 +24,7 @@ class UsersService(
     private val refreshTokenService: RefreshTokenService
 ) : AbstractCrudService<User>(userRepository) {
 
-//    @Transactional
+    //    @Transactional
     fun signUp(user: User) {
         checkUniqueParams(user)
         user.password = bCryptPasswordEncoder.encode(user.password)
@@ -53,20 +53,20 @@ class UsersService(
 
     @Transactional
     fun updateTokens(refreshTokenString: String): AuthorizationTokensDto {
-        val newRefresh =  refreshTokenService.updateToken(refreshTokenString)
+        val newRefresh = refreshTokenService.updateToken(refreshTokenString)
         val user = newRefresh.user
         val jwt = jwtProvider.generateToken(user.id!!, newRefresh.id!!)
 
         return AuthorizationTokensDto(jwt, newRefresh.stringRepresentation)
     }
 
-    fun restorePassword(email: String){
+    fun restorePassword(email: String) {
         val user = getUserByEmail(email)
         logger().info("User $email sent request to restore password")
         eventPublisher.publishEvent(PasswordRestoreEvent(user))
     }
 
-    fun validateRestoreToken(token: String){
+    fun validateRestoreToken(token: String) {
         tokenService.validateToken(token, Token.Type.PASSWORD_RESTORE)
         logger().info("Restore token $token was validated")
     }
@@ -84,7 +84,7 @@ class UsersService(
     }
 
     @Transactional
-    fun changePassword(stringToken: String, newPassword: String){
+    fun changePassword(stringToken: String, newPassword: String) {
         val token = tokenService.validateToken(stringToken, Token.Type.PASSWORD_RESTORE)
         val user = tokenService.getUser(stringToken, Token.Type.PASSWORD_RESTORE)
 
@@ -97,7 +97,7 @@ class UsersService(
     fun confirmEmail(stringToken: String) {
         val token = tokenService.validateToken(stringToken, Token.Type.EMAIL_CONFIRM)
         val user = tokenService.getUser(stringToken, Token.Type.EMAIL_CONFIRM)
-        if(isConfirmed(user)){
+        if (isConfirmed(user)) {
             throw IllegalArgumentException("User already confirmed")
         }
 

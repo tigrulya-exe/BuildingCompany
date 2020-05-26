@@ -2,9 +2,9 @@ package nsu.manasyan.buildingcompany.workers.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
 import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
-import nsu.manasyan.buildingcompany.workers.model.Worker
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
+import nsu.manasyan.buildingcompany.workers.model.Worker
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
@@ -27,7 +27,8 @@ interface WorkersRepository :
     override fun findAllByFilter(filter: Filter<in Worker>?, pageable: Pageable): Page<Worker>
 
 
-    @Query("""
+    @Query(
+        """
         select distinct w   
         from Worker w 
         join BrigadeObjectWork bow on w.brigade.id = bow.brigade.id

@@ -76,7 +76,7 @@ export default class MachineryByBuildingObject extends React.Component {
                     <Form.Group controlId="BuildingObjectSelectForm">
                         <Form.Label>{`Selected building object id: ${this.state.buildingObjectId}`}</Form.Label> <br/>
                         <CollapseContainer
-                            buttonText="Expand areas"
+                            buttonText="Expand building objects"
                             childId="ObjectAreaSelectTable">
                             <div id="ObjectAreaSelectTable">
                                 <BuildingObjectsSingleSelectTable

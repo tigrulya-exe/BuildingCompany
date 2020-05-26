@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.dto.mappers
 
+import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.dto.model.OutlayDto
 import nsu.manasyan.buildingcompany.model.Outlay
-import nsu.manasyan.buildingcompany.buildingobjects.services.BuildingObjectService
 import nsu.manasyan.buildingcompany.services.MaterialsService
 import org.springframework.stereotype.Component
 

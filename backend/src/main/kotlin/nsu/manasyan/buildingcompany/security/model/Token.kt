@@ -13,8 +13,8 @@ class Token(
     var user: User,
     @Temporal(TemporalType.TIMESTAMP)
     var expirationDate: Date
-) : Identifiable(){
-    enum class Type{
+) : Identifiable() {
+    enum class Type {
         REFRESH,
         PASSWORD_RESTORE,
         EMAIL_CONFIRM

@@ -1,4 +1,4 @@
-import {Route, Redirect} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import React from "react";
 import {AuthContext} from "../context/AuthContextProvider";
 import history from "./History";
@@ -7,7 +7,7 @@ import history from "./History";
  * Путь роутера для компонентов, которые должны быть доступны толко зареганным пользователям
  */
 
-export default function AuthenticatedRoute({ component, ...rest }) {
+export default function AuthenticatedRoute({component, ...rest}) {
     const isAuthenticated = React.useContext(AuthContext).isAuthorized;
     return (
         isAuthenticated ?

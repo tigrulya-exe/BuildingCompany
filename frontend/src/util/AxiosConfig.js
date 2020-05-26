@@ -16,7 +16,7 @@ export const axiosNonApi = axios.create({
 const injectToken = (request) => {
     const token = localStorage.getItem("jwt");
     console.log(request);
-    if(token){
+    if (token) {
         request.headers.Authorization = `Bearer ${token}`
     }
     return request
@@ -33,7 +33,7 @@ const logResponse = (response) => {
 
 const redirectIfNotAuthorized = (err) => {
     console.log(err.response);
-    if ( err.response.status === 401 || err.response.status === 403 ) {
+    if (err.response.status === 401 || err.response.status === 403) {
         history.push('/login');
     }
     return Promise.reject(err);

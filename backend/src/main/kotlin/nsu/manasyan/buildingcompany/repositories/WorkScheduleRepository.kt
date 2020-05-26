@@ -1,7 +1,6 @@
 package nsu.manasyan.buildingcompany.repositories
 
 import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.model.Machinery
 import nsu.manasyan.buildingcompany.model.ScheduleDelay
 import nsu.manasyan.buildingcompany.model.WorkSchedule
 import nsu.manasyan.buildingcompany.util.filters.Filter
@@ -11,9 +10,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
-import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.stereotype.Repository
-import org.springframework.web.bind.annotation.RequestParam
 import java.util.*
 
 @Repository
@@ -44,7 +41,7 @@ class BrigadeObjectWorkFilter(
     var buildingObjectId: Int?,
     var brigadeId: Int?,
     workType: String?
-) : Filter<WorkSchedule>{
+) : Filter<WorkSchedule> {
     var workType: String? by FilterStringDelegate(workType)
 }
 
@@ -55,17 +52,19 @@ class WorkScheduleFilter(
     var startDateMax: Date?,
     workType: String? = null,
     var brigadeId: Int? = null
-    ) : Filter<WorkSchedule>{
+) : Filter<WorkSchedule> {
     var workType: String? by FilterStringDelegate(workType)
 
     constructor(
-        outerFilter : BrigadeObjectWorkFilter?,
+        outerFilter: BrigadeObjectWorkFilter?,
         startDateMin: Date?,
-        startDateMax: Date?)
+        startDateMax: Date?
+    )
             : this(
         outerFilter?.buildingObjectId,
         startDateMin,
         startDateMax,
         outerFilter?.workType,
-        outerFilter?.brigadeId)
+        outerFilter?.brigadeId
+    )
 }

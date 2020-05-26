@@ -1,10 +1,7 @@
 import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import TechnicalSpecialistsTable from "./TechnicalSpecialistsTable";
-import {
-    Link,
-    useParams
-} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import ForemenTable from "./ForemenTable";
 import MastersTable from "./MastersTable";
 

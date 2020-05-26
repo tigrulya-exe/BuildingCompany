@@ -8,7 +8,8 @@ import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 
 @Service
-class WorkersService(private val workersRepository: WorkersRepository) : AbstractCrudService<Worker>(workersRepository){
+class WorkersService(private val workersRepository: WorkersRepository) :
+    AbstractCrudService<Worker>(workersRepository) {
     fun findAllByFilter(buildingObjectId: Int, params: FindRequestParameters?): Page<Worker> {
         val pageable = getPageable(params)
         return workersRepository.findDistinctByBuildingObject(buildingObjectId, pageable)

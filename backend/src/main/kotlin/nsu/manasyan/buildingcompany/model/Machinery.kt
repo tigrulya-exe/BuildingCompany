@@ -1,7 +1,10 @@
 package nsu.manasyan.buildingcompany.model
 
 import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "Machinery")
