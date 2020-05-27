@@ -13,7 +13,9 @@ function App() {
         <Router history={history}>
             <AuthContextProvider>
                 <NavBar/>
-                <RouteSwitch/>
+                <div style={{width: '95%', margin: '0 auto'}}>
+                    <RouteSwitch/>
+                </div>
             </AuthContextProvider>
         </Router>
     );

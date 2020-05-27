@@ -33,8 +33,8 @@ export default class Login extends React.Component {
     onLoginError = (error) => {
         this.setState({
             showModal: true,
-            modalMessage: `Поправьте ошибки: ${(error.response && error.response.data.error) || 'Неизвестная ошибка'}`,
-            modalTitle: 'Oшибка!'
+            modalMessage: `Fix errors: ${(error.response && error.response.data.error) || 'Unknown error'}`,
+            modalTitle: 'Error!'
         });
     };
 
@@ -72,32 +72,32 @@ export default class Login extends React.Component {
                             <Form onChange={this.onFormChange} onSubmit={this.onSubmit}>
                                 <Form.Group controlId="login">
                                     <h1>
-                                        <Form.Label>Авторизация</Form.Label>
+                                        <Form.Label>Authorization</Form.Label>
                                     </h1>
-                                    <Form.Control placeholder="Введите ваше логин"/>
+                                    <Form.Control placeholder="Enter your login"/>
                                     <Form.Text className="text-muted">
-                                        Ваше имя пользователя или пароль
+                                        Your nickname or email
                                     </Form.Text>
                                 </Form.Group>
 
                                 <Form.Group controlId="password">
-                                    <Form.Label>Пароль</Form.Label>
-                                    <Form.Control type="password" placeholder="Введите ваш пароль"/>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Enter your password"/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Button className="float-right" variant="primary" type="submit">
-                                        Отправить
+                                        Submit
                                     </Button>
                                 </Form.Group>
                                 <Form.Group>
                                     <Button size='sm' variant="light">
                                         <Link to='/sign-up'>
-                                            Нет аккаунта?
+                                            Don't have an account yet?
                                         </Link>
                                     </Button>
                                     <Button size='sm' variant="light">
                                         <Link to='/restore'>
-                                            Забыли пароль?
+                                            Forgot your password?
                                         </Link>
                                     </Button>
                                 </Form.Group>

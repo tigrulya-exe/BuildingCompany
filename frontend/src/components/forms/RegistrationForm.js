@@ -34,8 +34,8 @@ export default class RegistrationForm extends React.Component {
     onRegistrationSuccess = () => {
         this.setState({
             showModal: true,
-            modalMessage: 'Осталось подтвердить почту и авторизоваться',
-            modalTitle: 'Успешно!',
+            modalMessage: 'It remains to confirm mail and sign in!',
+            modalTitle: 'Success!',
             onModalClose: () => {
                 this.setState({
                     showModal: false,
@@ -48,8 +48,8 @@ export default class RegistrationForm extends React.Component {
     onRegistrationError = (error) => {
         this.setState({
             showModal: true,
-            modalMessage: `Поправьте ошибки: ${(error.response && error.response.data.error) || 'Неизвестная ошибка'}`,
-            modalTitle: 'Oшибка!'
+            modalMessage: `Fix errors: ${(error.response && error.response.data.error) || 'Unknown error'}`,
+            modalTitle: 'Error!'
         });
     };
 
@@ -83,33 +83,33 @@ export default class RegistrationForm extends React.Component {
                         <Col md="auto">
                             <Form onChange={this.onFormChange} onSubmit={this.onSubmit}>
                                 <Form.Label>
-                                    <h1> Регистрация </h1>
+                                    <h1> Registration </h1>
                                 </Form.Label>
                                 <br/>
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="nickname">
-                                        <Form.Label>Имя пользователя</Form.Label>
-                                        <Form.Control placeholder="Введите ваш логин"/>
+                                        <Form.Label>Nickname</Form.Label>
+                                        <Form.Control placeholder="Enter your nickname"/>
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="password">
-                                        <Form.Label>Пароль</Form.Label>
-                                        <Form.Control type="password" placeholder="Введите ваш пароль"/>
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control type="password" placeholder="Enter your password"/>
                                     </Form.Group>
                                 </Form.Row>
 
                                 <Form.Group controlId="fullName">
                                     <Form.Label>Полное имя</Form.Label>
-                                    <Form.Control placeholder="Например: Иванов Иван Иванович"/>
+                                    <Form.Control placeholder="e.g. Ivanov Ivan Ivanovich"/>
                                 </Form.Group>
 
                                 <Form.Group controlId="email">
-                                    <Form.Label>Почта</Form.Label>
-                                    <Form.Control placeholder="Введите вашу почту"/>
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control placeholder="Enter your email"/>
                                 </Form.Group>
 
                                 <Button variant="primary" className="float-right" type="submit">
-                                    Отправить
+                                    Submit
                                 </Button>
                             </Form>
                         </Col>
