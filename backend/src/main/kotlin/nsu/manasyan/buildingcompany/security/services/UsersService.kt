@@ -123,4 +123,14 @@ class UsersService(
             throw IllegalArgumentException("User with such nickname already exists")
         }
     }
+
+    fun getProfile(): User {
+        return  getCurrentUser()
+    }
+
+    fun getCurrentUser(): User{
+        return userRepository
+            .findCurrentUser()
+            .orElseThrow { IllegalArgumentException("Unauthorized") }
+    }
 }

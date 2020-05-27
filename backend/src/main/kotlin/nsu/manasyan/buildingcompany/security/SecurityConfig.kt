@@ -33,6 +33,7 @@ class SecurityConfig(
         http.anonymous()
             .and().authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .antMatchers("/profile").hasAuthority("DEFAULT")
             .antMatchers("/api/**").hasAuthority("DEFAULT")
             .antMatchers("/api/v1/users/**").hasAuthority("ADMIN")
     }

@@ -23,6 +23,9 @@ interface UserRepository : JpaFilterRepository<User, Int> {
     )
     override fun findAllByFilter(filter: Filter<in User>?, pageable: Pageable): Page<User>
 
+    @Query("select u from User u where u.id = ?#{principal.id}")
+    fun findCurrentUser(): Optional<User>
+
     fun findByNicknameIgnoreCase(nickname: String): Optional<User>
 
     fun findByEmailIgnoreCase(email: String): Optional<User>

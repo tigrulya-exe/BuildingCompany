@@ -8,8 +8,6 @@ export default class OutlaysTable extends React.Component {
         {title: 'Material Count', field: 'materialCount', type: 'numeric'},
         {title: 'Material Id', field: 'materialId', type: 'numeric'},
         {title: 'Building Object Id', field: 'buildingObjectId', type: 'numeric'},
-        {title: 'Work type Id', field: 'workTypeId', type: 'numeric'},
-        {title: 'Brigade Id', field: 'brigadeId', type: 'numeric'},
     ]
 
     render() {

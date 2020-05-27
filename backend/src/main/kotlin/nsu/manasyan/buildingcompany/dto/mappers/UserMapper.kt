@@ -7,7 +7,10 @@ import org.springframework.stereotype.Component
 @Component
 class UserMapper : Mapper<User, UserDto>() {
     override fun toDto(entity: User): UserDto {
-        return mapper.map(entity, UserDto::class.java)
+        val dto = mapper.map(entity, UserDto::class.java)
+        // TODO tmp
+        dto.password = ""
+        return dto
     }
 
     override fun toEntity(dto: UserDto): User {

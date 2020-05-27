@@ -10,6 +10,7 @@ import org.springframework.context.event.SimpleApplicationEventMulticaster
 import org.springframework.core.task.SimpleAsyncTaskExecutor
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
@@ -57,6 +58,11 @@ class GlobalConfiguration {
         val eventMulticaster = SimpleApplicationEventMulticaster()
         eventMulticaster.setTaskExecutor(SimpleAsyncTaskExecutor())
         return eventMulticaster
+    }
+
+    @Bean
+    fun securityEvaluationContextExtension(): SecurityEvaluationContextExtension {
+        return SecurityEvaluationContextExtension()
     }
 
 //    @Bean

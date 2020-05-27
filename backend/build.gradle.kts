@@ -24,6 +24,7 @@ dependencies {
     kapt("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.security:spring-security-data")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.modelmapper:modelmapper:2.3.6")
 //    implementation("com.google.code.gson:gson:2.8.6")

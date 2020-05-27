@@ -14,7 +14,7 @@ import Login from '../components/forms/Login';
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import UnauthenticatedRoute from "./UnauthenticatedRoute";
 
-import {Switch,} from "react-router-dom";
+import {Redirect, Switch,} from "react-router-dom";
 import RegistrationForm from "../components/forms/RegistrationForm";
 import PasswordRestoreForm from "../components/forms/PasswordRestoreForm";
 import SpecialistsByAreaOrManagement from "../components/queries/SpecialistsByAreaOrManagement";
@@ -25,6 +25,7 @@ import WorkersPage from "../components/crudTables/workers/WorkersPage";
 import BuildingObjectsPage from "../components/crudTables/buildingObjects/BuildingObjectsPage";
 import WorkersByBuildingObject from "../components/queries/WorkersByBuildingObject";
 import MachineryByManagements from "../components/queries/MachineryByManagements";
+import Profile from "../components/Profile";
 
 export default function RouteSwitch(props) {
     return (
@@ -97,6 +98,10 @@ export default function RouteSwitch(props) {
                 component={<WorkScheduleTable/>}
                 path="/work-schedules">
             </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<Profile/>}
+                path="/profile">
+            </AuthenticatedRoute>
             <UnauthenticatedRoute
                 component={<Login/>}
                 path="/login">
@@ -109,6 +114,7 @@ export default function RouteSwitch(props) {
                 component={<PasswordRestoreForm/>}
                 path="/restore">
             </UnauthenticatedRoute>
+            <Redirect from='/' to='/profile'/>
         </Switch>
     );
 }

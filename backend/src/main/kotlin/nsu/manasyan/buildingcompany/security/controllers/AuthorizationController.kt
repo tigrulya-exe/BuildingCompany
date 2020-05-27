@@ -36,6 +36,11 @@ class AuthorizationController(
         return usersService.updateTokens(tokenDto.token)
     }
 
+    @GetMapping("/profile")
+    fun getProfile() : UserDto{
+        return userMapper.toDto(usersService.getProfile())
+    }
+
     /**
      * 1 part
      */
