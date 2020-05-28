@@ -11,6 +11,7 @@ export default class ReadOnlyTable extends React.Component {
             showModal: false,
             params: this.props.params,
             formState: null,
+            selectedRows: []
         };
 
         this.firstFilter = false;
@@ -38,7 +39,7 @@ export default class ReadOnlyTable extends React.Component {
             modalMessage: text,
             showModal: true
         });
-    }
+    };
 
     showError = (text) => this.showModal(text, 'Error!');
 
@@ -47,8 +48,14 @@ export default class ReadOnlyTable extends React.Component {
     getErrorFromReason = (reason) => reason.response?.data?.error;
 
     resolveResults = (resolve, response) => {
+        const content = response.data.content;
+
+        const selectedData = content?.map(
+            row => this.state?.selectedRows.find(selected => selected === row.id)
+                ? {...row, tableData: {checked: true}} : row
+        );
         resolve({
-            data: response.data.content,
+            data: selectedData,
             page: response.data.pageNumber,
             totalCount: response.data.totalElements,
         })
@@ -84,6 +91,29 @@ export default class ReadOnlyTable extends React.Component {
         return this.tableRef.current?.onQueryChange()
     };
 
+    handleSelectionChange = (newRows, clickedRow) => {
+        const selectedRows = this.state.selectedRows;
+        const isChecking = !!(clickedRow?.tableData);
+        const distinct = (value, index, self) => self.indexOf(value) === index;
+        let newSelectedRows;
+
+        if(!newRows.length && !clickedRow){
+            newSelectedRows = []
+        } else if (!isChecking || (isChecking && clickedRow.tableData.checked)) {
+            let newRowsIds = [...newRows.map(r => r.id)];
+            if (selectedRows.length) {
+                newRowsIds = [...newRowsIds, ...selectedRows]
+            }
+            newSelectedRows = newRowsIds.filter(distinct);
+        } else {
+            const finalRow = selectedRows.filter(rfc => rfc !== clickedRow.id) || [];
+            newSelectedRows = finalRow.filter(distinct);
+        }
+
+        this.props.onSelectSubmit(newSelectedRows);
+        this.setState({selectedRows: newSelectedRows});
+    };
+
     render() {
         return (
             <MaterialTable
@@ -117,9 +147,7 @@ export default class ReadOnlyTable extends React.Component {
                     selection: this.props.onSelectSubmit,
                     selectionProps: this.props.selectionProps
                 }}
-                onSelectionChange={this.props.onSelectSubmit && ((rows) => {
-                    this.props.onSelectSubmit(rows)
-                })}
+                onSelectionChange={this.props.onSelectSubmit && this.handleSelectionChange}
                 components={this.props.filterForm && {
                     FilterRow: (props) => React.cloneElement(this.props.filterForm, {
                         onSubmit: this.onFilterSubmit, outerState: this.state.formState
@@ -131,7 +159,8 @@ export default class ReadOnlyTable extends React.Component {
                         tooltip: 'Refresh Data',
                         isFreeAction: true,
                         onClick: this.onRefresh,
-                    }
+                    },
+                    this.props.action
                 ]}
                 detailPanel={this.props.detailPanel}
                 onRowClick={this.props.onRowClick}

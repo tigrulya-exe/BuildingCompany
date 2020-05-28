@@ -14,7 +14,7 @@ export default function ModalWindow(props) {
             </Modal.Header>
             <Modal.Body>{props.message}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onModalClose}>
+                <Button variant="primary" onClick={props.onModalClose}>
                     OK
                 </Button>
             </Modal.Footer>

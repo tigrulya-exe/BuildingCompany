@@ -1,6 +1,7 @@
 import React from 'react';
 import CrudTable from '../CrudTable'
 import BridgesFilter from "../../filters/buildingObjects/BridgesFilter";
+import WorkTypesInfo from "../../extendedInfos/WorkTypesInfo";
 
 export default class BridgesTable extends React.Component {
     columns = [
@@ -20,6 +21,8 @@ export default class BridgesTable extends React.Component {
                 url='/bridges'
                 tableName='Bridges'
                 filterForm={<BridgesFilter/>}
+                detailPanel={(rowData) => <WorkTypesInfo buildingObjectId={rowData.id}/>}
+                onRowClick={(event, rowData, togglePanel) => togglePanel()}
             />
         )
     }

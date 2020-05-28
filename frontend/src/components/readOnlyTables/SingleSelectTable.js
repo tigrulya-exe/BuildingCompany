@@ -22,9 +22,9 @@ export default class SingleSelectTable extends React.Component {
                 onSelectSubmit={this.props.onSelectSubmit && ((rows) => {
                     this.setState({
                         isChecked: rows.length,
-                        checkedId: (rows.length && rows[0].id)
+                        checkedId: (rows.length && rows[0])
                     });
-                    this.props.onSelectSubmit((rows.length && rows[0].id) || null)
+                    this.props.onSelectSubmit((rows.length && rows[0]) || null)
                 })}
             />
         )

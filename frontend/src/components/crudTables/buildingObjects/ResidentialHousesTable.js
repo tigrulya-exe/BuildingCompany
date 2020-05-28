@@ -1,6 +1,7 @@
 import React from 'react';
 import CrudTable from '../CrudTable'
 import ResidentialHousesFilter from "../../filters/buildingObjects/ResidentialHousesFilter";
+import WorkTypesInfo from "../../extendedInfos/WorkTypesInfo";
 
 export default class ResidentialHousesTable extends React.Component {
     columns = [
@@ -18,6 +19,8 @@ export default class ResidentialHousesTable extends React.Component {
                 columns={this.columns}
                 url='/residential-houses'
                 tableName='Residential houses'
+                detailPanel={(rowData) => <WorkTypesInfo buildingObjectId={rowData.id}/>}
+                onRowClick={(event, rowData, togglePanel) => togglePanel()}
                 filterForm={<ResidentialHousesFilter/>}
             />
         )

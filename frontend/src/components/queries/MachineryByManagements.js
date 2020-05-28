@@ -19,7 +19,7 @@ export default class MachineryByManagements extends React.Component {
 
     onTableSubmit = (data, propName) => {
         if (data) {
-            this.setState({[propName]: this.arrayToParams(data.map(data => data.id))})
+            this.setState({[propName]: this.arrayToParams(data)})
         }
     };
 
