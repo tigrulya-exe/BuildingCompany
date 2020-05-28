@@ -1,16 +1,31 @@
 import React from 'react';
 import {Button, Col, Form, Jumbotron, Row} from 'react-bootstrap';
 import {AXIOS} from '../../util/AxiosConfig'
-
+import ReactPaginate from 'react-paginate';
 
 export default class QueryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             query: '',
-            results: []
+            results: [],
+            perPage: 5,
+            currentPage: 0,
+            offset: 0
         }
     }
+
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+            results: this.state.results
+        });
+
+    };
 
     onChange = (event) => {
         this.setState({query: event.target.value});
@@ -30,7 +45,8 @@ export default class QueryForm extends React.Component {
     };
 
     getResults = () => {
-        return this.state.results && this.state.results.map(tuple => this.getRow(tuple))
+        const data = this.state.results?.slice(this.state.offset, this.state.offset + this.state.perPage);
+        return data?.map(tuple => this.getRow(tuple))
     };
 
     onSubmit = (event) => {
@@ -38,6 +54,23 @@ export default class QueryForm extends React.Component {
             .then((result) => this.setResult(result.data))
             .catch((error) => alert(error));
         event.preventDefault()
+    };
+
+    getPagination = () => {
+        if(this.state.results.length)
+            return <ReactPaginate
+                previousLabel={'previous'}
+                nextLabel={'next'}
+                breakLabel={'...'}
+                breakClassName={'break-me'}
+                pageCount={Math.ceil(this.state.results?.length / this.state.perPage)}
+                onPageChange={this.handlePageClick}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'}
+            />
     };
 
     render() {
@@ -55,6 +88,7 @@ export default class QueryForm extends React.Component {
                 <Jumbotron>
                     {this.getResults()}
                 </Jumbotron>
+                { this.getPagination() }
             </Form>
         )
     }
