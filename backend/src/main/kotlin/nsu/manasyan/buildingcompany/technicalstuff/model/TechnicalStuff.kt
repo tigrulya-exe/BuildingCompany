@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.technicalstuff.model
 
-import nsu.manasyan.buildingcompany.model.Area
-import nsu.manasyan.buildingcompany.model.Post
-import nsu.manasyan.buildingcompany.model.workers.Person
+import nsu.manasyan.buildingcompany.companypartsstuff.model.Area
+import nsu.manasyan.buildingcompany.abstracts.model.Post
+import nsu.manasyan.buildingcompany.abstracts.model.Person
 import javax.persistence.*
 
 @Entity

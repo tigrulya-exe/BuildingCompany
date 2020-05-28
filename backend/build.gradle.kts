@@ -58,5 +58,5 @@ allOpen {
 }
 
 noArg {
-    annotation("nsu.manasyan.buildingcompany.configuration.NoArgConstructor")
+    annotation("nsu.manasyan.buildingcompany.NoArgConstructor")
 }

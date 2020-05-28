@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.util
 
-import nsu.manasyan.buildingcompany.model.Post
+import nsu.manasyan.buildingcompany.abstracts.model.Post
 import kotlin.reflect.KProperty
 
 class PostDelegate(initial: Post? = null) {

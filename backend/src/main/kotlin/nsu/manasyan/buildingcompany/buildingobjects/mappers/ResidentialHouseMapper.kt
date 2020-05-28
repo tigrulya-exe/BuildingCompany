@@ -2,7 +2,7 @@ package nsu.manasyan.buildingcompany.buildingobjects.mappers
 
 import nsu.manasyan.buildingcompany.buildingobjects.dto.ResidentialHouseDto
 import nsu.manasyan.buildingcompany.buildingobjects.model.ResidentialHouse
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
 import org.springframework.stereotype.Component
 
 @Component

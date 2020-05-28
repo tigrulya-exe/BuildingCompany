@@ -1,6 +1,9 @@
 package nsu.manasyan.buildingcompany.buildingobjects.model
 
-import nsu.manasyan.buildingcompany.model.*
+import nsu.manasyan.buildingcompany.abstracts.model.Identifiable
+import nsu.manasyan.buildingcompany.companypartsstuff.model.Area
+import nsu.manasyan.buildingcompany.companypartsstuff.model.Machinery
+import nsu.manasyan.buildingcompany.customers.model.Customer
 import javax.persistence.*
 
 @Entity

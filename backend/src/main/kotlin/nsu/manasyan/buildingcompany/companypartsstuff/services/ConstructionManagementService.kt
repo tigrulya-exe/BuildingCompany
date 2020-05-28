@@ -1,0 +1,10 @@
+package nsu.manasyan.buildingcompany.companypartsstuff.services
+
+import nsu.manasyan.buildingcompany.abstracts.services.AbstractCrudService
+import nsu.manasyan.buildingcompany.companypartsstuff.model.ConstructionManagement
+import nsu.manasyan.buildingcompany.companypartsstuff.repositories.ConstructionManagementsRepository
+import org.springframework.stereotype.Service
+
+@Service
+class ConstructionManagementService(managementsRepository: ConstructionManagementsRepository) :
+    AbstractCrudService<ConstructionManagement>(managementsRepository)

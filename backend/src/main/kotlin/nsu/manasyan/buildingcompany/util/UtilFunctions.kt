@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.util
 
-import nsu.manasyan.buildingcompany.model.Identifiable
+import nsu.manasyan.buildingcompany.abstracts.model.Identifiable
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort

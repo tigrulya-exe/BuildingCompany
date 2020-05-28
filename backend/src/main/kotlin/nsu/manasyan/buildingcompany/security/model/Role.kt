@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.security.model
 
-import nsu.manasyan.buildingcompany.model.Identifiable
+import nsu.manasyan.buildingcompany.abstracts.model.Identifiable
 import org.springframework.security.core.GrantedAuthority
 import javax.persistence.*
 

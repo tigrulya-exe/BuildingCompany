@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.repositories
 
-import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.NoArgConstructor
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.workers.model.Mason
 import org.springframework.data.domain.Page
@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MasonsRepository : JpaFilterRepository<Mason, Int> {
+interface MasonsRepository :
+    JpaFilterRepository<Mason, Int> {
 
     @Query(
         """

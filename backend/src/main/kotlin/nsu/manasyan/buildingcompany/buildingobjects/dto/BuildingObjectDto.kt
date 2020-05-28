@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.buildingobjects.dto
 
 import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
-import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.dto.model.Dto
+import nsu.manasyan.buildingcompany.NoArgConstructor
+import nsu.manasyan.buildingcompany.abstracts.dto.Dto
 
 @NoArgConstructor
 open class BuildingObjectDto(

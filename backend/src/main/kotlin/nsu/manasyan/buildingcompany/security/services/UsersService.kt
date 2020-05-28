@@ -7,7 +7,8 @@ import nsu.manasyan.buildingcompany.security.jwt.JwtProvider
 import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
 import nsu.manasyan.buildingcompany.security.repositories.UserRepository
-import nsu.manasyan.buildingcompany.services.AbstractCrudService
+import nsu.manasyan.buildingcompany.abstracts.services.AbstractCrudService
+import nsu.manasyan.buildingcompany.security.dto.AuthorizationTokensDto
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -48,7 +49,10 @@ class UsersService(
         logger().info("User ${user.nickname} logged in")
         val refreshToken = refreshTokenService.generateToken(user)
         val jwt = jwtProvider.generateToken(user.id!!, refreshToken.id!!)
-        return AuthorizationTokensDto(jwt, refreshToken.stringRepresentation)
+        return AuthorizationTokensDto(
+            jwt,
+            refreshToken.stringRepresentation
+        )
     }
 
     @Transactional
@@ -57,7 +61,10 @@ class UsersService(
         val user = newRefresh.user
         val jwt = jwtProvider.generateToken(user.id!!, newRefresh.id!!)
         logger().info("User ${user.nickname} refreshed tokens")
-        return AuthorizationTokensDto(jwt, newRefresh.stringRepresentation)
+        return AuthorizationTokensDto(
+            jwt,
+            newRefresh.stringRepresentation
+        )
     }
 
     fun restorePassword(email: String) {

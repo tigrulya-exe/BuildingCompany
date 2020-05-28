@@ -2,9 +2,9 @@ package nsu.manasyan.buildingcompany.buildingobjects.mappers
 
 import nsu.manasyan.buildingcompany.buildingobjects.dto.BuildingObjectDto
 import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
-import nsu.manasyan.buildingcompany.services.AreaService
-import nsu.manasyan.buildingcompany.services.CustomersService
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
+import nsu.manasyan.buildingcompany.companypartsstuff.services.AreaService
+import nsu.manasyan.buildingcompany.customers.services.CustomersService
 import org.springframework.stereotype.Component
 
 @Component

@@ -5,8 +5,8 @@ import nsu.manasyan.buildingcompany.buildingobjects.mappers.BridgeMapper
 import nsu.manasyan.buildingcompany.buildingobjects.model.Bridge
 import nsu.manasyan.buildingcompany.buildingobjects.repositories.BridgeFilter
 import nsu.manasyan.buildingcompany.buildingobjects.services.BridgeService
-import nsu.manasyan.buildingcompany.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.dto.model.PageDto
+import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
+import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

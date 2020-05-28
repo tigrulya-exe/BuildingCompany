@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
 import nsu.manasyan.buildingcompany.buildingobjects.model.Bridge
-import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface BridgesRepository : JpaFilterRepository<Bridge, Int> {
+interface BridgesRepository :
+    JpaFilterRepository<Bridge, Int> {
     @Query(
         """
         select b   

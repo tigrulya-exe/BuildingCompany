@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.workers.mappers
 
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
 import nsu.manasyan.buildingcompany.workers.dto.WorkerDto
 import nsu.manasyan.buildingcompany.workers.model.Worker
 import nsu.manasyan.buildingcompany.workers.services.BrigadeService

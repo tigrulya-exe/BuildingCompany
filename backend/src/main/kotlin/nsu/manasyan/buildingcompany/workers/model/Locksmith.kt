@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.workers.model
 
-import nsu.manasyan.buildingcompany.model.Post
+import nsu.manasyan.buildingcompany.abstracts.model.Post
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated

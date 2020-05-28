@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.technicalstuff.mappers
 
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
-import nsu.manasyan.buildingcompany.model.Post
-import nsu.manasyan.buildingcompany.services.AreaService
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
+import nsu.manasyan.buildingcompany.abstracts.model.Post
+import nsu.manasyan.buildingcompany.companypartsstuff.services.AreaService
 import nsu.manasyan.buildingcompany.technicalstuff.dto.TechnicalSpecialistDto
 import nsu.manasyan.buildingcompany.technicalstuff.model.Master
 import org.springframework.stereotype.Component

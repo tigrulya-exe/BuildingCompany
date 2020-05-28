@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.controllers
 
-import nsu.manasyan.buildingcompany.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.dto.model.PageDto
+import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
+import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.workers.dto.LocksmithDto
 import nsu.manasyan.buildingcompany.workers.mappers.LocksmithMapper

@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.security.repositories
 
-import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.NoArgConstructor
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.security.model.User
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 import java.util.*
 
-interface UserRepository : JpaFilterRepository<User, Int> {
+interface UserRepository :
+    JpaFilterRepository<User, Int> {
 
     @Query(
         """

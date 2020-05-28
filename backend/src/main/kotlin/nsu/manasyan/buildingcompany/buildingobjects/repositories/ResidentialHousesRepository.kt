@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
 import nsu.manasyan.buildingcompany.buildingobjects.model.ResidentialHouse
-import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ResidentialHousesRepository : JpaFilterRepository<ResidentialHouse, Int> {
+interface ResidentialHousesRepository :
+    JpaFilterRepository<ResidentialHouse, Int> {
     @Query(
         """
         select r   

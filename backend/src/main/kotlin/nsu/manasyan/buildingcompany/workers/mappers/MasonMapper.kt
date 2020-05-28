@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.mappers
 
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
-import nsu.manasyan.buildingcompany.model.Post
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
+import nsu.manasyan.buildingcompany.abstracts.model.Post
 import nsu.manasyan.buildingcompany.workers.dto.MasonDto
 import nsu.manasyan.buildingcompany.workers.model.Mason
 import org.springframework.stereotype.Component

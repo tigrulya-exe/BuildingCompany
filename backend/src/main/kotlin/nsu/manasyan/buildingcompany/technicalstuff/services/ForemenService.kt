@@ -1,6 +1,6 @@
 package nsu.manasyan.buildingcompany.technicalstuff.services
 
-import nsu.manasyan.buildingcompany.services.AbstractCrudService
+import nsu.manasyan.buildingcompany.abstracts.services.AbstractCrudService
 import nsu.manasyan.buildingcompany.technicalstuff.model.Foreman
 import nsu.manasyan.buildingcompany.technicalstuff.repositories.ForemenRepository
 import org.springframework.stereotype.Service

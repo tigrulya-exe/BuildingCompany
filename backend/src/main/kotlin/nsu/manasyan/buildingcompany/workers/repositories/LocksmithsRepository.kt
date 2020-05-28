@@ -1,14 +1,15 @@
 package nsu.manasyan.buildingcompany.workers.repositories
 
-import nsu.manasyan.buildingcompany.configuration.NoArgConstructor
-import nsu.manasyan.buildingcompany.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.NoArgConstructor
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.workers.model.Locksmith
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 
-interface LocksmithsRepository : JpaFilterRepository<Locksmith, Int> {
+interface LocksmithsRepository :
+    JpaFilterRepository<Locksmith, Int> {
     @Query(
         """
         select w   

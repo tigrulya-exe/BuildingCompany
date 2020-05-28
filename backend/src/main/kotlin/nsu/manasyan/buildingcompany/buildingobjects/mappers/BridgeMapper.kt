@@ -2,7 +2,7 @@ package nsu.manasyan.buildingcompany.buildingobjects.mappers
 
 import nsu.manasyan.buildingcompany.buildingobjects.dto.BridgeDto
 import nsu.manasyan.buildingcompany.buildingobjects.model.Bridge
-import nsu.manasyan.buildingcompany.dto.mappers.Mapper
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
 import org.springframework.stereotype.Component
 
 @Component
