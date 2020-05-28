@@ -28,6 +28,11 @@ class BuildingObjectController(
         objectService.addWorkTypes(idListDto.ids, buildingObjectId)
     }
 
+    @DeleteMapping("{buildingObjectId}/workTypes/{workTypeId}")
+    fun removeWorkType(@PathVariable buildingObjectId: Int, @PathVariable workTypeId: Int){
+        return objectService.removeWorkType(buildingObjectId, workTypeId)
+    }
+
     @GetMapping("/by-areas-or-managements")
     fun findByAreasOrManagements(
         @RequestParam areaIds: List<Int> = listOf(),

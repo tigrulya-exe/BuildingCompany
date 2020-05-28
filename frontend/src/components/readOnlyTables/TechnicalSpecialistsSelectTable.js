@@ -1,5 +1,5 @@
 import React from 'react';
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 
 
 export default class TechnicalSpecialistsTable extends React.Component {
@@ -16,7 +16,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 params={this.props.params}
                 columns={this.columns}
                 url={this.props.url || '/technical-specialists'}

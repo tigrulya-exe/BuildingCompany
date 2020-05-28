@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkTypesReadOnlyTable from "../readOnlyTables/WorkTypesReadOnlyTable";
 import BuildingsManyToManyEdit from "../modals/BuildingsManyToManyEdit";
+import {AXIOS} from "../../util/AxiosConfig";
 
 
 export default class WorkTypesInfo extends React.Component {
@@ -9,13 +10,15 @@ export default class WorkTypesInfo extends React.Component {
         this.state = {
             workTypesIds: [],
             showModal: false,
-        }
+            refresh: null
+        };
     }
 
     onModalClose = () => {
         this.setState({
             showModal: false
-        })
+        });
+        this.state.refresh()
     };
 
     showModal = () => {
@@ -23,7 +26,18 @@ export default class WorkTypesInfo extends React.Component {
             showModal: true
         });
     };
+    
+    getErrorFromReason = (reason) => reason.response?.data?.error;
 
+    onDelete = (oldData) =>
+        new Promise((resolve, reject) => {
+            AXIOS.delete(`building-objects/${this.props.buildingObjectId}/workTypes/${oldData.id}`)
+                .catch((reason) =>
+                    alert(`Error deleting entity: ${this.getErrorFromReason(reason)}`)
+                );
+
+            resolve()
+        });
 
     render() {
         return (
@@ -35,6 +49,8 @@ export default class WorkTypesInfo extends React.Component {
                     buildingObjectId={this.props.buildingObjectId}
                 />
                 <WorkTypesReadOnlyTable
+                    onDelete={this.onDelete}
+                    setRefresh={(refresh) => this.setState({refresh})}
                     params={{
                         buildingObjectId: this.props.buildingObjectId
                     }}

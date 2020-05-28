@@ -1,6 +1,6 @@
 import React from 'react';
 import BuildingObjectsFilter from '../../filters/buildingObjects/BuildingObjectsFilter'
-import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
+import SelectTable from "../../readOnlyTables/SelectTable";
 import WorkTypesInfo from "../../extendedInfos/WorkTypesInfo";
 import CrudTable from "../CrudTable";
 
@@ -14,7 +14,7 @@ export default class BuildingObjectsTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 columns={this.columns}
                 url='/building-objects'
                 tableName='Building objects'

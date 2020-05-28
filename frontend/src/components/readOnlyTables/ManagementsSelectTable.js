@@ -1,6 +1,6 @@
 import React from 'react';
 import ManagerInfo from '../extendedInfos/ManagerInfo'
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 
 export default class ConstructionManagementTable extends React.Component {
     columns = [
@@ -10,7 +10,7 @@ export default class ConstructionManagementTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 {...this.props}
                 columns={this.columns}
                 url='/construction-managements'

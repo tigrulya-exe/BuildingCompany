@@ -5,6 +5,7 @@ import nsu.manasyan.buildingcompany.security.model.User
 import nsu.manasyan.buildingcompany.security.repositories.TokenRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.convert.DurationUnit
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Clock
@@ -40,7 +41,7 @@ class RefreshTokenService(
     fun validateById(tokenId: Int) {
         val token = repository
             .findById(tokenId)
-            .orElseThrow { throw IllegalArgumentException("Wrong refresh") }
+            .orElseThrow { throw UsernameNotFoundException("Wrong refresh") }
         validateToken(token.stringRepresentation, Token.Type.REFRESH)
     }
 }

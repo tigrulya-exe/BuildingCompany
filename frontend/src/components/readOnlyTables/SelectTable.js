@@ -2,7 +2,7 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import {AXIOS} from '../../util/AxiosConfig'
 
-export default class ReadOnlyTable extends React.Component {
+export default class SelectTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +14,7 @@ export default class ReadOnlyTable extends React.Component {
             selectedRows: []
         };
 
+        this.props.setRefresh && this.props.setRefresh(this.onRefresh);
         this.firstFilter = false;
         this.tableRef = React.createRef();
     }
@@ -114,6 +115,12 @@ export default class ReadOnlyTable extends React.Component {
         this.setState({selectedRows: newSelectedRows});
     };
 
+    onDelete = (row) => {
+        const promise =  this.props.onDelete(row);
+        this.tableRef.current.onQueryChange();
+        return promise;
+    };
+
     render() {
         return (
             <MaterialTable
@@ -152,6 +159,9 @@ export default class ReadOnlyTable extends React.Component {
                     FilterRow: (props) => React.cloneElement(this.props.filterForm, {
                         onSubmit: this.onFilterSubmit, outerState: this.state.formState
                     })
+                }}
+                editable={{
+                    onRowDelete: this.props.onDelete && this.onDelete
                 }}
                 actions={[
                     {

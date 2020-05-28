@@ -29,13 +29,13 @@ export default class BuildingsManyToManyEdit extends React.Component {
             .catch(error => alert('Error'))
     };
 
-    getIds = (objects) => objects?.map(ob => ob.id);
 
     onTableSubmit = (data, propName) => {
         if (data) {
             this.setState({[propName]: data})
         }
     };
+
 
     render() {
         return (

@@ -29,4 +29,10 @@ class BuildingObjectService(
         val buildingObject = getEntity(buildingObjectId)
         buildingObject.workTypes.addAll(workTypes)
     }
+
+    @Transactional
+    fun removeWorkType(buildingObjectId: Int, workTypeId: Int) {
+        val buildingObject = getEntity(buildingObjectId)
+        buildingObject.workTypes.removeIf{it.id == workTypeId}
+    }
 }

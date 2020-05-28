@@ -1,6 +1,6 @@
 import React from 'react';
 import TechnicalSpecialistsFilter from '../../filters/technicalStuff/TechnicalSpecialistsFilter'
-import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
+import SelectTable from "../../readOnlyTables/SelectTable";
 
 
 export default class TechnicalSpecialistsTable extends React.Component {
@@ -17,7 +17,7 @@ export default class TechnicalSpecialistsTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 columns={this.columns}
                 url='/technical-specialists'
                 tableName='Technical Specialists'

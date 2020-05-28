@@ -1,6 +1,6 @@
 import React from 'react';
 import WorkersFilter from "../../filters/workers/WorkersFilter";
-import ReadOnlyTable from "../../readOnlyTables/ReadOnlyTable";
+import SelectTable from "../../readOnlyTables/SelectTable";
 
 
 export default class WorkersTable extends React.Component {
@@ -16,7 +16,7 @@ export default class WorkersTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 columns={this.columns}
                 tableName='Workers'
                 filterForm={<WorkersFilter/>}

@@ -7,17 +7,17 @@ import org.springframework.security.core.GrantedAuthority
 class JwtAuthentication(val jwt: String) : Authentication {
     private var isUserAuthenticated: Boolean = false
 
-    lateinit var user: User
+    var user: User? = null
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return user.roles ?: mutableListOf()
+        return user?.roles ?: mutableListOf()
     }
 
     override fun setAuthenticated(isAuthenticated: Boolean) {
         this.isUserAuthenticated = isAuthenticated
     }
 
-    override fun getName() = user.nickname
+    override fun getName() = user?.nickname
 
     override fun getPrincipal() = user
 

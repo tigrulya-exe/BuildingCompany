@@ -1,5 +1,5 @@
 import React from 'react';
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 
 export default class SingleSelectTable extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export default class SingleSelectTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 {...this.props}
                 selectionProps={rowData => ({
                     disabled: rowData.id !== this.state.checkedId && this.state.isChecked,

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 
 
 export default class WorkTypesReadOnlyTable extends React.Component {
@@ -10,7 +10,7 @@ export default class WorkTypesReadOnlyTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 {...this.props}
                 columns={this.columns}
                 url={this.props.url || '/work-types'}

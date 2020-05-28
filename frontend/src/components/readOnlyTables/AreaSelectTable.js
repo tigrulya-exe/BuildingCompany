@@ -1,6 +1,6 @@
 import React from 'react';
 import ManagerInfo from '../extendedInfos/ManagerInfo'
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 
 
 export default class AreaSelectTable extends React.Component {
@@ -12,7 +12,7 @@ export default class AreaSelectTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 columns={this.columns}
                 url='/areas'
                 tableName='Areas'

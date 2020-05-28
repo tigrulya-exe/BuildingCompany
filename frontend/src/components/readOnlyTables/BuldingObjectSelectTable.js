@@ -1,5 +1,5 @@
 import React from 'react';
-import ReadOnlyTable from "./ReadOnlyTable";
+import SelectTable from "./SelectTable";
 import ObjectScheduleInfo from "../extendedInfos/ObjectScheduleInfo";
 
 export default class BuildingObjectsSelectTable extends React.Component {
@@ -13,7 +13,7 @@ export default class BuildingObjectsSelectTable extends React.Component {
 
     render() {
         return (
-            <ReadOnlyTable
+            <SelectTable
                 columns={this.columns}
                 url={this.props.url || '/building-objects'}
                 tableName='Building objects'
