@@ -11,7 +11,8 @@ export default class QueryForm extends React.Component {
             results: [],
             perPage: 5,
             currentPage: 0,
-            offset: 0
+            offset: 0,
+            totalCount: 0
         }
     }
 
@@ -23,7 +24,7 @@ export default class QueryForm extends React.Component {
             currentPage: selectedPage,
             offset: offset,
             results: this.state.results
-        });
+        }, () => this.onSubmit());
 
     };
 
@@ -32,38 +33,45 @@ export default class QueryForm extends React.Component {
     };
 
     setResult(plainResults) {
-
         this.setState({
-            results: plainResults
+            results: plainResults?.result,
+            totalCount: plainResults?.totalCount
         })
     }
 
     getRow = (tuple) => {
         return (Array.isArray(tuple)
-            && (<Row>{tuple && tuple.map(column => <Col sm ><Form.Control disabled value={column}/></Col>)}</Row>))
+            && (<Row>{tuple && tuple.map(column => <Col sm><Form.Control disabled value={column}/></Col>)}</Row>))
             || (<Row><Col sm><Form.Control disabled value={tuple}/></Col></Row>)
     };
 
     getResults = () => {
-        const data = this.state.results?.slice(this.state.offset, this.state.offset + this.state.perPage);
+        // const data = this.state.results?.slice(this.state.offset, this.state.offset + this.state.perPage);
+        const data = this.state.results;
         return data?.map(tuple => this.getRow(tuple))
     };
 
     onSubmit = (event) => {
-        AXIOS.get('/query', {params: {query: this.state.query}})
+        AXIOS.get('/query', {
+            params: {
+                query: this.state.query,
+                pageSize: this.state.perPage,
+                page: this.state.currentPage
+            }
+        })
             .then((result) => this.setResult(result.data))
             .catch((error) => alert(error));
-        event.preventDefault()
+        event && event.preventDefault()
     };
 
     getPagination = () => {
-        if(this.state.results.length)
+        if (this.state.results.length)
             return <ReactPaginate
                 previousLabel={'previous'}
                 nextLabel={'next'}
                 breakLabel={'...'}
                 breakClassName={'break-me'}
-                pageCount={Math.ceil(this.state.results?.length / this.state.perPage)}
+                pageCount={Math.ceil(this.state.totalCount / this.state.perPage)}
                 onPageChange={this.handlePageClick}
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
@@ -88,7 +96,7 @@ export default class QueryForm extends React.Component {
                 <Jumbotron>
                     {this.getResults()}
                 </Jumbotron>
-                { this.getPagination() }
+                {this.getPagination()}
             </Form>
         )
     }
