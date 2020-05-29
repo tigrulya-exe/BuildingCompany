@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter
+
 
 @Configuration
 class SecurityConfig(
@@ -33,8 +36,12 @@ class SecurityConfig(
         http.anonymous()
             .and().authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-            .antMatchers("/profile").hasAuthority("DEFAULT")
-            .antMatchers("/api/**").hasAuthority("DEFAULT")
-            .antMatchers("/api/v1/users/**").hasAuthority("ADMIN")
+//            .antMatchers("/profile").hasAuthority("DEFAULT")
+//            .antMatchers("/api/**").hasAuthority("DEFAULT")
+//            .antMatchers("/api/v1/users/**").hasAuthority("ADMIN")
     }
 }
+
+@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+class MethodSecurityConfig : GlobalMethodSecurityConfiguration()

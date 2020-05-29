@@ -20,19 +20,27 @@ class UsersService(
     private val bCryptPasswordEncoder: PasswordEncoder,
     private val jwtProvider: JwtProvider,
     private val roleRepository: RoleRepository,
+    private val rolesService: RolesService,
     private val eventPublisher: ApplicationEventPublisher,
     private val tokenService: TokenService,
     private val refreshTokenService: RefreshTokenService
 ) : AbstractCrudService<User>(userRepository) {
 
-    //    @Transactional
     fun signUp(user: User) {
         checkUniqueParams(user)
         user.password = bCryptPasswordEncoder.encode(user.password)
+        user.roles = mutableSetOf()
         user.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
 
         logger().info("User ${user.nickname} signed up")
         eventPublisher.publishEvent(RegistrationCompleteEvent(userRepository.save(user)))
+    }
+
+    override fun updateEntity(entity: User) {
+        val dbInstance = getEntity(entity.id!!)
+        entity.roles = dbInstance.roles
+        entity.tokens = dbInstance.tokens
+        super.updateEntity(entity)
     }
 
     @Transactional
@@ -139,5 +147,19 @@ class UsersService(
         return userRepository
             .findCurrentUser()
             .orElseThrow { IllegalArgumentException("Unauthorized") }
+    }
+
+    @Transactional
+    fun addRoles(ids: List<Int>, userId: Int) {
+        val roles = ids.map { rolesService.getEntity(it) }
+        val user = getEntity(userId)
+        user.roles.addAll(roles)
+        userRepository.save(user)
+    }
+
+    @Transactional
+    fun removeRole(userId: Int, roleId: Int) {
+        val user = getEntity(userId)
+        user.roles.removeIf{it.id == roleId}
     }
 }

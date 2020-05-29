@@ -1,5 +1,6 @@
 package nsu.manasyan.buildingcompany.security.jwt
 
+import nsu.manasyan.buildingcompany.security.model.Permission
 import nsu.manasyan.buildingcompany.security.model.User
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -9,8 +10,10 @@ class JwtAuthentication(val jwt: String) : Authentication {
 
     var user: User? = null
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return user?.roles ?: mutableListOf()
+    override fun getAuthorities(): List<Permission> {
+        return user?.let {
+            it.roles.flatMap { it.permissions }
+        } ?: mutableListOf()
     }
 
     override fun setAuthenticated(isAuthenticated: Boolean) {

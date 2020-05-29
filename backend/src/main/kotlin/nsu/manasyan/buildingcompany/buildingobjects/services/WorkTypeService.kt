@@ -10,22 +10,21 @@ import org.springframework.stereotype.Service
 @Service
 class WorkTypeService(
     private val workTypeRepository: WorkTypeRepository
-//    ,private val buildingObjectService: BuildingObjectService
 ) : AbstractCrudService<WorkType>(workTypeRepository) {
     fun getOrCreateByName(name: String): WorkType {
         return workTypeRepository
             .findByNameIgnoreCase(name)
-            .orElseGet { workTypeRepository.save(
-                WorkType(
-                    name
+            .orElseGet {
+                workTypeRepository.save(
+                    WorkType(
+                        name
+                    )
                 )
-            ) }
+            }
     }
 
     fun getByBuildingObject(buildingObjectId: Int, params: FindRequestParameters?): Page<WorkType> {
         val pageable = getPageable(params)
-//        val buildingObject = buildingObjectService.getEntity(buildingObjectId)
         return workTypeRepository.findByBuildingObject(buildingObjectId, pageable)
-//        return workTypeRepository.findByBuildingObjectsContains(buildingObject, pageable)
     }
 }

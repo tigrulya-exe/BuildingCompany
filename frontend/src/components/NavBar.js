@@ -28,7 +28,6 @@ export default class NavBar extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/query">Native query</Link></Nav.Link>
                         <NavDropdown title="Tables" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link to="/customers">Customers</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/building-objects/all">Building
@@ -57,6 +56,7 @@ export default class NavBar extends React.Component {
                                 to="/machinery-by-building-object">MachineryByBuildingObject</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                    <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/admin/query">Admin</Link></Nav.Link>
                     {
                         this.context.isAuthorized
                             ? <Form inline>

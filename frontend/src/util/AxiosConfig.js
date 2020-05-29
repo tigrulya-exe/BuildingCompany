@@ -30,12 +30,12 @@ const logResponse = (response) => {
 
 const redirectIfNotAuthorized = (err) => {
     console.log(err.response);
-    if (err.response.status === 403) {
+    if (err.response.status === 401) {
         tokenStorage.refreshTokens();
     }
     if(err.response.status === 403){
         alert("Forbidden");
-        history.goBack();
+        // history.goBack();
     }
     return Promise.reject(err);
 };

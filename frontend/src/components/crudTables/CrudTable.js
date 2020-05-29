@@ -158,7 +158,7 @@ export default class CrudTable extends React.Component {
                     }
                     options={{
                         actionsColumnIndex: -1,
-                        filtering: true,
+                        filtering: this.props.filterForm,
                         search: false,
                         pageSize: 8,
                         pageSizeOptions: []
@@ -168,8 +168,8 @@ export default class CrudTable extends React.Component {
                         onRowUpdate: this.updateEntity,
                         onRowDelete: this.deleteEntity,
                     }}
-                    components={{
-                        FilterRow: (props) => React.cloneElement(this.props.filterForm, {
+                    components={ this.props.filterForm && {
+                        FilterRow:(props) => React.cloneElement(this.props.filterForm, {
                             onSubmit: this.onFilterSubmit, outerState: this.state.formState
                         })
                     }}

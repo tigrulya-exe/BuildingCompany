@@ -1,11 +1,15 @@
 package nsu.manasyan.buildingcompany.abstracts.services
 
 import nsu.manasyan.buildingcompany.abstracts.dto.NativeQueryResultsDto
+import nsu.manasyan.buildingcompany.exceptions.NoDataFoundException
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
+import org.hibernate.exception.GenericJDBCException
 import org.springframework.stereotype.Service
+import java.lang.IllegalArgumentException
 import java.math.BigInteger
 import javax.persistence.EntityManager
+import kotlin.reflect.typeOf
 
 
 @Service
@@ -25,15 +29,18 @@ class NativeQueryService(private val entityManager: EntityManager) {
             val query = entityManager
                 .createNativeQuery(queryString)
                 .setFirstResult(page * pageSize)
-                .setMaxResults(pageSize).resultList
-            if(query.size > 0){
+                .setMaxResults(pageSize)
+
+            if(query.resultList.size > 0){
                 totalCount = getTotalCount(queryString)
             }
-            NativeQueryResultsDto(query, totalCount)
+            NativeQueryResultsDto(query.resultList, totalCount)
         } catch (exc: Exception) {
             logger().error("SQL query exception: ${exc.localizedMessage}")
-            NativeQueryResultsDto(arrayListOf<Any>(), totalCount)
-            //            throw NoDataFoundException("No data")
+            when(exc.cause){
+                is GenericJDBCException -> NativeQueryResultsDto(arrayListOf<Any>(), totalCount)
+                else -> throw NoDataFoundException("No data")
+            }
         }
     }
 

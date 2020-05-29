@@ -8,6 +8,7 @@ import nsu.manasyan.buildingcompany.security.dto.TokenDto
 import nsu.manasyan.buildingcompany.security.dto.UserDto
 import nsu.manasyan.buildingcompany.security.model.*
 import nsu.manasyan.buildingcompany.security.services.UsersService
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 import org.springframework.web.servlet.ModelAndView
@@ -41,6 +42,7 @@ class AuthorizationController(
     }
 
     @GetMapping("/profile")
+    @PreAuthorize("hasAuthority('READ')")
     fun getProfile() : UserDto {
         return userMapper.toDto(usersService.getProfile())
     }

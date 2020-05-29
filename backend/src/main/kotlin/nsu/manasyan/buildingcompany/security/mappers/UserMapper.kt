@@ -10,13 +10,13 @@ class UserMapper : Mapper<User, UserDto>() {
     override fun toDto(entity: User): UserDto {
         val dto = mapper.map(entity, UserDto::class.java)
         // TODO tmp
-        dto.password = ""
+//        dto.password = ""
         return dto
     }
 
     override fun toEntity(dto: UserDto): User {
         val entity = mapper.map(dto, User::class.java)
-        entity.roles = mutableSetOf()
+//        entity.roles = mutableSetOf()
         return entity
     }
 }

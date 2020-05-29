@@ -23,6 +23,12 @@ class BuildingObjectService(
         return objectRepository.findByAreasOrManagements(areaIds, managementIds, pageable)
     }
 
+    override fun updateEntity(entity: BuildingObject) {
+        val building = getEntity(entity.id!!)
+        entity.workTypes = building.workTypes
+        super.updateEntity(entity)
+    }
+
     @Transactional
     fun addWorkTypes(workTypeIds: List<Int>, buildingObjectId: Int) {
         val workTypes = workTypeIds.map { workTypeService.getEntity(it) }

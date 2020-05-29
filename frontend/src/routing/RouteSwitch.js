@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QueryForm from '../components/forms/QueryForm';
+import QueryForm from '../components/admin/QueryForm';
 import CustomerTable from '../components/crudTables/CustomerTable';
 import AreasTable from '../components/crudTables/AreasTable';
 import MachineryTable from '../components/crudTables/MachineryTable';
@@ -26,6 +26,7 @@ import BuildingObjectsPage from "../components/crudTables/buildingObjects/Buildi
 import WorkersByBuildingObject from "../components/queries/WorkersByBuildingObject";
 import MachineryByManagements from "../components/queries/MachineryByManagements";
 import Profile from "../components/Profile";
+import AdminPage from "../components/admin/AdminPage";
 
 export default function RouteSwitch(props) {
     return (
@@ -97,6 +98,10 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<WorkScheduleTable/>}
                 path="/work-schedules">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<AdminPage/>}
+                path="/admin/:name">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<Profile/>}

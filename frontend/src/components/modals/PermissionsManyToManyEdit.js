@@ -1,26 +1,26 @@
 import React from "react";
-import WorkTypesReadOnlyTable from "../readOnlyTables/WorkTypesReadOnlyTable";
 import {AXIOS} from "../../util/AxiosConfig";
 import ManyToManyEdit from "./ManyToManyEdit";
+import PermissionsSelectTable from "../readOnlyTables/PermissionsSelectTable";
 
-export default class BuildingsManyToManyEdit extends React.Component {
+export default class PermissionsManyToManyEdit extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            workTypesIds: [],
+            permissionIds: [],
         }
     }
 
     onSubmit = () => {
-        if (!this.state.workTypesIds.length) {
+        if (!this.state.permissionIds.length) {
             this.props.onModalClose();
             return;
         }
 
         AXIOS
-            .post(`/building-objects/workTypes/${this.props.buildingObjectId}`, {
-                ids: this.state.workTypesIds
+            .post(`/roles/${this.props.roleId}/permissions`, {
+                ids: this.state.permissionIds
             })
             .then(response => {
                 alert('Success');
@@ -43,12 +43,11 @@ export default class BuildingsManyToManyEdit extends React.Component {
                 {...this.props}
                 onSubmit={this.onSubmit}
             >
-                <WorkTypesReadOnlyTable
-                    onSelectSubmit={(data) => this.onTableSubmit(data, 'workTypesIds')}
+                <PermissionsSelectTable
+                    onSelectSubmit={(data) => this.onTableSubmit(data, 'permissionIds')}
                 />
             </ManyToManyEdit>
         );
     }
-
 
 }

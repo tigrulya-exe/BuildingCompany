@@ -9,10 +9,12 @@ import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.IdListDto
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("\${application.path}/building-objects")
+@PreAuthorize("hasAuthority('READ')")
 class BuildingObjectController(
     private val objectService: BuildingObjectService,
     mapper: BuildingObjectMapper
@@ -23,14 +25,16 @@ class BuildingObjectController(
         return super.findAllByFilter(filter, params)
     }
 
+    @PreAuthorize("hasAuthority('UPDATE')")
     @PostMapping("/workTypes/{buildingObjectId}")
     fun addWorkTypes(@RequestBody idListDto: IdListDto, @PathVariable buildingObjectId: Int){
         objectService.addWorkTypes(idListDto.ids, buildingObjectId)
     }
 
-    @DeleteMapping("{buildingObjectId}/workTypes/{workTypeId}")
+    @PreAuthorize("hasAuthority('DELETE')")
+    @DeleteMapping("/{buildingObjectId}/workTypes/{workTypeId}")
     fun removeWorkType(@PathVariable buildingObjectId: Int, @PathVariable workTypeId: Int){
-        return objectService.removeWorkType(buildingObjectId, workTypeId)
+        objectService.removeWorkType(buildingObjectId, workTypeId)
     }
 
     @GetMapping("/by-areas-or-managements")

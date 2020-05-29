@@ -35,8 +35,6 @@ interface WorkTypeRepository :
     """)
     fun findByBuildingObject(buildingObjectId: Int, pageable: Pageable) : Page<WorkType>
 
-//    fun findByBuildingObjectsContains(buildingObject: BuildingObject, pageable: Pageable) : Page<WorkType>
-
     fun findByNameIgnoreCase(name: String): Optional<WorkType>
 }
 
