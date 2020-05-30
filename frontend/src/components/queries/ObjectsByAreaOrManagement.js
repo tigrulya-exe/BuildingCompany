@@ -36,20 +36,6 @@ export default class ObjectsByAreaOrManagement extends React.Component {
         })
     };
 
-    // TODO передать через пропсы и возвращать бул
-    // onSubmit = (event) => {
-    //     event.preventDefault();
-    //
-    //     if (!this.state.areaIds.length && !this.state.managementIds.length) {
-    //         this.setState({
-    //             showModal: true,
-    //             modalMessage: 'Choose areas or/and managements!'
-    //         });
-    //     }
-    //
-    //     this.setState({})
-    // };
-
     render() {
         return (
             <>
