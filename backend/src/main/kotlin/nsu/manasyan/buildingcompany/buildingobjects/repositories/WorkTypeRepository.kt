@@ -37,16 +37,19 @@ interface WorkTypeRepository :
 
     @Query("""
         select wt
-        from WorkType wt join WorkSchedule ws 
-            on ws.brigadeWork.workType = wt
-        join ScheduleDelay sd
-            on sd = sd.scheduleRow
-        left join Area a 
-            on a = ws.brigadeWork.buildingObject.area
-        where (:areaId is null or a.id = :areaId)
-        and (:managementId is null or a.management.id = :managementId)
+        from WorkType wt 
+        join BrigadeObjectWork bow on bow.workType = wt
+        join WorkSchedule ws on ws.brigadeWork = bow
+        join ScheduleDelay sd on sd = sd.scheduleRow
+        left join Area a on a = ws.brigadeWork.buildingObject.area
+        where (coalesce(:areaIds, :areaIds) is null or a.id in :areaIds)
+        and (coalesce(:managementIds, :managementIds) is null or a.management.id in :managementIds)
     """)
-    fun findByAreaManagementDelay(areaId: Int?, managementId: Int?, pageable: Pageable) : Page<WorkType>
+    fun findByAreaManagementDelay(
+        areaIds: List<Int>?,
+        managementIds: List<Int>?,
+        pageable: Pageable
+    ) : Page<WorkType>
 
     fun findByNameIgnoreCase(name: String): Optional<WorkType>
 }

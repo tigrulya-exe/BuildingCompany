@@ -26,6 +26,13 @@ class WorkTypeController(
         return mapper.toPageDto(workTypeService.getByBuildingObject(buildingObjectId, params))
     }
 
+    @GetMapping("/by-areas-managements-delay")
+    fun findByAreaManagementDelay(@RequestParam areaIds: List<Int>?,
+                                  @RequestParam managementIds: List<Int>?,
+                                  params: FindRequestParameters?): PageDto<*> {
+        return mapper.toPageDto(workTypeService.findByAreaManagementDelay(areaIds, managementIds, params))
+    }
+
     @GetMapping("/filter")
     fun getAllEntitiesByFilter(filter: WorkTypeFilter?, params: FindRequestParameters?): PageDto<*> {
         return super.findAllByFilter(filter, params)

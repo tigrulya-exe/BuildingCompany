@@ -15,6 +15,7 @@ export default class WorkTypesReadOnlyTable extends React.Component {
                 columns={this.columns}
                 url={this.props.url || '/work-types'}
                 tableName='Work types'
+                onSelectSubmit={this.props.onSelectSubmit}
             />
         )
     }

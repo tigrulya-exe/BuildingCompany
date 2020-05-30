@@ -47,16 +47,20 @@ export default class NavBar extends React.Component {
                         </NavDropdown>
                         <NavDropdown title="Queries" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link
-                                to="/specialists-by-area-or-management">SpecialistsByAreaOrManagement</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/objects-by-area-or-management">ObjectsByAreaOrManagement</Link></NavDropdown.Item>
+                                to="/specialists-by-area-or-management">Specialists By Area Or Management</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/objects-by-area-or-management">Objects By AreaOr Management</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
-                                to="/workers-by-building-object">WorkersByBuildingObject</Link></NavDropdown.Item>
+                                to="/workers-by-building-object">Workers By BuildingObject</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
-                                to="/machinery-by-managements">MachineryByManagements</Link></NavDropdown.Item>
+                                to="/machinery-by-managements">Machinery By Managements</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
-                                to="/machinery-by-building-object">MachineryByBuildingObject</Link></NavDropdown.Item>
+                                to="/machinery-by-building-object">Machinery By BuildingObject</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
                                 to="/building-report">Building object report</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/objects-by-work-types">Building objects by work types</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/work-types-with-delay">Work types with delay</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/admin/query">Admin</Link></Nav.Link>

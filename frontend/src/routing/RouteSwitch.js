@@ -29,6 +29,8 @@ import Profile from "../components/Profile";
 import AdminPage from "../components/admin/AdminPage";
 import WorkTypesTable from "../components/crudTables/buildingObjects/WorkTypesTable";
 import GetBuildingReport from "../components/queries/GetBuildingReport";
+import ObjectsByWorkType from "../components/queries/ObjectsByWorkType";
+import WorkTypesWithDelay from "../components/queries/WorkTypesWithDelay";
 
 export default function RouteSwitch(props) {
     return (
@@ -112,6 +114,14 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<WorkTypesTable/>}
                 path="/work-types">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<ObjectsByWorkType/>}
+                path="/objects-by-work-types">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<WorkTypesWithDelay/>}
+                path="/work-types-with-delay">
             </AuthenticatedRoute>
             <AuthenticatedRoute
                 component={<GetBuildingReport/>}

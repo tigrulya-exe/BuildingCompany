@@ -39,21 +39,21 @@ interface BuildingObjectRepository :
     @Query(
         """
         select b
-        from BuildingObject b join WorkSchedule ws 
-        on ws.brigadeWork.buildingObject = b
+        from BuildingObject b
         join Area a on a = b.area
-        where (:managementId is null or a.management.id = :managementId)
-        and (:workTypeId is null or ws.brigadeWork.workType.id = :workTypeId)
-        and (:workTypeId is null or ws.brigadeWork.workType.id = :workTypeId)
-        and (coalesce(:startDateMin,:startDateMin) is null or ws.startDate >= :startDateMin)
+        join BrigadeObjectWork bow on bow.buildingObject = b
+        join WorkSchedule ws on ws.brigadeWork = bow
+        where (coalesce(:managementIds, :managementIds) is null or a.management.id in :managementIds)
+        and (coalesce(:workTypeIds, :workTypeIds) is null or bow.workType.id in :workTypeIds)
+        and (coalesce(:startDateMin, :startDateMin) is null or ws.startDate >= :startDateMin)
         and (coalesce(:startDateMax, :startDateMax) is null or ws.startDate <= :startDateMax)
     """
     )
-    fun findByAreasManagementsWorkTypes(
-        managementId: Int?,
+    fun findByManagementsOrWorkTypes(
+        managementIds: List<Int>?,
         startDateMin: Date?,
         startDateMax: Date?,
-        workTypeId: Int?,
+        workTypeIds: List<Int>?,
         pageable: Pageable
     ): Page<BuildingObject>
 
