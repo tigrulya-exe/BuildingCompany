@@ -1,10 +1,10 @@
 package nsu.manasyan.buildingcompany.buildingobjects.controllers
 
 import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.buildingobjects.mappers.WorkScheduleMapper
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.DelayDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.WorkScheduleDto
+import nsu.manasyan.buildingcompany.buildingobjects.mappers.WorkScheduleMapper
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkSchedule
 import nsu.manasyan.buildingcompany.buildingobjects.repositories.BrigadeObjectWorkFilter
 import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkScheduleFilter
@@ -41,7 +41,7 @@ class WorkScheduleController(
     }
 
     @GetMapping("/by-schedule-row/{scheduleRowId}")
-    fun findByScheduleRowId(@PathVariable scheduleRowId: Int): DelayDto?{
+    fun findByScheduleRowId(@PathVariable scheduleRowId: Int): DelayDto? {
         val delay = scheduleService.findByScheduleRowId(scheduleRowId)
         return delay?.let { DelayDto(it.delay) }
     }

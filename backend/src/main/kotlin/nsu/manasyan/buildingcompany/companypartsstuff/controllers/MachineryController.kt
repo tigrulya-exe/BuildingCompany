@@ -1,9 +1,9 @@
 package nsu.manasyan.buildingcompany.companypartsstuff.controllers
 
 import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.companypartsstuff.mappers.MachineryMapper
-import nsu.manasyan.buildingcompany.companypartsstuff.dto.MachineryDto
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
+import nsu.manasyan.buildingcompany.companypartsstuff.dto.MachineryDto
+import nsu.manasyan.buildingcompany.companypartsstuff.mappers.MachineryMapper
 import nsu.manasyan.buildingcompany.companypartsstuff.model.Machinery
 import nsu.manasyan.buildingcompany.companypartsstuff.repositories.MachineryFilter
 import nsu.manasyan.buildingcompany.companypartsstuff.services.MachineryService

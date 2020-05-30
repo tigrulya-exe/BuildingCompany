@@ -1,6 +1,6 @@
 import {axiosNonApi} from "../util/AxiosConfig";
 
-export default class TokenStorage{
+export default class TokenStorage {
     constructor(listeners) {
         this.isAuthorized = localStorage.getItem("refreshToken");
         this.listeners = listeners;
@@ -8,7 +8,7 @@ export default class TokenStorage{
     }
 
     notifyListeners = () => {
-        for (const listener of this.listeners){
+        for (const listener of this.listeners) {
             listener(this.isAuthorized)
         }
     };
@@ -34,7 +34,7 @@ export default class TokenStorage{
     };
 
     refreshTokens = () => {
-        if(this.alreadyRefreshed){
+        if (this.alreadyRefreshed) {
             this.logout();
             return;
         }

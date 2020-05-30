@@ -29,7 +29,8 @@ class MaterialsController(
     fun findByAreaManagementExceedance(
         @RequestParam areaIds: List<Int>?,
         @RequestParam managementIds: List<Int>?,
-        params: FindRequestParameters?): PageDto<*> {
+        params: FindRequestParameters?
+    ): PageDto<*> {
         return mapper.toPageDto(materialsService.findByAreaManagementExceedance(areaIds, managementIds, params))
     }
 }

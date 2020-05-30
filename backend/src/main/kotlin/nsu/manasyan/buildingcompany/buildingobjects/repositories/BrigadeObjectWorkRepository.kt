@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
 import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
-import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
 import nsu.manasyan.buildingcompany.buildingobjects.model.BrigadeObjectWork
+import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkType
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.workers.model.Brigade

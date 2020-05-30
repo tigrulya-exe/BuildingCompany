@@ -5,7 +5,6 @@ import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.WorkTypeDto
 import nsu.manasyan.buildingcompany.buildingobjects.mappers.WorkTypeMapper
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkType
-import nsu.manasyan.buildingcompany.buildingobjects.repositories.MaterialFilter
 import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkTypeFilter
 import nsu.manasyan.buildingcompany.buildingobjects.services.WorkTypeService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
@@ -27,9 +26,11 @@ class WorkTypeController(
     }
 
     @GetMapping("/by-areas-managements-delay")
-    fun findByAreaManagementDelay(@RequestParam areaIds: List<Int>?,
-                                  @RequestParam managementIds: List<Int>?,
-                                  params: FindRequestParameters?): PageDto<*> {
+    fun findByAreaManagementDelay(
+        @RequestParam areaIds: List<Int>?,
+        @RequestParam managementIds: List<Int>?,
+        params: FindRequestParameters?
+    ): PageDto<*> {
         return mapper.toPageDto(workTypeService.findByAreaManagementDelay(areaIds, managementIds, params))
     }
 

@@ -10,19 +10,23 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 
 interface PermissionRepository : JpaFilterRepository<Permission, Int> {
-    @Query("""
+    @Query(
+        """
         select r
         from Permission r
         where (:#{#filter.name} is null or lower(r.stringRepresentation) like :#{#filter.name})
-    """)
+    """
+    )
     override fun findAllByFilter(filter: Filter<in Permission>?, pageable: Pageable): Page<Permission>
 
-    @Query("""
+    @Query(
+        """
         select p
         from Permission p join UserRole r
         on r member p.roles
         where :roleId = r.id
-    """)
+    """
+    )
     fun findByRole(roleId: Int, pageable: Pageable): Page<Permission>
 }
 

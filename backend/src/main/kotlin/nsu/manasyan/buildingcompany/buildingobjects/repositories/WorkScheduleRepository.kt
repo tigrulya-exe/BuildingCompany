@@ -1,14 +1,12 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
-import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.NoArgConstructor
-import nsu.manasyan.buildingcompany.buildingobjects.model.ScheduleDelay
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkSchedule
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository

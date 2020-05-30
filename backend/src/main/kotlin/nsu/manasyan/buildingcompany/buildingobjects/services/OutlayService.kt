@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
 class OutlayService(
     outlayRepository: OutlayRepository,
     private val outlayExceedanceRepository: OutlayExceedanceRepository
-) : AbstractCrudService<Outlay>(outlayRepository){
+) : AbstractCrudService<Outlay>(outlayRepository) {
 
     fun getExceedanceByOutlayId(outlayId: Int): OutlayExceedance? {
         val outlay = getEntity(outlayId)

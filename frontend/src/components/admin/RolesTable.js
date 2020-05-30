@@ -1,7 +1,6 @@
 import React from 'react';
 import CrudTable from '../crudTables/CrudTable'
 import PermissionsInfo from "../extendedInfos/PermissionsInfo";
-import RolesFilter from "../filters/RolesFilter";
 
 export default class RolesTable extends React.Component {
     columns = [

@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkScheduleFilter from '../filters/WorkScheduleFilter'
 import SelectTable from "./SelectTable";
+import DelayInfo from "../extendedInfos/DelayInfo";
 
 export default class WorkScheduleTable extends React.Component {
     columns = [
@@ -20,6 +21,8 @@ export default class WorkScheduleTable extends React.Component {
                 url={this.props.url || '    /work-schedules'}
                 tableName='WorkSchedule'
                 filterForm={<WorkScheduleFilter/>}
+                detailPanel={(rowData) => <DelayInfo scheduleId={rowData.id}/>}
+                onRowClick={(event, rowData, togglePanel) => togglePanel()}
             />
         )
     }

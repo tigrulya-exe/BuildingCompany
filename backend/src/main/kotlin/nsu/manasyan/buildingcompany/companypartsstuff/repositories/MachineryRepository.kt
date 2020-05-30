@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.companypartsstuff.repositories
 
-import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.NoArgConstructor
+import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.companypartsstuff.model.Machinery
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate

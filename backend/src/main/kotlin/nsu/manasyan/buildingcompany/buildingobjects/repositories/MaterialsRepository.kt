@@ -2,7 +2,6 @@ package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
 import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
 import nsu.manasyan.buildingcompany.buildingobjects.model.Material
-import nsu.manasyan.buildingcompany.buildingobjects.model.WorkType
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page
@@ -26,7 +25,8 @@ interface MaterialsRepository :
         pageable: Pageable
     ): Page<Material>
 
-    @Query("""
+    @Query(
+        """
         select m
         from Material m 
         join Outlay o on m = o.material
@@ -34,12 +34,13 @@ interface MaterialsRepository :
         left join Area a on a = o.buildingObject.area
         where (coalesce(:areaIds, :areaIds) is null or a.id in :areaIds)
         and (coalesce(:managementIds, :managementIds) is null or a.management.id in :managementIds)
-    """)
+    """
+    )
     fun findByAreaManagementExceedance(
         areaIds: List<Int>?,
         managementIds: List<Int>?,
         pageable: Pageable
-    ) : Page<Material>
+    ): Page<Material>
 }
 
 class MaterialFilter : Filter<Material> {

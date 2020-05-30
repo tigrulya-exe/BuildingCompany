@@ -4,4 +4,4 @@ import nsu.manasyan.buildingcompany.NoArgConstructor
 import java.util.*
 
 @NoArgConstructor
-class DelayDto(delay: Date?)
+class DelayDto(var delay: Date?)

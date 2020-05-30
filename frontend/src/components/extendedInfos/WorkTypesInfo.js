@@ -26,7 +26,7 @@ export default class WorkTypesInfo extends React.Component {
             showModal: true
         });
     };
-    
+
     getErrorFromReason = (reason) => reason.response?.data?.error;
 
     onDelete = (oldData) =>

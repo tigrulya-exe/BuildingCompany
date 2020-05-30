@@ -24,7 +24,8 @@ export default class NavBar extends React.Component {
     render() {
         return (
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand><Link style={{textDecoration: 'none', color: 'white'}} to="/profile">Building Company</Link></Navbar.Brand>
+                <Navbar.Brand><Link style={{textDecoration: 'none', color: 'white'}} to="/profile">Building
+                    Company</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -47,8 +48,10 @@ export default class NavBar extends React.Component {
                         </NavDropdown>
                         <NavDropdown title="Queries" id="basic-nav-dropdown">
                             <NavDropdown.Item><Link
-                                to="/specialists-by-area-or-management">Specialists By Area Or Management</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/objects-by-area-or-management">Objects By AreaOr Management</Link></NavDropdown.Item>
+                                to="/specialists-by-area-or-management">Specialists By Area Or
+                                Management</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/objects-by-area-or-management">Objects By AreaOr
+                                Management</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
                                 to="/workers-by-building-object">Workers By BuildingObject</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
@@ -65,7 +68,8 @@ export default class NavBar extends React.Component {
                                 to="/materials-with-exceedance">Materials with exceedance</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/admin/query">Admin</Link></Nav.Link>
+                    <Nav.Link><Link style={{textDecoration: 'none', color: 'white'}}
+                                    to="/admin/query">Admin</Link></Nav.Link>
                     {
                         this.context.isAuthorized
                             ? <Form inline>

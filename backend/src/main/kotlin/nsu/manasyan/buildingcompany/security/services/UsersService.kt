@@ -1,14 +1,16 @@
 package nsu.manasyan.buildingcompany.security.services
 
+import nsu.manasyan.buildingcompany.abstracts.services.AbstractCrudService
 import nsu.manasyan.buildingcompany.logger
+import nsu.manasyan.buildingcompany.security.dto.AuthorizationTokensDto
 import nsu.manasyan.buildingcompany.security.events.PasswordRestoreEvent
 import nsu.manasyan.buildingcompany.security.events.RegistrationCompleteEvent
 import nsu.manasyan.buildingcompany.security.jwt.JwtProvider
-import nsu.manasyan.buildingcompany.security.model.*
+import nsu.manasyan.buildingcompany.security.model.Credentials
+import nsu.manasyan.buildingcompany.security.model.Token
+import nsu.manasyan.buildingcompany.security.model.User
 import nsu.manasyan.buildingcompany.security.repositories.RoleRepository
 import nsu.manasyan.buildingcompany.security.repositories.UserRepository
-import nsu.manasyan.buildingcompany.abstracts.services.AbstractCrudService
-import nsu.manasyan.buildingcompany.security.dto.AuthorizationTokensDto
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -45,7 +47,7 @@ class UsersService(
         val dbInstance = getEntity(entity.id!!)
         entity.roles = dbInstance.roles
         entity.tokens = dbInstance.tokens
-        if(dbInstance.password != entity.password){
+        if (dbInstance.password != entity.password) {
             entity.password = bCryptPasswordEncoder.encode(entity.password)
         }
         super.updateEntity(entity)
@@ -148,10 +150,10 @@ class UsersService(
     }
 
     fun getProfile(): User {
-        return  getCurrentUser()
+        return getCurrentUser()
     }
 
-    fun getCurrentUser(): User{
+    fun getCurrentUser(): User {
         return userRepository
             .findCurrentUser()
             .orElseThrow { IllegalArgumentException("Unauthorized") }
@@ -168,6 +170,6 @@ class UsersService(
     @Transactional
     fun removeRole(userId: Int, roleId: Int) {
         val user = getEntity(userId)
-        user.roles.removeIf{it.id == roleId}
+        user.roles.removeIf { it.id == roleId }
     }
 }

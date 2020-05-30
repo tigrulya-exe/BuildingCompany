@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.workers.model
 
-import nsu.manasyan.buildingcompany.companypartsstuff.model.ConstructionManagement
 import nsu.manasyan.buildingcompany.abstracts.model.Identifiable
+import nsu.manasyan.buildingcompany.companypartsstuff.model.ConstructionManagement
 import javax.persistence.*
 
 @Entity

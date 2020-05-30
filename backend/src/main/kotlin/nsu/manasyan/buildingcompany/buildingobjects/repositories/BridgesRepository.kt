@@ -1,7 +1,7 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
-import nsu.manasyan.buildingcompany.buildingobjects.model.Bridge
 import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
+import nsu.manasyan.buildingcompany.buildingobjects.model.Bridge
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
 import org.springframework.data.domain.Page

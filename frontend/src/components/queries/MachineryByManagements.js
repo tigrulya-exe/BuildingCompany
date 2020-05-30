@@ -46,7 +46,8 @@ export default class MachineryByManagements extends React.Component {
                 />
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group controlId="ManagementSelectForm">
-                        <Form.Label>{`Selected management ids: ${this.state.constructionManagementIds}`}</Form.Label> <br/>
+                        <Form.Label>{`Selected management ids: ${this.state.constructionManagementIds}`}</Form.Label>
+                        <br/>
                         <CollapseContainer
                             buttonText="Expand managements"
                             childId="ManagementSelectTable">

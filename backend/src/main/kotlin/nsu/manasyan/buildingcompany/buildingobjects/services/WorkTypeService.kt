@@ -6,7 +6,6 @@ import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkTypeReposit
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.getNullableList
 import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -32,10 +31,12 @@ class WorkTypeService(
     fun findByAreaManagementDelay(
         areaIds: List<Int>?,
         managementIds: List<Int>?,
-        params: FindRequestParameters?): Page<WorkType> {
+        params: FindRequestParameters?
+    ): Page<WorkType> {
         val pageable = getPageable(params)
         return workTypeRepository.findByAreaManagementDelay(
-            getNullableList(areaIds), getNullableList(managementIds), pageable)
+            getNullableList(areaIds), getNullableList(managementIds), pageable
+        )
     }
 
     fun getByBuildingObject(buildingObjectId: Int, params: FindRequestParameters?): Page<WorkType> {

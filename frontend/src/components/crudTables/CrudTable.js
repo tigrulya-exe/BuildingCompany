@@ -168,8 +168,8 @@ export default class CrudTable extends React.Component {
                         onRowUpdate: this.updateEntity,
                         onRowDelete: this.deleteEntity,
                     }}
-                    components={ this.props.filterForm && {
-                        FilterRow:(props) => React.cloneElement(this.props.filterForm, {
+                    components={this.props.filterForm && {
+                        FilterRow: (props) => React.cloneElement(this.props.filterForm, {
                             onSubmit: this.onFilterSubmit, outerState: this.state.formState
                         })
                     }}

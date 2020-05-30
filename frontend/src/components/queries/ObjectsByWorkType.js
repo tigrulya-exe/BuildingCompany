@@ -17,7 +17,7 @@ export default class ObjectsByWorkType extends React.Component {
             showResult: false,
             showModal: false,
             modalMessage: '',
-            workTypeIds:'',
+            workTypeIds: '',
             startDateMin: null,
             startDateMax: null
         }

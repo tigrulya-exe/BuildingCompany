@@ -98,7 +98,7 @@ export default class SelectTable extends React.Component {
         const distinct = (value, index, self) => self.indexOf(value) === index;
         let newSelectedRows;
 
-        if(!newRows.length && !clickedRow){
+        if (!newRows.length && !clickedRow) {
             newSelectedRows = []
         } else if (!isChecking || (isChecking && clickedRow.tableData.checked)) {
             let newRowsIds = [...newRows.map(r => r.id)];
@@ -116,7 +116,7 @@ export default class SelectTable extends React.Component {
     };
 
     onDelete = (row) => {
-        const promise =  this.props.onDelete(row);
+        const promise = this.props.onDelete(row);
         this.tableRef.current.onQueryChange();
         return promise;
     };

@@ -1,9 +1,9 @@
 package nsu.manasyan.buildingcompany.companypartsstuff.controllers
 
 import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.companypartsstuff.mappers.AreaMapper
-import nsu.manasyan.buildingcompany.companypartsstuff.dto.AreaDto
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
+import nsu.manasyan.buildingcompany.companypartsstuff.dto.AreaDto
+import nsu.manasyan.buildingcompany.companypartsstuff.mappers.AreaMapper
 import nsu.manasyan.buildingcompany.companypartsstuff.model.Area
 import nsu.manasyan.buildingcompany.companypartsstuff.repositories.AreaFilter
 import nsu.manasyan.buildingcompany.companypartsstuff.services.AreaService

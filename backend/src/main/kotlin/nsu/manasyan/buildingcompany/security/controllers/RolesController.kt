@@ -24,13 +24,13 @@ class RolesController(
 
     @PreAuthorize("hasAuthority('EDIT_USERS')")
     @PostMapping("/{roleId}/permissions")
-    fun addPermissions(@RequestBody idListDto: IdListDto, @PathVariable roleId: Int){
+    fun addPermissions(@RequestBody idListDto: IdListDto, @PathVariable roleId: Int) {
         rolesService.addPermissions(idListDto.ids, roleId)
     }
 
     @PreAuthorize("hasAuthority('EDIT_USERS')")
     @DeleteMapping("/{roleId}/permissions/{permissionId}")
-    fun removePermission(@PathVariable roleId: Int, @PathVariable permissionId: Int){
+    fun removePermission(@PathVariable roleId: Int, @PathVariable permissionId: Int) {
         rolesService.removePermission(roleId, permissionId)
     }
 

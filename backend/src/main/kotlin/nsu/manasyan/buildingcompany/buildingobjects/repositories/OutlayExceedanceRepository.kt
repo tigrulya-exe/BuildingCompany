@@ -14,16 +14,18 @@ import java.util.*
 
 @Repository
 interface OutlayExceedanceRepository : JpaFilterRepository<OutlayExceedance, Int> {
-    @Query("""
+    @Query(
+        """
         select o   
         from OutlayExceedance o
         where (:#{#filter.outlayRowId} is null or o.outlayRow.id = :#{#filter.outlayRowId})
         and (:#{#filter.exceedanceMin} is null or o.exceedanceCount >= :#{#filter.exceedanceMin})
         and (:#{#filter.exceedanceMax} is null or o.exceedanceCount <= :#{#filter.exceedanceMax})
-    """)
+    """
+    )
     override fun findAllByFilter(filter: Filter<in OutlayExceedance>?, pageable: Pageable): Page<OutlayExceedance>
 
-    fun getByOutlayRow(outlayRow: Outlay) : Optional<OutlayExceedance>
+    fun getByOutlayRow(outlayRow: Outlay): Optional<OutlayExceedance>
 }
 
 @NoArgConstructor

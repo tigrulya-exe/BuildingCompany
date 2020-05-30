@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../routing/History'
 import {tokenStorage} from "../context/AuthContextProvider";
 
 export const AXIOS = axios.create({
@@ -33,7 +32,7 @@ const redirectIfNotAuthorized = (err) => {
     if (err.response.status === 401) {
         tokenStorage.refreshTokens();
     }
-    if(err.response.status === 403){
+    if (err.response.status === 403) {
         // alert("Forbidden");
         // history.goBack();
     }

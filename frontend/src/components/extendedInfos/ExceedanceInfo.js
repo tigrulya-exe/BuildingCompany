@@ -2,12 +2,12 @@ import React from 'react';
 import {Col, Form} from 'react-bootstrap';
 import {AXIOS} from '../../util/AxiosConfig'
 
-export default class DelayInfo extends React.Component {
+export default class ExceedanceInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            scheduleId: this.props.scheduleId,
-            delay: null
+            outlayId: this.props.outlayId,
+            count: null
         }
     }
 
@@ -17,18 +17,18 @@ export default class DelayInfo extends React.Component {
 
     fetchData = () =>
         new Promise((resolve, reject) => {
-            AXIOS.get(`/work-schedules/by-schedule-row/${this.state.scheduleId}`)
-                .then((result) => this.setState({delay: result.data.delay}))
+            AXIOS.get(`/outlays/by-outlay/${this.state.outlayId}`)
+                .then((result) => this.setState({count: result.data.count}))
                 .catch((reason) => reject())
         });
 
     render() {
-        return (this.state.delay) ?
+        return (this.state.count) ?
             (<>
-                <Form.Label>Delay</Form.Label>
+                <Form.Label>Exceedance</Form.Label>
                 <Form.Row>
-                    <Form.Group as={Col} controlId="name">
-                        <Form.Control disabled value={new Date(this.state.delay).toLocaleTimeString()}/>
+                    <Form.Group as={Col} controlId="count">
+                        <Form.Control disabled value={this.state.count}/>
                     </Form.Group>
                 </Form.Row>
             </>) : null;

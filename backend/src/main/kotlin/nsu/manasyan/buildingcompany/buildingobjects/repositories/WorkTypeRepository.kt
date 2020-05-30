@@ -1,7 +1,6 @@
 package nsu.manasyan.buildingcompany.buildingobjects.repositories
 
 import nsu.manasyan.buildingcompany.abstracts.repositories.JpaFilterRepository
-import nsu.manasyan.buildingcompany.buildingobjects.model.BuildingObject
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkType
 import nsu.manasyan.buildingcompany.util.filters.Filter
 import nsu.manasyan.buildingcompany.util.filters.FilterStringDelegate
@@ -27,15 +26,18 @@ interface WorkTypeRepository :
         pageable: Pageable
     ): Page<WorkType>
 
-    @Query("""
+    @Query(
+        """
         select wt
         from WorkType wt join BuildingObject b
         on b member wt.buildingObjects
         where :buildingObjectId = b.id
-    """)
-    fun findByBuildingObject(buildingObjectId: Int, pageable: Pageable) : Page<WorkType>
+    """
+    )
+    fun findByBuildingObject(buildingObjectId: Int, pageable: Pageable): Page<WorkType>
 
-    @Query("""
+    @Query(
+        """
         select wt
         from WorkType wt 
         join BrigadeObjectWork bow on bow.workType = wt
@@ -44,12 +46,13 @@ interface WorkTypeRepository :
         left join Area a on a = ws.brigadeWork.buildingObject.area
         where (coalesce(:areaIds, :areaIds) is null or a.id in :areaIds)
         and (coalesce(:managementIds, :managementIds) is null or a.management.id in :managementIds)
-    """)
+    """
+    )
     fun findByAreaManagementDelay(
         areaIds: List<Int>?,
         managementIds: List<Int>?,
         pageable: Pageable
-    ) : Page<WorkType>
+    ): Page<WorkType>
 
     fun findByNameIgnoreCase(name: String): Optional<WorkType>
 }

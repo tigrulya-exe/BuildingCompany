@@ -16,7 +16,8 @@ class MaterialsService(
     fun findByAreaManagementExceedance(
         areaIds: List<Int>?,
         managementIds: List<Int>?,
-        params: FindRequestParameters?): Page<Material> {
+        params: FindRequestParameters?
+    ): Page<Material> {
 
         val pageable = getPageable(params)
         return materialsRepository.findByAreaManagementExceedance(

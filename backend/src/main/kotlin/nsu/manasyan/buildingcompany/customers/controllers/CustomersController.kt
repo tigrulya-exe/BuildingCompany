@@ -1,9 +1,9 @@
 package nsu.manasyan.buildingcompany.customers.controllers
 
 import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
-import nsu.manasyan.buildingcompany.customers.mappers.CustomerMapper
-import nsu.manasyan.buildingcompany.customers.dto.CustomerDto
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
+import nsu.manasyan.buildingcompany.customers.dto.CustomerDto
+import nsu.manasyan.buildingcompany.customers.mappers.CustomerMapper
 import nsu.manasyan.buildingcompany.customers.model.Customer
 import nsu.manasyan.buildingcompany.customers.repositories.CustomerFilter
 import nsu.manasyan.buildingcompany.customers.services.CustomersService

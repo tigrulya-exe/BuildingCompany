@@ -24,7 +24,7 @@ interface ScheduleDelayRepository : JpaFilterRepository<ScheduleDelay, Int> {
     )
     override fun findAllByFilter(filter: Filter<in ScheduleDelay>?, pageable: Pageable): Page<ScheduleDelay>
 
-    fun findByScheduleRow(scheduleRow: WorkSchedule) : Optional<ScheduleDelay>
+    fun findByScheduleRow(scheduleRow: WorkSchedule): Optional<ScheduleDelay>
 }
 
 @NoArgConstructor

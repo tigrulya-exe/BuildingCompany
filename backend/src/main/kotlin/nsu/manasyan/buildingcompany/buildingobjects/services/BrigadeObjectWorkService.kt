@@ -21,12 +21,14 @@ class BrigadeObjectWorkService(
 
         val entity = bOWrepository
             .findDistinctByBrigadeAndWorkTypeAndBuildingObject(brigade, workType, buildingObject)
-        return entity.orElse(bOWrepository.save(
-            BrigadeObjectWork(
-                buildingObject,
-                workType,
-                brigade
+        return entity.orElse(
+            bOWrepository.save(
+                BrigadeObjectWork(
+                    buildingObject,
+                    workType,
+                    brigade
+                )
             )
-        ))
+        )
     }
 }

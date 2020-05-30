@@ -1,9 +1,10 @@
 import React from 'react';
-import {Form} from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 import CollapseContainer from "../CollapseContainer";
 import ModalWindow from "../modals/Modal";
 import BuildingObjectsSingleSelectTable from "../readOnlyTables/BuildingObjectSingleSelectTable";
 import WorkScheduleReadOnlyTable from "../readOnlyTables/WorkScheduleReadOnlyTable";
+import OutlaysSelectTable from "../readOnlyTables/OutlaysSelectTable";
 
 
 export default class GetBuildingReport extends React.Component {
@@ -14,7 +15,9 @@ export default class GetBuildingReport extends React.Component {
             showModal: false,
             modalMessage: '',
             startDateMin: null,
-            startDateMax: null
+            startDateMax: null,
+            scheduleRefresh: null,
+            outlayRefresh: null
         }
     }
 
@@ -27,6 +30,11 @@ export default class GetBuildingReport extends React.Component {
             showModal: true,
             modalMessage: responseBody.error || 'Unknown error'
         })
+    };
+
+    onRefresh = () => {
+        this.state.scheduleRefresh();
+        this.state.outlayRefresh();
     };
 
     render() {
@@ -51,11 +59,20 @@ export default class GetBuildingReport extends React.Component {
                         </CollapseContainer>
                     </Form.Group>
                 </Form>
+                <Button onClick={this.onRefresh}>Submit</Button>
                 <WorkScheduleReadOnlyTable
                     url='/work-schedules/filter'
+                    setRefresh={(refresh) => this.setState({scheduleRefresh: refresh})}
                     params={{
                         buildingObjectId: this.state.buildingObjectId,
                     }}/>
+                <OutlaysSelectTable
+                    url='/outlays/filter'
+                    setRefresh={(refresh) => this.setState({outlayRefresh: refresh})}
+                    params={{
+                        buildingObjectId: this.state.buildingObjectId,
+                    }}
+                />
             </>
         )
     }

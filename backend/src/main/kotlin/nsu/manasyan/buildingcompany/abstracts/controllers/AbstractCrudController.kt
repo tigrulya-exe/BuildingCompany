@@ -1,17 +1,15 @@
 package nsu.manasyan.buildingcompany.abstracts.controllers
 
-import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
 import nsu.manasyan.buildingcompany.abstracts.dto.Dto
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
-import nsu.manasyan.buildingcompany.logger
+import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
 import nsu.manasyan.buildingcompany.abstracts.model.Identifiable
 import nsu.manasyan.buildingcompany.abstracts.services.CommonCrudService
+import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import nsu.manasyan.buildingcompany.util.filters.Filter
-import org.springframework.security.access.annotation.Secured
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
-import javax.annotation.security.RolesAllowed
 
 abstract class AbstractCrudController<E : Identifiable, D : Dto<in E>>(
     open val service: CommonCrudService<E>,
@@ -56,7 +54,10 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<in E>>(
     }
 
     @PreAuthorize("hasAuthority('READ')")
-    protected open fun <F : Filter<in E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
+    protected open fun <F : Filter<in E>> findAllByFilter(
+        filter: F?,
+        requestParams: FindRequestParameters?
+    ): PageDto<*> {
         val page = service.getAllEntitiesByFilter(filter, requestParams)
         logger().info("${entityName}s filter method was queried")
         return mapper.toPageDto(page)

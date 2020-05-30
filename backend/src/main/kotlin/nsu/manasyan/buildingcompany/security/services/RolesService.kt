@@ -17,7 +17,7 @@ class RolesService(
     @Transactional
     override fun deleteEntity(id: Int) {
         val entity = getEntity(id)
-        entity.users.forEach{it.roles.remove(entity)}
+        entity.users.forEach { it.roles.remove(entity) }
         super.deleteEntity(id)
     }
 
@@ -31,7 +31,7 @@ class RolesService(
     @Transactional
     fun removePermission(roleId: Int, permissionId: Int) {
         val role = getEntity(roleId)
-        role.permissions.removeIf{it.id == permissionId}
+        role.permissions.removeIf { it.id == permissionId }
     }
 
     @Transactional

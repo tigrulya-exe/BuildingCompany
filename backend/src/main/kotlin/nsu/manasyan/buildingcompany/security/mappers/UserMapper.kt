@@ -1,8 +1,8 @@
 package nsu.manasyan.buildingcompany.security.mappers
 
 import nsu.manasyan.buildingcompany.abstracts.mappers.Mapper
-import nsu.manasyan.buildingcompany.security.model.User
 import nsu.manasyan.buildingcompany.security.dto.UserDto
+import nsu.manasyan.buildingcompany.security.model.User
 import org.springframework.stereotype.Component
 
 @Component

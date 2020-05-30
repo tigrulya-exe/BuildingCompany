@@ -16,8 +16,8 @@ fun getPageable(parameters: FindRequestParameters?, sort: Sort): Pageable {
     } ?: Pageable.unpaged()
 }
 
-fun <E> getNullableList(list: List<E>?) : List<E>?{
-    return if(list?.size != 0) list else null
+fun <E> getNullableList(list: List<E>?): List<E>? {
+    return if (list?.size != 0) list else null
 }
 
 fun getSort(parameters: FindRequestParameters?): Sort {
