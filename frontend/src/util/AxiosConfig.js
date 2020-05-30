@@ -34,7 +34,7 @@ const redirectIfNotAuthorized = (err) => {
         tokenStorage.refreshTokens();
     }
     if(err.response.status === 403){
-        alert("Forbidden");
+        // alert("Forbidden");
         // history.goBack();
     }
     return Promise.reject(err);

@@ -35,9 +35,6 @@ interface WorkScheduleRepository :
 
 }
 
-@Repository
-interface ScheduleDelayRepository : JpaRepository<ScheduleDelay, Int>
-
 @NoArgConstructor
 class BrigadeObjectWorkFilter(
     var buildingObjectId: Int?,

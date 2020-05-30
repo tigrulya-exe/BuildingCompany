@@ -15,6 +15,13 @@ class RolesService(
 ) : AbstractCrudService<UserRole>(roleRepository) {
 
     @Transactional
+    override fun deleteEntity(id: Int) {
+        val entity = getEntity(id)
+        entity.users.forEach{it.roles.remove(entity)}
+        super.deleteEntity(id)
+    }
+
+    @Transactional
     fun addPermissions(ids: List<Int>, roleId: Int) {
         val permissions = ids.map { permissionsService.getEntity(it) }
         val role = getEntity(roleId)

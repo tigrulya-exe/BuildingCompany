@@ -32,8 +32,6 @@ interface OutlayRepository :
 
 }
 
-@Repository
-interface OutlayExceedanceRepository : JpaRepository<OutlayExceedance, Int>
 
 @NoArgConstructor
 data class OutlayFilter(

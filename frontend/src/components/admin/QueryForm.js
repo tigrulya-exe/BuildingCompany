@@ -2,11 +2,15 @@ import React from 'react';
 import {Button, Col, Form, Jumbotron, Row} from 'react-bootstrap';
 import {AXIOS} from '../../util/AxiosConfig'
 import ReactPaginate from 'react-paginate';
+import ModalWindow from "../modals/Modal";
 
 export default class QueryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            modalMessage: '',
+            modalTitle: '',
+            showModal: false,
             query: '',
             results: [],
             perPage: 5,
@@ -51,6 +55,16 @@ export default class QueryForm extends React.Component {
         return data?.map(tuple => this.getRow(tuple))
     };
 
+    showModal = (text) => {
+        this.setState({
+            modalTitle: 'Error',
+            modalMessage: text,
+            showModal: true
+        });
+    };
+
+    getErrorFromReason = (reason) => reason.response?.data?.error || "Unknown error";
+
     onSubmit = (event) => {
         AXIOS.get('/query', {
             params: {
@@ -60,7 +74,7 @@ export default class QueryForm extends React.Component {
             }
         })
             .then((result) => this.setResult(result.data))
-            .catch((error) => alert(error));
+            .catch((error) => this.showModal(this.getErrorFromReason(error)));
         event && event.preventDefault()
     };
 
@@ -81,23 +95,37 @@ export default class QueryForm extends React.Component {
             />
     };
 
+    onModalClose = () => {
+        this.setState({
+            showModal: false
+        })
+    };
+
     render() {
         return (
-            <Form onSubmit={this.onSubmit}>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>SQL query</Form.Label>
-                    <Form.Control as="textarea" rows="8" value={this.state.query} onChange={this.onChange}/>
-                </Form.Group>
-                <Button variant="primary" className="float-right" type="submit">
-                    Execute
-                </Button>
-                <br/>
-                <br/>
-                <Jumbotron>
-                    {this.getResults()}
-                </Jumbotron>
-                {this.getPagination()}
-            </Form>
+            <>
+                <ModalWindow
+                    show={this.state.showModal}
+                    title={this.state.modalTitle}
+                    message={this.state.modalMessage}
+                    onModalClose={this.onModalClose}
+                />
+                <Form onSubmit={this.onSubmit}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>SQL query</Form.Label>
+                        <Form.Control as="textarea" rows="8" value={this.state.query} onChange={this.onChange}/>
+                    </Form.Group>
+                    <Button variant="primary" className="float-right" type="submit">
+                        Execute
+                    </Button>
+                    <br/>
+                    <br/>
+                    <Jumbotron>
+                        {this.getResults()}
+                    </Jumbotron>
+                    {this.getPagination()}
+                </Form>
+            </>
         )
     }
 }

@@ -27,6 +27,8 @@ import WorkersByBuildingObject from "../components/queries/WorkersByBuildingObje
 import MachineryByManagements from "../components/queries/MachineryByManagements";
 import Profile from "../components/Profile";
 import AdminPage from "../components/admin/AdminPage";
+import WorkTypesTable from "../components/crudTables/buildingObjects/WorkTypesTable";
+import GetBuildingReport from "../components/queries/GetBuildingReport";
 
 export default function RouteSwitch(props) {
     return (
@@ -106,6 +108,14 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<Profile/>}
                 path="/profile">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<WorkTypesTable/>}
+                path="/work-types">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<GetBuildingReport/>}
+                path="/building-report">
             </AuthenticatedRoute>
             <UnauthenticatedRoute
                 component={<Login/>}

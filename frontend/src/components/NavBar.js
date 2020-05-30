@@ -39,6 +39,7 @@ export default class NavBar extends React.Component {
                                 Managements</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/materials">Materials</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/outlays">Outlays</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/work-types">Work types</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/technical-specialists/all">Technical
                                 Specialists</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/workers/all">Workers</Link></NavDropdown.Item>
@@ -54,6 +55,8 @@ export default class NavBar extends React.Component {
                                 to="/machinery-by-managements">MachineryByManagements</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
                                 to="/machinery-by-building-object">MachineryByBuildingObject</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/building-report">Building object report</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/admin/query">Admin</Link></Nav.Link>

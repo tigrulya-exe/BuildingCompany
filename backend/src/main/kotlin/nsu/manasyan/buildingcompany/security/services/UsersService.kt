@@ -30,16 +30,24 @@ class UsersService(
         checkUniqueParams(user)
         user.password = bCryptPasswordEncoder.encode(user.password)
         user.roles = mutableSetOf()
-        user.roles.add(roleRepository.findByRole(UserRole.Role.UNCONFIRMED))
+        user.roles.add(roleRepository.findByRole("UNCONFIRMED"))
 
         logger().info("User ${user.nickname} signed up")
         eventPublisher.publishEvent(RegistrationCompleteEvent(userRepository.save(user)))
+    }
+
+    override fun addEntity(entity: User) {
+        entity.password = bCryptPasswordEncoder.encode(entity.password)
+        super.addEntity(entity)
     }
 
     override fun updateEntity(entity: User) {
         val dbInstance = getEntity(entity.id!!)
         entity.roles = dbInstance.roles
         entity.tokens = dbInstance.tokens
+        if(dbInstance.password != entity.password){
+            entity.password = bCryptPasswordEncoder.encode(entity.password)
+        }
         super.updateEntity(entity)
     }
 
@@ -116,8 +124,8 @@ class UsersService(
             throw IllegalArgumentException("User already confirmed")
         }
 
-        val unconfirmedRole = roleRepository.findByRole(UserRole.Role.UNCONFIRMED)
-        val defaultRole = roleRepository.findByRole(UserRole.Role.DEFAULT)
+        val unconfirmedRole = roleRepository.findByRole("UNCONFIRMED")
+        val defaultRole = roleRepository.findByRole("DEFAULT")
         user.roles.remove(unconfirmedRole)
         user.roles.add(defaultRole)
 
@@ -126,7 +134,7 @@ class UsersService(
     }
 
     private fun isConfirmed(user: User): Boolean {
-        return !user.roles.map { r -> r.role }.contains(UserRole.Role.UNCONFIRMED)
+        return !user.roles.map { r -> r.role }.contains("UNCONFIRMED")
     }
 
     private fun checkUniqueParams(user: User) {

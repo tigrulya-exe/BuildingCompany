@@ -9,6 +9,7 @@ export default class UsersTable extends React.Component {
         {title: 'Nickname', field: 'nickname'},
         {title: 'Email', field: 'email'},
         {title: 'FullName', field: 'fullName'},
+        {title: 'Password', field: 'password'}
     ];
 
     render() {

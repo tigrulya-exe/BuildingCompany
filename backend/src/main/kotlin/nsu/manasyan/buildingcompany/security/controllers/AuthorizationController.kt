@@ -1,16 +1,15 @@
 package nsu.manasyan.buildingcompany.security.controllers
 
-import nsu.manasyan.buildingcompany.security.mappers.UserMapper
 import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.security.dto.AuthorizationTokensDto
 import nsu.manasyan.buildingcompany.security.dto.NewPasswordDto
 import nsu.manasyan.buildingcompany.security.dto.TokenDto
 import nsu.manasyan.buildingcompany.security.dto.UserDto
-import nsu.manasyan.buildingcompany.security.model.*
+import nsu.manasyan.buildingcompany.security.mappers.UserMapper
+import nsu.manasyan.buildingcompany.security.model.Credentials
 import nsu.manasyan.buildingcompany.security.services.UsersService
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
-
 import org.springframework.web.servlet.ModelAndView
 
 @RestController
@@ -43,7 +42,7 @@ class AuthorizationController(
 
     @GetMapping("/profile")
     @PreAuthorize("hasAuthority('READ')")
-    fun getProfile() : UserDto {
+    fun getProfile(): UserDto {
         return userMapper.toDto(usersService.getProfile())
     }
 

@@ -5,6 +5,8 @@ import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.WorkTypeDto
 import nsu.manasyan.buildingcompany.buildingobjects.mappers.WorkTypeMapper
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkType
+import nsu.manasyan.buildingcompany.buildingobjects.repositories.MaterialFilter
+import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkTypeFilter
 import nsu.manasyan.buildingcompany.buildingobjects.services.WorkTypeService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,5 +24,10 @@ class WorkTypeController(
     @GetMapping("/by-building-object")
     fun getByBuildingObject(@RequestParam buildingObjectId: Int, params: FindRequestParameters?): PageDto<*> {
         return mapper.toPageDto(workTypeService.getByBuildingObject(buildingObjectId, params))
+    }
+
+    @GetMapping("/filter")
+    fun getAllEntitiesByFilter(filter: WorkTypeFilter?, params: FindRequestParameters?): PageDto<*> {
+        return super.findAllByFilter(filter, params)
     }
 }

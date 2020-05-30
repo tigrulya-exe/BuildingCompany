@@ -7,15 +7,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "Roles")
 class UserRole(
-    @Enumerated(EnumType.STRING)
-    var role: Role
+    var role: String
 ) : GrantedAuthority, Identifiable() {
-    enum class Role {
-        UNCONFIRMED,
-        DEFAULT,
-        ADMIN
-    }
-
     @ManyToMany(mappedBy = "roles")
     var users = mutableSetOf<User>()
 
@@ -23,7 +16,7 @@ class UserRole(
     @JoinTable(name = "RolesPermissions")
     var permissions = mutableSetOf<Permission>()
 
-    override fun getAuthority() = role.name
+    override fun getAuthority() = role
 }
 
 @Entity

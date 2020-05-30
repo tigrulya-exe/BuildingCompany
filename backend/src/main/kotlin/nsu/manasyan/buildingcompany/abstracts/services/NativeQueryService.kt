@@ -6,15 +6,13 @@ import nsu.manasyan.buildingcompany.logger
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.hibernate.exception.GenericJDBCException
 import org.springframework.stereotype.Service
-import java.lang.IllegalArgumentException
 import java.math.BigInteger
 import javax.persistence.EntityManager
-import kotlin.reflect.typeOf
 
 
 @Service
 class NativeQueryService(private val entityManager: EntityManager) {
-    companion object{
+    companion object {
         const val DEFAULT_PAGE_SIZE = 500
     }
 
@@ -31,30 +29,30 @@ class NativeQueryService(private val entityManager: EntityManager) {
                 .setFirstResult(page * pageSize)
                 .setMaxResults(pageSize)
 
-            if(query.resultList.size > 0){
+            if (query.resultList.size > 0) {
                 totalCount = getTotalCount(queryString)
             }
             NativeQueryResultsDto(query.resultList, totalCount)
         } catch (exc: Exception) {
             logger().error("SQL query exception: ${exc.localizedMessage}")
-            when(exc.cause){
+            when (exc.cause) {
                 is GenericJDBCException -> NativeQueryResultsDto(arrayListOf<Any>(), totalCount)
                 else -> throw NoDataFoundException("No data")
             }
         }
     }
 
-    private fun getTotalCount(query: String): Int{
+    private fun getTotalCount(query: String): Int {
         val countArray = entityManager
             .createNativeQuery("SELECT count(*) from($query) AS QUERY").resultList
-        return if(countArray.size > 0) (countArray[0] as BigInteger).toInt() else 0
+        return if (countArray.size > 0) (countArray[0] as BigInteger).toInt() else 0
     }
 
-    private fun getPageSize(params: FindRequestParameters?): Int{
+    private fun getPageSize(params: FindRequestParameters?): Int {
         return params?.pageSize?.let { it } ?: DEFAULT_PAGE_SIZE
     }
 
-    private fun getPage(params: FindRequestParameters?): Int{
+    private fun getPage(params: FindRequestParameters?): Int {
         return params?.page?.let { it } ?: 0
     }
 }

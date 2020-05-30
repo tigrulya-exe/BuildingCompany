@@ -3,7 +3,8 @@ VALUES  (1, 'READ'),
         (2, 'UPDATE'),
         (3, 'CREATE'),
         (4, 'DELETE'),
-        (5, 'GRANT') on conflict do nothing;
+        (5, 'READ_USERS'),
+        (6, 'EDIT_USERS') on conflict do nothing;
 
 INSERT INTO rolespermissions
 VALUES (1, 1),

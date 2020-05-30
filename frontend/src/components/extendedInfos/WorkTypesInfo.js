@@ -32,11 +32,13 @@ export default class WorkTypesInfo extends React.Component {
     onDelete = (oldData) =>
         new Promise((resolve, reject) => {
             AXIOS.delete(`building-objects/${this.props.buildingObjectId}/workTypes/${oldData.id}`)
-                .catch((reason) =>
-                    alert(`Error deleting entity: ${this.getErrorFromReason(reason)}`)
+                .then((result) => resolve())
+                .catch((reason) => {
+                        alert(`Error deleting entity: ${this.getErrorFromReason(reason)}`);
+                        resolve()
+                    }
                 );
 
-            resolve()
         });
 
     render() {

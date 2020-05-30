@@ -1,6 +1,5 @@
 package nsu.manasyan.buildingcompany.security.controllers
 
-import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.IdListDto
 import nsu.manasyan.buildingcompany.security.dto.RoleDto
@@ -17,25 +16,25 @@ import org.springframework.web.bind.annotation.*
 class RolesController(
     private val rolesService: RolesService,
     private val roleMapper: RoleMapper
-) : AbstractCrudController<UserRole, RoleDto>(rolesService, roleMapper, "Role") {
+) : AbstractSecuredCrudController<UserRole, RoleDto>(rolesService, roleMapper, "Role") {
     @GetMapping("/filter")
     fun getAllEntitiesByFilter(filter: RoleFilter?, params: FindRequestParameters?): PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 
-    @PreAuthorize("hasAuthority('UPDATE')")
+    @PreAuthorize("hasAuthority('EDIT_USERS')")
     @PostMapping("/{roleId}/permissions")
     fun addPermissions(@RequestBody idListDto: IdListDto, @PathVariable roleId: Int){
         rolesService.addPermissions(idListDto.ids, roleId)
     }
 
-    @PreAuthorize("hasAuthority('DELETE')")
+    @PreAuthorize("hasAuthority('EDIT_USERS')")
     @DeleteMapping("/{roleId}/permissions/{permissionId}")
     fun removePermission(@PathVariable roleId: Int, @PathVariable permissionId: Int){
         rolesService.removePermission(roleId, permissionId)
     }
 
-    @PreAuthorize("hasAuthority('READ')")
+    @PreAuthorize("hasAuthority('READ_USERS')")
     @GetMapping("/by-user")
     fun getByUser(@RequestParam userId: Int, params: FindRequestParameters?): PageDto<*> {
         return mapper.toPageDto(rolesService.getByUser(userId, params))

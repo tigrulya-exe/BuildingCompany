@@ -22,7 +22,7 @@ interface RoleRepository : JpaFilterRepository<UserRole, Int> {
     """)
     override fun findAllByFilter(filter: Filter<in UserRole>?, pageable: Pageable): Page<UserRole>
 
-    fun findByRole(role: UserRole.Role): UserRole
+    fun findByRole(role: String): UserRole
 
     @Query("""
         select r

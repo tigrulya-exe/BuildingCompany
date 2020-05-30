@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class NativeQueryController(private val queryService: NativeQueryService) {
 
     @GetMapping("/query")
-    @PreAuthorize("hasAuthority('READ')")
+    @PreAuthorize("hasAuthority('EDIT_USERS')")
     fun getQueryResults(@RequestParam query: String, params: FindRequestParameters?): NativeQueryResultsDto {
         return queryService.getQueryResults(query, params)
     }

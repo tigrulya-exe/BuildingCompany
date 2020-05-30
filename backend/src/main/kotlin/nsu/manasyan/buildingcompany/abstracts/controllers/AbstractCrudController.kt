@@ -56,7 +56,7 @@ abstract class AbstractCrudController<E : Identifiable, D : Dto<in E>>(
     }
 
     @PreAuthorize("hasAuthority('READ')")
-    fun <F : Filter<in E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
+    protected open fun <F : Filter<in E>> findAllByFilter(filter: F?, requestParams: FindRequestParameters?): PageDto<*> {
         val page = service.getAllEntitiesByFilter(filter, requestParams)
         logger().info("${entityName}s filter method was queried")
         return mapper.toPageDto(page)

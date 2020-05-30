@@ -1,6 +1,5 @@
 package nsu.manasyan.buildingcompany.security.controllers
 
-import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
 import nsu.manasyan.buildingcompany.security.dto.PermissionDto
 import nsu.manasyan.buildingcompany.security.mappers.PermissionMapper
@@ -16,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("\${application.path}/permissions")
+@PreAuthorize("hasAuthority('READ_USERS')")
 class PermissionsController(
     private val permissionsService: PermissionsService,
     private val permissionMapper: PermissionMapper
-) : AbstractCrudController<Permission, PermissionDto>(permissionsService, permissionMapper, "Permission") {
+) : AbstractSecuredCrudController<Permission, PermissionDto>(permissionsService, permissionMapper, "Permission") {
 
     @GetMapping("/filter")
     fun getAllEntitiesByFilter(filter: PermissionFilter?, params: FindRequestParameters?): PageDto<*> {
         return super.findAllByFilter(filter, params)
     }
 
-    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/by-role")
     fun getByRole(@RequestParam roleId: Int, params: FindRequestParameters?): PageDto<*> {
         return mapper.toPageDto(permissionsService.getByRole(roleId, params))

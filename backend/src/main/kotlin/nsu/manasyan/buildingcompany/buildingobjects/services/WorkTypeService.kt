@@ -6,20 +6,24 @@ import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkTypeReposit
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class WorkTypeService(
     private val workTypeRepository: WorkTypeRepository
 ) : AbstractCrudService<WorkType>(workTypeRepository) {
+    @Transactional
+    override fun deleteEntity(id: Int) {
+        val entity = getEntity(id)
+        entity.buildingObjects.forEach{it.workTypes.remove(entity)}
+        super.deleteEntity(id)
+    }
+
     fun getOrCreateByName(name: String): WorkType {
         return workTypeRepository
             .findByNameIgnoreCase(name)
             .orElseGet {
-                workTypeRepository.save(
-                    WorkType(
-                        name
-                    )
-                )
+                workTypeRepository.save(WorkType(name))
             }
     }
 
