@@ -31,6 +31,7 @@ import WorkTypesTable from "../components/crudTables/buildingObjects/WorkTypesTa
 import GetBuildingReport from "../components/queries/GetBuildingReport";
 import ObjectsByWorkType from "../components/queries/ObjectsByWorkType";
 import WorkTypesWithDelay from "../components/queries/WorkTypesWithDelay";
+import MaterialsWithExceedance from "../components/queries/MaterialsWithExceedance";
 
 export default function RouteSwitch(props) {
     return (
@@ -126,6 +127,10 @@ export default function RouteSwitch(props) {
             <AuthenticatedRoute
                 component={<GetBuildingReport/>}
                 path="/building-report">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute
+                component={<MaterialsWithExceedance/>}
+                path="/materials-with-exceedance">
             </AuthenticatedRoute>
             <UnauthenticatedRoute
                 component={<Login/>}

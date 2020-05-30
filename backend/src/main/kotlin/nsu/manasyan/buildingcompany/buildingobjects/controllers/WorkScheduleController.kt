@@ -3,6 +3,7 @@ package nsu.manasyan.buildingcompany.buildingobjects.controllers
 import nsu.manasyan.buildingcompany.abstracts.controllers.AbstractCrudController
 import nsu.manasyan.buildingcompany.buildingobjects.mappers.WorkScheduleMapper
 import nsu.manasyan.buildingcompany.abstracts.dto.PageDto
+import nsu.manasyan.buildingcompany.buildingobjects.dto.DelayDto
 import nsu.manasyan.buildingcompany.buildingobjects.dto.WorkScheduleDto
 import nsu.manasyan.buildingcompany.buildingobjects.model.WorkSchedule
 import nsu.manasyan.buildingcompany.buildingobjects.repositories.BrigadeObjectWorkFilter
@@ -10,18 +11,15 @@ import nsu.manasyan.buildingcompany.buildingobjects.repositories.WorkScheduleFil
 import nsu.manasyan.buildingcompany.buildingobjects.services.WorkScheduleService
 import nsu.manasyan.buildingcompany.util.FindRequestParameters
 import org.springframework.format.annotation.DateTimeFormat
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
 @RequestMapping("\${application.path}/work-schedules")
 class WorkScheduleController(
-    service: WorkScheduleService,
+    private val scheduleService: WorkScheduleService,
     mapper: WorkScheduleMapper
-) : AbstractCrudController<WorkSchedule, WorkScheduleDto>(service, mapper, "WorkSchedule") {
+) : AbstractCrudController<WorkSchedule, WorkScheduleDto>(scheduleService, mapper, "WorkSchedule") {
 
     @GetMapping("/filter")
     fun getAllEntitiesByFilter(
@@ -40,6 +38,12 @@ class WorkScheduleController(
                 startDateMax
             )
         return super.findAllByFilter(workScheduleFilter, params)
+    }
+
+    @GetMapping("/by-schedule-row/{scheduleRowId}")
+    fun findByScheduleRowId(@PathVariable scheduleRowId: Int): DelayDto?{
+        val delay = scheduleService.findByScheduleRowId(scheduleRowId)
+        return delay?.let { DelayDto(it.delay) }
     }
 
 }

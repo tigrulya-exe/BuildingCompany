@@ -61,6 +61,8 @@ export default class NavBar extends React.Component {
                                 to="/objects-by-work-types">Building objects by work types</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link
                                 to="/work-types-with-delay">Work types with delay</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                to="/materials-with-exceedance">Materials with exceedance</Link></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav.Link><Link  style={{textDecoration: 'none', color: 'white'}} to="/admin/query">Admin</Link></Nav.Link>

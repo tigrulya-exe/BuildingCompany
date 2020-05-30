@@ -28,16 +28,18 @@ interface MaterialsRepository :
 
     @Query("""
         select m
-        from Material m join Outlay o 
-            on m = o.material
-        join OutlayExceedance oe
-            on o = oe.outlayRow
-        left join Area a 
-            on a = o.buildingObject.area
-        where (:areaId is null or a.id = :areaId)
-        and (:managementId is null or a.management.id = :managementId)
+        from Material m 
+        join Outlay o on m = o.material
+        join OutlayExceedance oe on o = oe.outlayRow
+        left join Area a on a = o.buildingObject.area
+        where (coalesce(:areaIds, :areaIds) is null or a.id in :areaIds)
+        and (coalesce(:managementIds, :managementIds) is null or a.management.id in :managementIds)
     """)
-    fun findByAreaManagementDelay(areaId: Int?, managementId: Int?, pageable: Pageable) : Page<Material>
+    fun findByAreaManagementExceedance(
+        areaIds: List<Int>?,
+        managementIds: List<Int>?,
+        pageable: Pageable
+    ) : Page<Material>
 }
 
 class MaterialFilter : Filter<Material> {

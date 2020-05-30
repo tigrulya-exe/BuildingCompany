@@ -58,8 +58,7 @@ class WorkScheduleFilter(
         outerFilter: BrigadeObjectWorkFilter?,
         startDateMin: Date?,
         startDateMax: Date?
-    )
-            : this(
+    ) : this(
         outerFilter?.buildingObjectId,
         startDateMin,
         startDateMax,
